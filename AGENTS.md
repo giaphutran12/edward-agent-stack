@@ -12,9 +12,10 @@
 At the start of any coding task using this stack, load:
 
 1. `edward-rules/README.md`
-2. the current project's `PROJECT.md`, if one exists
-3. recent relevant Decision Notes under the current project's `decisions/`
-4. `AGENTS.local.md`, if it exists
+2. `docs/TOOLING.md`
+3. the current project's `PROJECT.md`, if one exists
+4. recent relevant Decision Notes under the current project's `decisions/`
+5. `AGENTS.local.md`, if it exists
 
 If project notes are missing, create them from `projects/_template/PROJECT.md` before major work.
 

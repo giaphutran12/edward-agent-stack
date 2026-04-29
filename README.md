@@ -9,6 +9,39 @@ This repo is not a private memory dump. It is a public-safe operating system:
 - Decision Notes: dated decisions so the same question is not asked twice
 - install/update scripts for Codex, Edward's gstack fork, Repowise, and local agent rules
 
+## Tool Stack
+
+Core CLIs:
+
+- Codex
+- Edward's `codex-gstack`
+- MemPalace
+- Repowise
+- Nia CLI
+- Supabase CLI
+- Vercel CLI
+- Claude Code
+- GitHub CLI
+- ripgrep (`rg`)
+- tmux
+- Docker
+- Python, pip, uv
+- ffmpeg
+- Bun, Node, npm
+- jq
+
+Core MCP / app tools:
+
+- Exa
+- Linear
+- MemPalace
+- Playwright / Browser Use
+- Computer Use
+- Repowise
+- OpenAI Developer Docs
+
+Not in the default intern stack: Notion, TinyFish, OMX, Kiro, `mlx_whisper`.
+
 ## One Block To Paste Into Codex
 
 Paste this into Codex on a fresh machine:

@@ -27,6 +27,22 @@ check test -x "$ROOT/scripts/repowise-update.sh"
 
 check command -v git
 check command -v codex
+check command -v gh
+check command -v rg
+check command -v jq
+check command -v tmux
+check command -v bun
+check command -v node
+check command -v npm
+check command -v python3
+check command -v pip3
+check command -v uv
+check command -v docker
+check command -v ffmpeg
+check command -v supabase
+check command -v vercel
+check command -v claude
+check command -v nia
 
 if [ -d "$GSTACK_DIR/.git" ]; then
   printf 'OK   gstack dir exists: %s\n' "$GSTACK_DIR"
