@@ -47,7 +47,7 @@ Not in the default intern stack: Notion, TinyFish, OMX, Kiro, `mlx_whisper`.
 Paste this into Codex on a fresh machine:
 
 ```text
-Install Edward's agent stack. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read README.md and AGENTS.md, then run ./scripts/install.sh and ./scripts/verify.sh. Install giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a secret is needed, stop and ask me to load it. After install, tell me exactly what passed, what failed, and what I need to do next.
+Install Edward's agent stack. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/install.sh and ./scripts/verify.sh. Install Edward's skills into Codex, especially the parent skill edward-rules. Install giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a secret is needed, stop and ask me to load it. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
 ## Manual Install
@@ -63,10 +63,13 @@ cd ~/edward-agent-stack
 
 At the start of a project task, the agent should load:
 
-1. `edward-rules/README.md`
-2. the current project's `PROJECT.md`
-3. recent relevant files under that project's `decisions/`
-4. `AGENTS.local.md`, if the intern has one
+1. `skills/edward-rules/SKILL.md`
+2. only the child skill/reference it routes to, if needed
+3. the current project's `PROJECT.md`
+4. recent relevant files under that project's `decisions/`
+5. `AGENTS.local.md`, if the intern has one
+
+`edward-rules` is the parent skill. It routes to child skills like `edward-decision-capture`, `edward-escalation`, and `edward-project-notes` without loading every detail up front.
 
 Before opening a PR or ending a meaningful task, the agent should run decision capture:
 

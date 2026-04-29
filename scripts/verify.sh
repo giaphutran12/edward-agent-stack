@@ -18,7 +18,10 @@ check() {
 printf 'Edward Agent Stack verify\n'
 
 check test -f "$ROOT/AGENTS.md"
-check test -f "$ROOT/edward-rules/README.md"
+check test -f "$ROOT/skills/edward-rules/SKILL.md"
+check test -f "$ROOT/skills/edward-decision-capture/SKILL.md"
+check test -f "$ROOT/skills/edward-escalation/SKILL.md"
+check test -f "$ROOT/skills/edward-project-notes/SKILL.md"
 check test -f "$ROOT/projects/_template/PROJECT.md"
 check test -f "$ROOT/projects/_template/decisions/_template.md"
 check test -x "$ROOT/scripts/install.sh"
@@ -59,6 +62,12 @@ if [ -f "$CODEX_GSTACK_RUNTIME/SKILL.md" ]; then
 else
   printf 'FAIL Codex gstack runtime missing: %s\n' "$CODEX_GSTACK_RUNTIME"
   fail=1
+fi
+
+if [ -f "$HOME/.codex/skills/edward-rules/SKILL.md" ]; then
+  printf 'OK   Edward parent skill installed: %s\n' "$HOME/.codex/skills/edward-rules"
+else
+  printf 'WARN Edward parent skill not installed yet. Run ./scripts/install.sh\n'
 fi
 
 if command -v repowise >/dev/null 2>&1; then

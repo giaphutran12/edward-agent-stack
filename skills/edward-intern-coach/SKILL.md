@@ -40,9 +40,10 @@ Example: a Decision Note should link the Edward Rule it follows and the Project 
 
 At the start of a project conversation, load:
 
-1. Edward Rules
+1. `skills/edward-rules/SKILL.md`
 2. that project's Project Notes
 3. recent Decision Notes for that project
+4. only the child skill/reference routed by `edward-rules`
 
 Before opening a PR or finishing a meaningful task, run decision capture:
 
@@ -109,7 +110,7 @@ Ask Edward only if:
 
 For repo-level rules and templates, read:
 
-- `edward-rules/README.md`
+- `skills/edward-rules/SKILL.md`
 - `docs/ESCALATION.md`
 - `projects/_template/PROJECT.md`
 - `projects/_template/decisions/_template.md`

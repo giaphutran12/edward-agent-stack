@@ -38,12 +38,26 @@ else
   exit 1
 fi
 
+log "Installing Edward skills into Codex"
+for skill_dir in "$ROOT"/skills/*; do
+  [ -f "$skill_dir/SKILL.md" ] || continue
+  skill_name="$(basename "$skill_dir")"
+  target="$HOME/.codex/skills/$skill_name"
+  if [ -e "$target" ] && [ ! -L "$target" ]; then
+    backup="$target.bak.$(date +%Y%m%d%H%M%S)"
+    log "Backing up existing skill $target to $backup"
+    mv "$target" "$backup"
+  fi
+  ln -snf "$skill_dir" "$target"
+  log "  linked $skill_name"
+done
+
 mkdir -p "$ROOT/dist"
 cat > "$ROOT/dist/user-scope-AGENTS-snippet.md" <<'SNIPPET'
 ## Edward Agent Stack
 
 At the start of coding tasks, load Edward Agent Stack rules:
-- ~/edward-agent-stack/edward-rules/README.md
+- ~/edward-agent-stack/skills/edward-rules/SKILL.md
 - the current project's PROJECT.md when present
 - recent relevant decision notes under decisions/
 - AGENTS.local.md when present
