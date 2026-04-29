@@ -1,0 +1,20 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Local/generated agent state
+.omx/
+.repowise/
+.repowise-workspace/
+.repowise-workspace.yaml
+
+# Local-only preferences
+AGENTS.local.md
+CLAUDE.local.md
+
+# Scratch research, not part of public agent stack
+EDWARD_CLONE_*.md
+skills/edward-intern-coach/references/operating-manual.md
+dist/
+tmp/
