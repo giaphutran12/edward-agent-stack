@@ -14,6 +14,7 @@ This repo is not a private memory dump. It is a public-safe operating system:
 Core CLIs:
 
 - Codex
+- Caveman skill (`JuliusBrussee/caveman`)
 - Edward's `codex-gstack`
 - MemPalace
 - Repowise
@@ -68,6 +69,12 @@ npx skills add giaphutran12/edward-agent-stack --agent codex --skill '*' --globa
 ```
 
 The repo installer is still the recommended path because it also installs Edward's `codex-gstack` fork and writes the user-scope snippet.
+
+Install caveman separately if needed:
+
+```bash
+npx --yes skills add JuliusBrussee/caveman --agent codex --skill caveman --global --yes
+```
 
 If an agent host cannot discover skills, use [agents/AGENTS.md](agents/AGENTS.md) as the fallback skill index.
 

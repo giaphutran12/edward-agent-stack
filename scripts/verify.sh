@@ -39,6 +39,7 @@ check command -v tmux
 check command -v bun
 check command -v node
 check command -v npm
+check command -v npx
 check command -v python3
 check command -v pip3
 check command -v uv
@@ -70,6 +71,13 @@ if [ -f "$HOME/.codex/skills/edward-rules/SKILL.md" ]; then
   printf 'OK   Edward parent skill installed: %s\n' "$HOME/.codex/skills/edward-rules"
 else
   printf 'WARN Edward parent skill not installed yet. Run ./scripts/install.sh\n'
+fi
+
+if [ -f "$HOME/.agents/skills/caveman/SKILL.md" ] || [ -f "$HOME/.codex/skills/caveman/SKILL.md" ]; then
+  printf 'OK   caveman skill installed\n'
+else
+  printf 'FAIL caveman skill missing. Run: npx --yes skills add JuliusBrussee/caveman --agent codex --skill caveman --global --yes\n'
+  fail=1
 fi
 
 if command -v repowise >/dev/null 2>&1; then

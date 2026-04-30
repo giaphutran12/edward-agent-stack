@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GSTACK_REPO="${GSTACK_REPO:-https://github.com/giaphutran12/codex-gstack.git}"
 GSTACK_DIR="${GSTACK_DIR:-$HOME/.gstack/repos/gstack}"
+CAVEMAN_REPO="${CAVEMAN_REPO:-JuliusBrussee/caveman}"
 
 log() { printf '%s\n' "$*"; }
 have() { command -v "$1" >/dev/null 2>&1; }
@@ -36,6 +37,13 @@ if [ -x "$GSTACK_DIR/setup" ]; then
 else
   log "ERROR: $GSTACK_DIR/setup not found or not executable."
   exit 1
+fi
+
+if have npx; then
+  log "Installing caveman skill for Codex"
+  npx --yes skills add "$CAVEMAN_REPO" --agent codex --skill caveman --global --yes
+else
+  log "WARN: npx not found. Install caveman manually: npx --yes skills add $CAVEMAN_REPO --agent codex --skill caveman --global --yes"
 fi
 
 log "Installing Edward skills into Codex"
