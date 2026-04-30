@@ -47,7 +47,7 @@ Not in the default intern stack: Notion, TinyFish, OMX, Kiro, `mlx_whisper`.
 Paste this into Codex on a fresh machine:
 
 ```text
-Install Edward's agent stack. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/install.sh and ./scripts/verify.sh. Install Edward's skills into Codex, especially $edward-rules. Install giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a secret is needed, stop and ask me to load it. After install, tell me exactly what passed, what failed, and what I need to do next.
+Install Edward's agent stack. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/install.sh and ./scripts/verify.sh. Use /caveman ultra for terse token-saving communication. Install Edward's skills into Codex, especially $edward-rules. Install giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a secret is needed, stop and ask me to load it. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
 ## Manual Install
@@ -75,6 +75,7 @@ If an agent host cannot discover skills, use [agents/AGENTS.md](agents/AGENTS.md
 
 At the start of a project task, the agent should load:
 
+0. `/caveman ultra`
 1. `$edward-rules` from `skills/edward-rules/SKILL.md`
 2. only the child skill/reference it routes to, if needed
 3. the current project's `PROJECT.md`

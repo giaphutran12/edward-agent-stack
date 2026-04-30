@@ -11,6 +11,7 @@
 
 At the start of any coding task using this stack, load:
 
+0. `/caveman ultra` for terse token-saving communication
 1. `$edward-rules` from `skills/edward-rules/SKILL.md`
 2. only the child skill/reference it routes to, if needed
 3. the current project's `PROJECT.md`, if one exists
@@ -22,6 +23,8 @@ Do not load all Edward docs up front. Use the parent skill and lazy-load details
 If the host cannot discover skills, use `agents/AGENTS.md` as the fallback skill index.
 
 If project notes are missing, create them from `projects/_template/PROJECT.md` before major work.
+
+Use normal wording for security warnings, destructive operations, or anything where caveman brevity could cause confusion.
 
 ## Local Preferences
 

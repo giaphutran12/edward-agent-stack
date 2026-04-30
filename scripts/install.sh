@@ -57,10 +57,13 @@ cat > "$ROOT/dist/user-scope-AGENTS-snippet.md" <<'SNIPPET'
 ## Edward Agent Stack
 
 At the start of coding tasks, load Edward Agent Stack rules:
+- /caveman ultra for terse token-saving communication
 - $edward-rules from ~/edward-agent-stack/skills/edward-rules/SKILL.md
 - the current project's PROJECT.md when present
 - recent relevant decision notes under decisions/
 - AGENTS.local.md when present
+
+Use normal wording for security warnings, destructive operations, or anything where caveman brevity could cause confusion.
 
 If the host cannot discover skills, use ~/edward-agent-stack/agents/AGENTS.md as the fallback skill index.
 
