@@ -43,7 +43,12 @@ decode_b64() {
   fi
 }
 
-joined="$(printf '%s\n' "${encoded_patterns[@]}" | decode_b64 | paste -sd '|' -)"
+patterns=()
+for encoded in "${encoded_patterns[@]}"; do
+  patterns+=("$(printf '%s' "$encoded" | decode_b64)")
+done
+
+joined="$(IFS='|'; printf '%s' "${patterns[*]}")"
 
 if rg -n -i --no-ignore "$joined" \
   --glob '!*.pdf' \
