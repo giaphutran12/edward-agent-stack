@@ -33,6 +33,7 @@ check test -x "$ROOT/scripts/auth-doctor.sh"
 check test -x "$ROOT/scripts/update.sh"
 check test -x "$ROOT/scripts/generate-agents-fallback.sh"
 check test -x "$ROOT/scripts/repowise-update.sh"
+check test -x "$ROOT/scripts/audit-operator-playbook.sh"
 
 check command -v git
 check command -v codex
@@ -99,6 +100,8 @@ if command -v repowise >/dev/null 2>&1; then
 else
   printf 'WARN repowise not installed\n'
 fi
+
+"$ROOT/scripts/audit-operator-playbook.sh" || fail=1
 
 tmp_agents="$(mktemp)"
 trap 'rm -f "$tmp_agents"' EXIT
