@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Edward Agent Stack Guide</title>
+<meta name="author" content="Edward Tran">
+<meta name="description" content="Intern operating guide for Edward Agent Stack: install flow, tools, auth gates, gstack, Repowise, and escalation.">
+<meta name="keywords" content="Edward Agent Stack, intern guide, Codex, gstack, Repowise">
+<meta name="generator" content="Kami">
+<style>
+@page {
+  size: A4;
+  margin: 20mm 22mm 22mm;
+  background: #f5f4ed;
+  @bottom-center { content: counter(page) " · Edward Agent Stack Guide"; font-family: Charter, Georgia, Palatino, serif; font-size: 9pt; color: #6b6a64; }
+}
+@page:first { @bottom-center { content: ""; } }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #f5f4ed; color: #141413; }
+body { font-family: Charter, Georgia, Palatino, "Times New Roman", serif; font-size: 10.5pt; line-height: 1.55; }
+h1, h2, h3, p { margin: 0; }
+code, pre { font-family: "SF Mono", "JetBrains Mono", Consolas, Monaco, monospace; }
+.cover { min-height: 246mm; display: flex; flex-direction: column; justify-content: space-between; break-after: page; padding-top: 34mm; }
+.eyebrow { color: #1B365D; font-size: 10pt; letter-spacing: 2pt; text-transform: uppercase; margin-bottom: 18pt; }
+h1 { font-size: 40pt; line-height: 1.1; font-weight: 500; letter-spacing: -0.4pt; max-width: 150mm; }
+.subtitle { color: #504e49; font-size: 14pt; line-height: 1.45; margin-top: 18pt; max-width: 150mm; }
+.meta { color: #6b6a64; font-size: 10pt; line-height: 1.55; }
+.toc { break-after: page; }
+.toc h2, h2 { border-left: 2.5pt solid #1B365D; border-radius: 1.5pt; padding-left: 8pt; }
+.toc h2 { font-size: 22pt; font-weight: 500; margin-bottom: 14pt; }
+.toc-row { display: flex; border-bottom: 0.3pt dotted #e8e6dc; padding: 6pt 0; font-size: 11pt; }
+.toc-row span:first-child { color: #1B365D; width: 34pt; }
+h2 { font-size: 18pt; font-weight: 500; margin: 22pt 0 9pt; break-after: avoid; }
+h3 { color: #3d3d3a; font-size: 13pt; font-weight: 500; margin: 14pt 0 5pt; break-after: avoid; }
+p { margin-bottom: 9pt; }
+.lead { color: #3d3d3a; font-size: 12pt; line-height: 1.55; margin-bottom: 14pt; }
+ul, ol { margin: 6pt 0 10pt 18pt; padding: 0; }
+li { margin-bottom: 4pt; }
+li::marker { color: #1B365D; }
+pre { background: #faf9f5; border: 0.5pt solid #e8e6dc; border-radius: 6pt; padding: 10pt 12pt; white-space: pre-wrap; font-size: 8.6pt; line-height: 1.45; margin: 8pt 0 12pt; break-inside: avoid; }
+table { width: 100%; border-collapse: collapse; font-size: 9.3pt; margin: 10pt 0 14pt; break-inside: avoid; }
+th { text-align: left; color: #3d3d3a; font-weight: 500; padding: 6pt 8pt; border-bottom: 1pt solid #e8e6dc; }
+td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; }
+.card { background: #faf9f5; border: 0.5pt solid #e8e6dc; border-radius: 8pt; padding: 12pt 14pt; margin: 10pt 0 12pt; break-inside: avoid; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; margin: 10pt 0 12pt; }
+.tag { display: inline-block; background: #E4ECF5; color: #1B365D; border-radius: 3pt; padding: 1pt 5pt; font-size: 8.5pt; margin-right: 3pt; margin-bottom: 3pt; }
+.quote { border-left: 2pt solid #1B365D; padding-left: 10pt; color: #504e49; margin: 10pt 0 12pt; }
+.pagebreak { break-before: page; }
+</style>
+</head>
+<body>
+  <section class="cover">
+    <div>
+      <div class="eyebrow">Intern Operating Guide</div>
+      <h1>Edward Agent Stack</h1>
+      <p class="subtitle">A public-safe setup for interns who use Codex first, keep project context written down, and escalate to Edward only with options and evidence.</p>
+    </div>
+    <p class="meta">Generated with Kami · 2026-04-30<br>Source: giaphutran12/edward-agent-stack<br>Secrets rule: never inspect, print, diff, or summarize real env values.</p>
+  </section>
+
+  <section class="toc">
+    <h2>Contents</h2>
+    <div class="toc-row"><span>01</span><span>What This Repo Is</span></div>
+    <div class="toc-row"><span>02</span><span>Fresh Mac Install</span></div>
+    <div class="toc-row"><span>03</span><span>Tool Stack</span></div>
+    <div class="toc-row"><span>04</span><span>Auth Gates And Secrets</span></div>
+    <div class="toc-row"><span>05</span><span>Daily Workflow</span></div>
+    <div class="toc-row"><span>06</span><span>GStack, Repowise, Escalation</span></div>
+  </section>
+
+  <h2>01 · What This Repo Is</h2>
+  <p class="lead">Edward Agent Stack is not a private memory dump. It is a public-safe operating system for interns: stable engineering defaults, per-project context, dated decisions, and install scripts.</p>
+  <div class="grid">
+    <div class="card"><h3>Edward Rules</h3><p>Stable defaults for how Edward wants interns and agents to think: Codex first, source-backed, Postgres-first, no casual destructive work.</p></div>
+    <div class="card"><h3>Project Notes</h3><p>Current facts and priorities for one project. This is where “what matters right now” lives.</p></div>
+  </div>
+  <div class="card"><h3>Decision Notes</h3><p>Dated receipts. If Edward made a reusable decision, Codex writes it down so the same question does not come back next week.</p></div>
+
+  <h2>02 · Fresh Mac Install</h2>
+  <p>Paste the block below into Codex on a fresh Mac. The intern should not hand-install random tools first. Let Codex run the repo scripts, fix safe missing dependencies, and report what is blocked.</p>
+  <pre>Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Nia CLI, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it.</pre>
+  <ol>
+    <li><code>./scripts/bootstrap-macos.sh</code>: Xcode Command Line Tools, Homebrew, shell path, Rosetta when needed.</li>
+    <li><code>./scripts/install.sh</code>: core CLIs, skills, Edward gstack fork, MCP template.</li>
+    <li><code>./scripts/verify.sh</code>: binary/file sanity check.</li>
+    <li><code>./scripts/auth-doctor.sh</code>: safe auth report without printing secrets.</li>
+  </ol>
+
+  <h2>03 · Tool Stack</h2>
+  <table>
+    <tr><th>Layer</th><th>Default</th><th>Why</th></tr>
+    <tr><td>Primary agent</td><td>Codex</td><td>Interns ask Codex first with full repo/task context.</td></tr>
+    <tr><td>Workflow</td><td>Caveman, Edward Rules, gstack</td><td>Short communication, stable defaults, investigate/ship paths.</td></tr>
+    <tr><td>Repo context</td><td>Repowise, ripgrep</td><td>Orient before editing; search fast.</td></tr>
+    <tr><td>Memory/research</td><td>MemPalace, Nia, Exa</td><td>Durable agent memory, indexed context, current web research.</td></tr>
+    <tr><td>Shipping</td><td>GitHub, Vercel, Supabase CLI</td><td>PRs, deploy inspection, migrations/project management.</td></tr>
+    <tr><td>Runtime basics</td><td>Docker, Python/uv, Bun/Node, jq, tmux</td><td>Local services, scripts, JS/TS apps, JSON, long sessions.</td></tr>
+  </table>
+  <p><span class="tag">Not default</span> Notion, TinyFish, OMX, Kiro, <code>mlx_whisper</code>, Bitwarden.</p>
+
+  <h2 class="pagebreak">04 · Auth Gates And Secrets</h2>
+  <p class="lead">Installer can install binaries. It cannot create accounts, approve OAuth, accept licenses, or invent API keys.</p>
+  <table>
+    <tr><th>Tool</th><th>Command / Gate</th><th>Note</th></tr>
+    <tr><td>Codex</td><td><code>codex login</code></td><td>Primary coding agent.</td></tr>
+    <tr><td>GitHub</td><td><code>gh auth login --web</code></td><td>Clone, push, PRs, issues.</td></tr>
+    <tr><td>Vercel</td><td><code>vercel login</code></td><td>Deploy and project inspection.</td></tr>
+    <tr><td>Supabase</td><td><code>supabase login</code></td><td>Migrations and project management.</td></tr>
+    <tr><td>Nia</td><td><code>nia auth login</code></td><td>Indexed repo/docs/context search.</td></tr>
+    <tr><td>Exa</td><td>local <code>EXA_API_KEY</code></td><td>Keep in local Codex config only.</td></tr>
+    <tr><td>Repowise Gemini</td><td><code>.repowise/.env</code></td><td>Local ignored project file. Never print it.</td></tr>
+  </table>
+  <div class="quote">Bitwarden is not default. A password manager avoids Slack-pasting, but cannot stop a trusted intern or local agent from copying a raw key after access is granted. Use per-user accounts, scoped/staging keys, ignored local env files, logs, revocation, and rotation.</div>
+
+  <h2>05 · Daily Workflow</h2>
+  <ol>
+    <li>Load <code>/caveman ultra</code>.</li>
+    <li>Load <code>$edward-rules</code>.</li>
+    <li>Read the project <code>PROJECT.md</code>, recent decision notes, and <code>AGENTS.local.md</code> if present.</li>
+    <li>Ask Codex first. Understand the options and blast radius before escalating.</li>
+    <li>Before PR/end of meaningful work, run decision capture and update project notes if context changed.</li>
+  </ol>
+  <div class="card"><h3>Default answer</h3><p><code>Did you ask Codex? What did Codex say?</code></p></div>
+
+  <h2>06 · GStack, Repowise, Escalation</h2>
+  <h3>GStack</h3>
+  <pre>git clone --single-branch --depth 1 https://github.com/giaphutran12/codex-gstack.git ~/.gstack/repos/gstack
+cd ~/.gstack/repos/gstack
+./setup --host codex</pre>
+  <p>Use <code>gstack investigate</code> before saying stuck. Use <code>gstack ship</code> for PR/review/shipping flow.</p>
+
+  <h3>Repowise</h3>
+  <pre>./scripts/repowise-update.sh /path/to/project --provider gemini</pre>
+  <p>Repowise is for repo/code orientation, not Edward Rules. It helps reduce context waste before agents make changes.</p>
+
+  <h3>Escalation Template</h3>
+  <pre>Edward, need decision.
+
+Question:
+Context:
+What Codex said:
+Options:
+A)
+B)
+C)
+Tradeoff:
+Risk/blast radius:
+What I tested:
+My recommendation:</pre>
+  <p>Bring options, not chaos. Include why repo/docs/internet/Codex cannot answer it.</p>
+</body>
+</html>

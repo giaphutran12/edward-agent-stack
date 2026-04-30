@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Edward Agent Stack One-Pager</title>
+<meta name="author" content="Edward Tran">
+<meta name="description" content="One-page install and operating guide for interns using Edward Agent Stack.">
+<meta name="keywords" content="Edward Agent Stack, Codex, interns, gstack, setup">
+<meta name="generator" content="Kami">
+<style>
+@page { size: A4; margin: 15mm 18mm; background: #f5f4ed; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #f5f4ed; color: #141413; }
+body { font-family: Charter, Georgia, Palatino, "Times New Roman", serif; font-size: 10pt; line-height: 1.44; }
+h1, h2, h3, p { margin: 0; }
+code, pre { font-family: "SF Mono", "JetBrains Mono", Consolas, Monaco, monospace; }
+.header { border-left: 2.5pt solid #1B365D; padding-left: 8pt; margin-bottom: 13pt; display: flex; justify-content: space-between; gap: 18pt; }
+.eyebrow { color: #1B365D; font-size: 9pt; letter-spacing: 1pt; text-transform: uppercase; margin-bottom: 4pt; }
+h1 { font-size: 27pt; line-height: 1.08; font-weight: 500; letter-spacing: -0.2pt; }
+.subtitle { color: #504e49; font-size: 11.5pt; margin-top: 5pt; max-width: 145mm; }
+.meta { color: #6b6a64; font-size: 9pt; text-align: right; white-space: nowrap; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12pt; border-bottom: 0.3pt dotted #e8e6dc; padding-bottom: 8pt; margin-bottom: 13pt; }
+.metric strong { color: #1B365D; display: block; font-size: 20pt; line-height: 1; font-weight: 500; }
+.metric span { color: #504e49; font-size: 9pt; }
+.lead { color: #3d3d3a; font-size: 12pt; line-height: 1.48; margin-bottom: 12pt; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16pt; }
+section { margin-bottom: 13pt; break-inside: avoid; }
+h2 { font-size: 15.5pt; font-weight: 500; margin-bottom: 5pt; }
+ul { margin: 0; padding: 0; list-style: none; }
+li { margin-bottom: 4pt; padding-left: 12pt; position: relative; }
+li:before { content: "–"; position: absolute; left: 0; color: #1B365D; }
+pre { background: #faf9f5; border: 0.5pt solid #e8e6dc; border-radius: 6pt; padding: 9pt 10pt; white-space: pre-wrap; font-size: 8.2pt; line-height: 1.42; margin: 6pt 0 0; }
+.tag { display: inline-block; background: #E4ECF5; color: #1B365D; border-radius: 3pt; padding: 1pt 5pt; font-size: 8.5pt; margin-right: 3pt; margin-bottom: 3pt; }
+.callout { background: #faf9f5; border: 0.5pt solid #e8e6dc; border-radius: 8pt; padding: 10pt 12pt; }
+.rule { border-left: 2pt solid #1B365D; padding-left: 8pt; color: #504e49; }
+</style>
+</head>
+<body>
+  <header class="header">
+    <div>
+      <div class="eyebrow">Fresh Mac · Intern Setup</div>
+      <h1>Edward Agent Stack</h1>
+      <p class="subtitle">Agent-native setup for interns: Codex drives, Edward escalates, project decisions get written down.</p>
+    </div>
+    <div class="meta">2026-04-30<br>Public-safe<br>No Bitwarden default</div>
+  </header>
+
+  <div class="metrics">
+    <div class="metric"><strong>1</strong><span>paste block into Codex</span></div>
+    <div class="metric"><strong>4</strong><span>install scripts</span></div>
+    <div class="metric"><strong>3</strong><span>context buckets</span></div>
+    <div class="metric"><strong>0</strong><span>real secrets in repo</span></div>
+  </div>
+
+  <p class="lead">This repo is not Edward's private memory dump. It is the public-safe operating system: stable Edward Rules, per-project notes, dated decisions, and install scripts for the tools interns need.</p>
+
+  <section>
+    <h2>Paste This Into Codex</h2>
+    <pre>Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra. Do not inspect or print real env/secret files. If a tool needs login, API key, license acceptance, or GUI first-run, stop and tell me exactly what is missing.</pre>
+  </section>
+
+  <div class="grid">
+    <section>
+      <h2>Default Tools</h2>
+      <p>
+        <span class="tag">Codex</span><span class="tag">Caveman</span><span class="tag">codex-gstack</span><span class="tag">MemPalace</span><span class="tag">Repowise</span><span class="tag">Nia</span><span class="tag">Supabase</span><span class="tag">Vercel</span><span class="tag">Claude</span><span class="tag">GitHub</span><span class="tag">ripgrep</span><span class="tag">tmux</span><span class="tag">Docker</span><span class="tag">Python/uv</span><span class="tag">Bun/Node</span><span class="tag">jq</span>
+      </p>
+    </section>
+    <section>
+      <h2>Not Default</h2>
+      <ul>
+        <li>Bitwarden: not default; does not stop raw key copying.</li>
+        <li>Notion, TinyFish, OMX, Kiro, mlx_whisper.</li>
+        <li>New databases/vector stores unless Edward approves.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section>
+      <h2>Daily Start</h2>
+      <ul>
+        <li>Load <code>/caveman ultra</code>.</li>
+        <li>Load <code>$edward-rules</code>.</li>
+        <li>Read project <code>PROJECT.md</code> and recent decisions.</li>
+        <li>Read <code>AGENTS.local.md</code> if present.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Escalate Only With Context</h2>
+      <ul>
+        <li>Question, context, what Codex said.</li>
+        <li>Options, tradeoffs, risk, what was tested.</li>
+        <li>Recommendation. Short. No chaos dump.</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="callout">
+    <h2>Secret Model</h2>
+    <p class="rule">Use per-user accounts, staging-only or low-quota keys, local ignored env files, logs, revocation, and scheduled rotation. Password managers solve distribution hygiene; they do not solve insider key abuse.</p>
+  </section>
+</body>
+</html>
