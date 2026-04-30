@@ -38,6 +38,17 @@ The knowledge system has three buckets:
 When Codex updates one bucket, it should cross-link related notes in the other buckets.
 Example: a Decision Note should link the Edward Rule it follows and the Project Note it affects.
 
+## Operator Writing Standard
+
+Intern-facing docs should state:
+
+- Problem: what workflow breaks without the rule.
+- Standard: what to do every time.
+- Reason: why the standard exists.
+- Procedure: exact commands, files, or escalation format.
+
+Only publish the final standard. Omit draft notes, process notes, and cleanup notes.
+
 At the start of a project conversation, load:
 
 1. `skills/edward-rules/SKILL.md`

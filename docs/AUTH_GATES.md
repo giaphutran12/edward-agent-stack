@@ -58,11 +58,11 @@ Start from:
 https://linear.app
 ```
 
-## Shared Secrets
+## Secret Access Policy
 
-Bitwarden is not part of the default intern stack.
+Shared-secret vaults are project-specific, not part of the default install.
 
-Reason: a password manager helps avoid pasting keys into Slack, but it does not stop a trusted intern or local agent from copying a raw key once they can read it. For this stack, prefer boring controls:
+Standard:
 
 - per-user vendor accounts when possible
 - staging-only or low-quota keys for interns
@@ -70,7 +70,9 @@ Reason: a password manager helps avoid pasting keys into Slack, but it does not 
 - short-lived tokens when the vendor supports them
 - logging, revocation, and scheduled rotation
 
-If a project truly needs shared secrets, Edward should decide the tool and access policy per project.
+Reason: once a credential is readable, the meaningful controls are scope, logging, revocation, and rotation.
+
+If a project truly needs a shared secret vault, Edward should decide the tool and access policy for that project.
 
 ## launchctl
 

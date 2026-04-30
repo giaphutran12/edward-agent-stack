@@ -95,12 +95,14 @@ At the start of coding tasks, load Edward Agent Stack rules:
 - recent relevant decision notes under decisions/
 - AGENTS.local.md when present
 
-Use normal wording for security warnings, destructive operations, or anything where caveman brevity could cause confusion.
+Use normal wording for security warnings, destructive operations, or anything where caveman brevity could be misread.
 
 If the host cannot discover skills, use ~/edward-agent-stack/agents/AGENTS.md as the fallback skill index.
 
 Before opening a PR or ending a meaningful task, run decision capture:
-read the conversation and diff, update Project Notes or Decision Notes if Edward made a reusable decision or project context changed, and cross-link related notes. If no update is needed, say "No note update needed" and why.
+read the current task context and diff, update Project Notes or Decision Notes if Edward made a reusable decision or project context changed, and cross-link related notes. If no update is needed, say "No note update needed" and why.
+
+Intern-facing docs must read like an operator playbook: problem, standard, reason, procedure. Only publish the final standard. Omit draft notes, process notes, and cleanup notes.
 SNIPPET
 
 log "Wrote suggested user-scope snippet: $ROOT/dist/user-scope-AGENTS-snippet.md"

@@ -21,6 +21,6 @@ My recommendation:
 Rules:
 
 - Keep it short.
-- Bring options, not chaos.
+- Bring options and evidence.
 - Include what Codex already said.
 - Include why this cannot be answered from repo/docs/internet.

@@ -24,7 +24,7 @@ If the host cannot discover skills, use `agents/AGENTS.md` as the fallback skill
 
 If project notes are missing, create them from `projects/_template/PROJECT.md` before major work.
 
-Use normal wording for security warnings, destructive operations, or anything where caveman brevity could cause confusion.
+Use normal wording for security warnings, destructive operations, or anything where caveman brevity could be misread.
 
 ## Local Preferences
 
@@ -37,13 +37,27 @@ Root `AGENTS.md` should say to read `AGENTS.local.md`, but `AGENTS.local.md` mus
 Before opening a PR or ending a meaningful task:
 
 - read the conversation and diff
+- apply the operator standard: final docs should state problem, standard, reason, and procedure
 - decide whether Edward made a reusable decision
 - decide whether project context changed
 - update Project Notes or Decision Notes if needed
 - cross-link related Edward Rules, Project Notes, and Decision Notes
 - if no update is needed, say `No note update needed` and why
 
-Codex should write these notes from the conversation. Edward should not have to manually summarize every decision.
+Codex should write these notes from the current task context. Edward should not have to manually summarize every decision.
+
+## Operator Writing Standard
+
+Intern-facing material must read like an operator playbook.
+
+Use:
+
+- Problem: what breaks without this rule.
+- Standard: what to do every time.
+- Reason: why the standard exists.
+- Procedure: exact commands, files, or escalation format.
+
+Only publish the final standard. Omit draft notes, process notes, and cleanup notes.
 
 ## Buckets
 

@@ -1,6 +1,6 @@
 ---
 name: edward-decision-capture
-description: Use before opening a PR or ending a meaningful task to update Project Notes and Decision Notes from the conversation and diff.
+description: Use before opening a PR or ending a meaningful task to update Project Notes and Decision Notes from current task context and diff.
 ---
 
 # Edward Decision Capture
@@ -9,7 +9,7 @@ Use this before PR/final summary, or whenever Edward made a reusable decision.
 
 ## Check
 
-Read the conversation and diff. Ask:
+Read the current task context and diff. Ask:
 
 - Did Edward make a reusable decision?
 - Did project context change?

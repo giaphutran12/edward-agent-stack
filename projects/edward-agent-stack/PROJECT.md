@@ -8,7 +8,7 @@ Owner: Edward Tran
 
 Give interns an agent-native setup that Codex can install and verify on fresh MacBooks.
 
-This repo is public-safe operating practice, not Edward's private memory dump.
+The finished material should read like an operator playbook: problem, standard, reason, procedure.
 
 ## Current Priority
 
@@ -28,16 +28,16 @@ Keep the install realistic:
 
 ## Ask Edward Before
 
-- Adding shared-secret tooling to the default intern stack.
+- Adding shared-secret tooling to the default intern install.
 - Adding a new required database, vector store, queue, or hosting platform.
 - Changing the default gstack fork or setup flow.
-- Exposing private project data, private Codex sessions, or real env files.
+- Adding customer data, project data, session logs, or real env files.
 
 ## Gotchas
 
-- Bitwarden is not in the default intern stack. See `decisions/2026-04-30-no-bitwarden-default.md`.
+- Shared-secret vaults are project-specific. See `decisions/2026-04-30-secret-access-policy.md`.
 - Do not inspect real env files. Execution-only loading is allowed when needed.
-- Keep generated benchmark artifacts out of stack decisions unless Edward asks to publish them.
+- Do not publish generated benchmark artifacts unless Edward asks for them.
 
 ## Related Edward Rules
 
@@ -46,7 +46,7 @@ Keep the install realistic:
 
 ## Recent Decisions
 
-- `decisions/2026-04-30-no-bitwarden-default.md`
+- `decisions/2026-04-30-secret-access-policy.md`
 
 ## Stale Or Uncertain Info
 

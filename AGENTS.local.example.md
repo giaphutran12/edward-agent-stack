@@ -4,14 +4,14 @@ This file is for intern-specific preferences. Copy it to `AGENTS.local.md`.
 
 Do not commit `AGENTS.local.md`.
 
-## Personal Workflow
+## Local Workflow
 
 - Preferred explanation style:
 - Local project paths:
 - Tools already installed:
 - Things I am learning:
 
-## Personal Guardrails
+## Local Guardrails
 
 - Ask before:
 - Never do:

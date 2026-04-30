@@ -1,13 +1,14 @@
 # Edward Agent Stack
 
-Agent-native setup for interns working with Edward.
+Operator playbook and install stack for interns working with Edward.
 
-This repo is not a private memory dump. It is a public-safe operating system:
+This repo gives interns the standard way to work:
 
-- Edward Rules: stable engineering defaults and judgment patterns
-- Project Notes: current per-project context
-- Decision Notes: dated decisions so the same question is not asked twice
-- install/update scripts for Codex, Edward's gstack fork, Repowise, and local agent rules
+- install the same core agent tools
+- load Edward's default engineering rules
+- keep project facts in Project Notes
+- keep durable decisions in Decision Notes
+- escalate only with context, options, evidence, and a recommendation
 
 ## Tool Stack
 
@@ -106,7 +107,7 @@ Then copy the needed blocks from `dist/codex-mcp.example.toml` into `~/.codex/co
 
 Do not commit keys. Exa needs a local `EXA_API_KEY`; Linear uses OAuth; Nia is CLI-first and requires `nia auth login`.
 
-## Daily Use
+## Daily Workflow
 
 At the start of a project task, the agent should load:
 
@@ -125,6 +126,17 @@ Before opening a PR or ending a meaningful task, the agent should run decision c
 - Did project context change?
 - Should Project Notes or Decision Notes be updated?
 - If no, say `No note update needed` and why.
+
+## Operator Standard
+
+Intern-facing docs should read like a playbook:
+
+- Problem: what workflow breaks without this rule.
+- Standard: what to do every time.
+- Reason: why the standard exists.
+- Procedure: exact commands, files, or escalation format.
+
+Only publish the final standard. Omit draft notes, process notes, and cleanup notes.
 
 ## Best GStack Path For Interns
 

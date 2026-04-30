@@ -53,7 +53,7 @@ td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; 
     <div>
       <div class="eyebrow">Intern Operating Guide</div>
       <h1>Edward Agent Stack</h1>
-      <p class="subtitle">A practical setup guide for interns using Codex with Edward's defaults: ask Codex first, use gstack when stuck, keep project facts written down, and escalate with options.</p>
+      <p class="subtitle">A practical setup guide for interns using Codex with Edward's default engineering rules: ask Codex first, use gstack when stuck, keep project facts written down, and escalate with options.</p>
     </div>
     <p class="meta">Generated with Kami · 2026-04-30<br>Source: giaphutran12/edward-agent-stack<br>Secrets rule: never inspect, print, diff, or summarize local real env values.</p>
   </section>
@@ -69,14 +69,14 @@ td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; 
   </section>
 
   <h2>01 · What This Repo Is</h2>
-  <p class="lead">This repo gives a fresh Codex session enough setup and rules to work the Edward way. It does not include Edward's private chats, raw Codex sessions, customer data, or real secrets.</p>
+  <p class="lead">This repo gives a fresh Codex session the standard setup and rules for intern engineering work.</p>
   <div class="grid">
     <div class="card"><h3>Edward Rules</h3><p>Stable defaults: ask Codex first, back claims with sources or tests, prefer Postgres/Supabase before adding infra, and do not make destructive changes casually.</p></div>
     <div class="card"><h3>Project Notes</h3><p>Current facts for one project: goal, stack, priority, gotchas, and what must be approved by Edward.</p></div>
   </div>
   <div class="card"><h3>Decision Notes</h3><p>Dated files that explain why a choice was made. If Edward decides something reusable, Codex writes it down so interns do not repeat the same debate.</p></div>
 
-  <h3>What This Does Not Solve</h3>
+  <h3>Boundaries</h3>
   <ul>
     <li>It does not replace project-specific onboarding. Each project still needs a <code>PROJECT.md</code>.</li>
     <li>It does not make shared API keys safe. Access control still needs scoped accounts, logs, revocation, and rotation.</li>
@@ -103,7 +103,7 @@ td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; 
     <tr><td>Shipping</td><td>GitHub, Vercel, Supabase CLI</td><td>PRs, deploy inspection, migrations/project management.</td></tr>
     <tr><td>Runtime basics</td><td>Docker, Python/uv, Bun/Node, jq, tmux</td><td>Local services, scripts, JS/TS apps, JSON, long sessions.</td></tr>
   </table>
-  <p><span class="tag">Not default</span> Notion, TinyFish, OMX, Kiro, <code>mlx_whisper</code>, Bitwarden.</p>
+  <p><span class="tag">Not default</span> Notion, TinyFish, OMX, Kiro, <code>mlx_whisper</code>, shared-secret vaults.</p>
 
   <h2 class="pagebreak">04 · Auth Gates And Secrets</h2>
   <p class="lead">Installer can install binaries. It cannot create accounts, approve OAuth, accept licenses, or invent API keys.</p>
@@ -117,7 +117,7 @@ td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; 
     <tr><td>Exa</td><td>local <code>EXA_API_KEY</code></td><td>Keep in local Codex config only.</td></tr>
     <tr><td>Repowise Gemini</td><td><code>.repowise/.env</code></td><td>Local ignored project file. Never print it.</td></tr>
   </table>
-  <div class="quote">Bitwarden is not default. A password manager can improve distribution hygiene, but it cannot stop someone from copying a raw key after access is granted. For interns, use per-user accounts when possible, scoped/staging keys, ignored local env files, logs, revocation, and rotation.</div>
+  <div class="quote">Shared-secret vaults are project-specific, not default. Once a credential is readable, the useful controls are scope, logs, revocation, and rotation. For interns, use per-user accounts when possible, scoped/staging keys, ignored local env files, logs, revocation, and rotation.</div>
 
   <h2>05 · Daily Workflow</h2>
   <ol>

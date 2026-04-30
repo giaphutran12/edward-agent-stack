@@ -18,7 +18,7 @@ See [FRESH_MAC.md](FRESH_MAC.md) for Edward's current machine snapshot and sourc
 | Edward's `codex-gstack` | Edward's Codex-compatible gstack fork | no |
 | MemPalace | durable agent memory | no, local setup |
 | Repowise | repo/code intelligence | provider API key for generation |
-| Nia CLI | search personal/local indexed context when available | yes, `nia auth login` |
+| Nia CLI | search indexed repo/docs/context when available | yes, `nia auth login` |
 | Supabase CLI | database migrations and local/remote Supabase workflows | project login/token may be needed |
 | Vercel CLI | deploy and inspect Vercel projects | account login/token may be needed |
 | Claude Code | secondary agent option | account login |

@@ -20,7 +20,7 @@ matches the user intent or may help accomplish the task.
 
 edward-rules: `Use at the start of Edward/intern coding tasks to load Edward's stable engineering rules, route questions, and decide which Edward child skill or reference to load next.`
 
-edward-decision-capture: `Use before opening a PR or ending a meaningful task to update Project Notes and Decision Notes from the conversation and diff.`
+edward-decision-capture: `Use before opening a PR or ending a meaningful task to update Project Notes and Decision Notes from current task context and diff.`
 
 edward-escalation: `Use when Codex/intern still needs Edward after asking Codex, researching docs/internet, and understanding options.`
 

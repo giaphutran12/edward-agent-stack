@@ -5,9 +5,9 @@ description: Use when Codex/intern still needs Edward after asking Codex, resear
 
 # Edward Escalation
 
-Do not wake Edward with vague chaos.
+Do not escalate vague problems.
 
-Escalate only when the missing answer is business/company/customer/Edward-only context, or the tradeoff is risky and non-obvious.
+Escalate only when the missing answer is business, company, customer, or Edward-specific context, or when the tradeoff is risky and non-obvious.
 
 Use this format:
 
