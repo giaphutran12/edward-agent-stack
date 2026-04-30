@@ -54,12 +54,6 @@ check command -v vercel
 check command -v claude
 check command -v nia
 
-if command -v bw >/dev/null 2>&1; then
-  printf 'OK   bitwarden CLI installed\n'
-else
-  printf 'WARN bitwarden CLI missing. Run: brew install bitwarden-cli\n'
-fi
-
 if command -v nia >/dev/null 2>&1; then
   if nia auth status >/tmp/edward-agent-stack-nia-auth.out 2>/tmp/edward-agent-stack-nia-auth.err; then
     printf 'OK   nia authenticated\n'

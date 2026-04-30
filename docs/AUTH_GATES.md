@@ -28,7 +28,6 @@ Your machine has the Edward stack installed, but some auth/API gates are still m
 | Vercel CLI | deploy and inspect projects | `vercel login` | https://vercel.com/docs/cli/login |
 | Supabase CLI | migrations/project management | `supabase login` | https://supabase.com/docs/reference/cli/supabase-login |
 | Nia CLI | indexed repo/docs/search/vault | `nia auth login` | https://www.trynia.ai |
-| Bitwarden CLI | team secret retrieval | `bw login`, then `export BW_SESSION="$(bw unlock --raw)"` | https://bitwarden.com/help/article/cli |
 | Docker Desktop | local Supabase/services | open Docker app once | https://docs.docker.com/desktop/setup/install/mac-install/ |
 
 ## Exa MCP
@@ -59,26 +58,19 @@ Start from:
 https://linear.app
 ```
 
-## Bitwarden
+## Shared Secrets
 
-Bitwarden is the safest default for team-shared secrets.
+Bitwarden is not part of the default intern stack.
 
-Install:
+Reason: a password manager helps avoid pasting keys into Slack, but it does not stop a trusted intern or local agent from copying a raw key once they can read it. For this stack, prefer boring controls:
 
-```bash
-brew install bitwarden-cli
-```
+- per-user vendor accounts when possible
+- staging-only or low-quota keys for interns
+- local ignored env files for project-specific keys
+- short-lived tokens when the vendor supports them
+- logging, revocation, and scheduled rotation
 
-Login/unlock:
-
-```bash
-bw login
-export BW_SESSION="$(bw unlock --raw)"
-```
-
-Important: Bitwarden session keys do not persist across new terminal windows. That is good. Re-run unlock when needed.
-
-Do not use Bitwarden session keys as durable machine env vars. Do not commit exported secret values.
+If a project truly needs shared secrets, Edward should decide the tool and access policy per project.
 
 ## launchctl
 
@@ -89,7 +81,7 @@ Use `launchctl` only for non-secret runtime settings when a GUI app needs them.
 Do not use `launchctl` for API keys unless Edward explicitly decides the risk is acceptable. Prefer:
 
 - tool-native login/keychain (`gh auth login`, `supabase login`, `vercel login`)
-- Bitwarden for shared secrets
+- per-user vendor accounts and low-scope keys
 - local ignored files for per-project keys, such as `.repowise/.env`
 - `~/.zprofile` / shell exports for non-secret CLI defaults
 
@@ -110,7 +102,7 @@ repowise init --provider gemini
 repowise update --provider gemini
 ```
 
-If using Bitwarden, retrieve the key locally, export it for the current shell, then write `.repowise/.env`. Never print it.
+Load the key locally, export it for the current shell, then write `.repowise/.env`. Never print it.
 
 Get Gemini key:
 
