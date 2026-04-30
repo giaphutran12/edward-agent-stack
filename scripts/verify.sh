@@ -18,6 +18,7 @@ check() {
 printf 'Edward Agent Stack verify\n'
 
 check test -f "$ROOT/AGENTS.md"
+check test -f "$ROOT/agents/AGENTS.md"
 check test -f "$ROOT/skills/edward-rules/SKILL.md"
 check test -f "$ROOT/skills/edward-decision-capture/SKILL.md"
 check test -f "$ROOT/skills/edward-escalation/SKILL.md"
@@ -26,6 +27,7 @@ check test -f "$ROOT/projects/_template/PROJECT.md"
 check test -f "$ROOT/projects/_template/decisions/_template.md"
 check test -x "$ROOT/scripts/install.sh"
 check test -x "$ROOT/scripts/update.sh"
+check test -x "$ROOT/scripts/generate-agents-fallback.sh"
 check test -x "$ROOT/scripts/repowise-update.sh"
 
 check command -v git
@@ -74,6 +76,16 @@ if command -v repowise >/dev/null 2>&1; then
   printf 'OK   repowise installed: %s\n' "$(repowise --version 2>/dev/null || echo unknown)"
 else
   printf 'WARN repowise not installed\n'
+fi
+
+tmp_agents="$(mktemp)"
+trap 'rm -f "$tmp_agents"' EXIT
+"$ROOT/scripts/generate-agents-fallback.sh" "$tmp_agents"
+if cmp -s "$tmp_agents" "$ROOT/agents/AGENTS.md"; then
+  printf 'OK   agents/AGENTS.md fallback index is current\n'
+else
+  printf 'FAIL agents/AGENTS.md fallback index is stale. Run ./scripts/generate-agents-fallback.sh\n'
+  fail=1
 fi
 
 if [ "$fail" -ne 0 ]; then

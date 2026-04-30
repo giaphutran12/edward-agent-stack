@@ -57,10 +57,12 @@ cat > "$ROOT/dist/user-scope-AGENTS-snippet.md" <<'SNIPPET'
 ## Edward Agent Stack
 
 At the start of coding tasks, load Edward Agent Stack rules:
-- ~/edward-agent-stack/skills/edward-rules/SKILL.md
+- $edward-rules from ~/edward-agent-stack/skills/edward-rules/SKILL.md
 - the current project's PROJECT.md when present
 - recent relevant decision notes under decisions/
 - AGENTS.local.md when present
+
+If the host cannot discover skills, use ~/edward-agent-stack/agents/AGENTS.md as the fallback skill index.
 
 Before opening a PR or ending a meaningful task, run decision capture:
 read the conversation and diff, update Project Notes or Decision Notes if Edward made a reusable decision or project context changed, and cross-link related notes. If no update is needed, say "No note update needed" and why.

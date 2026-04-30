@@ -47,7 +47,7 @@ Not in the default intern stack: Notion, TinyFish, OMX, Kiro, `mlx_whisper`.
 Paste this into Codex on a fresh machine:
 
 ```text
-Install Edward's agent stack. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/install.sh and ./scripts/verify.sh. Install Edward's skills into Codex, especially the parent skill edward-rules. Install giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a secret is needed, stop and ask me to load it. After install, tell me exactly what passed, what failed, and what I need to do next.
+Install Edward's agent stack. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/install.sh and ./scripts/verify.sh. Install Edward's skills into Codex, especially $edward-rules. Install giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a secret is needed, stop and ask me to load it. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
 ## Manual Install
@@ -59,11 +59,23 @@ cd ~/edward-agent-stack
 ./scripts/verify.sh
 ```
 
+## Skills CLI Install
+
+This repo follows the Agent Skills layout, so Vercel's skills CLI can discover `skills/*/SKILL.md`:
+
+```bash
+npx skills add giaphutran12/edward-agent-stack --agent codex --skill '*' --global --yes
+```
+
+The repo installer is still the recommended path because it also installs Edward's `codex-gstack` fork and writes the user-scope snippet.
+
+If an agent host cannot discover skills, use [agents/AGENTS.md](agents/AGENTS.md) as the fallback skill index.
+
 ## Daily Use
 
 At the start of a project task, the agent should load:
 
-1. `skills/edward-rules/SKILL.md`
+1. `$edward-rules` from `skills/edward-rules/SKILL.md`
 2. only the child skill/reference it routes to, if needed
 3. the current project's `PROJECT.md`
 4. recent relevant files under that project's `decisions/`
