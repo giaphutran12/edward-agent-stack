@@ -12,6 +12,7 @@ This stack assumes interns start from a clean Apple Silicon MacBook.
 6. Agent CLIs: Codex, Claude Code, Nia, Repowise.
 7. Docker Desktop: install if possible, but first run/license/login may require manual GUI.
 8. Edward stack: Caveman, Edward skills, Codex gstack fork, MCP template.
+9. Auth gates: Nia needs `nia auth login`; GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa needs an API key.
 
 Use:
 

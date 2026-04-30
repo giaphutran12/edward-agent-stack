@@ -70,7 +70,7 @@ Installer behavior:
 - prepares a Codex MCP config template at `dist/codex-mcp.example.toml`
 - stops at auth/key gates instead of forcing broken logins
 
-Manual auth still needed for tools like Exa, Linear, Nia, GitHub, Vercel, and Supabase.
+Manual auth still needed for tools like Exa, Linear, Nia (`nia auth login`), GitHub, Vercel, and Supabase.
 
 Fresh Mac details live in [docs/FRESH_MAC.md](docs/FRESH_MAC.md), including Edward's current tool snapshot and source-backed install order.
 
@@ -102,7 +102,7 @@ Run:
 
 Then copy the needed blocks from `dist/codex-mcp.example.toml` into `~/.codex/config.toml`.
 
-Do not commit keys. Exa needs a local `EXA_API_KEY`; Linear uses OAuth; Nia is CLI-first and may need `nia auth login`.
+Do not commit keys. Exa needs a local `EXA_API_KEY`; Linear uses OAuth; Nia is CLI-first and requires `nia auth login`.
 
 ## Daily Use
 

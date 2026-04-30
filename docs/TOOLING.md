@@ -18,7 +18,7 @@ See [FRESH_MAC.md](FRESH_MAC.md) for Edward's current machine snapshot and sourc
 | Edward's `codex-gstack` | Edward's Codex-compatible gstack fork | no |
 | MemPalace | durable agent memory | no, local setup |
 | Repowise | repo/code intelligence | provider API key for generation |
-| Nia CLI | search personal/local indexed context when available | account/login may be needed |
+| Nia CLI | search personal/local indexed context when available | yes, `nia auth login` |
 | Supabase CLI | database migrations and local/remote Supabase workflows | project login/token may be needed |
 | Vercel CLI | deploy and inspect Vercel projects | account login/token may be needed |
 | Claude Code | secondary agent option | account login |
@@ -55,9 +55,11 @@ Do not include by default:
 
 ## Nia
 
-Use Nia CLI by default.
+Use Nia CLI by default after login.
 
-On Edward's machine, Nia CLI exists as `nia`. Nia MCP may exist in other app configs, but it is not part of the default Codex MCP stack unless Edward explicitly adds it.
+On Edward's machine, Nia CLI exists as `nia`. Nia requires `nia auth login` before search/vault/local sync works. The installer can install the binary, but it cannot invent the intern's Nia account or API key.
+
+Nia MCP may exist in other app configs, but it is not part of the default Codex MCP stack unless Edward explicitly adds it.
 
 ## API Keys / Logins
 

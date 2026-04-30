@@ -6,7 +6,7 @@ Core CLIs:
 - Edward's `codex-gstack`
 - MemPalace
 - Repowise
-- Nia CLI
+- Nia CLI after `nia auth login`
 - Supabase CLI
 - Vercel CLI
 - Claude Code

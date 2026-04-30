@@ -53,6 +53,14 @@ check command -v vercel
 check command -v claude
 check command -v nia
 
+if command -v nia >/dev/null 2>&1; then
+  if nia auth status >/tmp/edward-agent-stack-nia-auth.out 2>/tmp/edward-agent-stack-nia-auth.err; then
+    printf 'OK   nia authenticated\n'
+  else
+    printf 'WARN nia CLI installed but not authenticated. Run: nia auth login\n'
+  fi
+fi
+
 check test -f "$ROOT/dist/codex-mcp.example.toml"
 
 if [ -d "$GSTACK_DIR/.git" ]; then

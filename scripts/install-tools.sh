@@ -108,6 +108,9 @@ brew_install_missing \
 
 npm_install_missing codex "@openai/codex"
 npm_install_missing nia "@nozomioai/nia"
+if have nia; then
+  log "WARN Nia CLI requires login before use. Run: nia auth login"
+fi
 npm_install_missing vercel "vercel"
 npm_install_missing claude "@anthropic-ai/claude-code"
 
