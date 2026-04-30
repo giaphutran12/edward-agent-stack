@@ -43,7 +43,7 @@ Captured on 2026-04-30 from Edward's Mac:
 | Supabase CLI | `/opt/homebrew/bin/supabase` | 2.84.2 |
 | Vercel CLI | `/opt/homebrew/bin/vercel` | 50.32.5 |
 | Claude Code | `~/.local/bin/claude` | 2.1.114 |
-| Nia CLI | `~/.bun/bin/nia` | 0.4.0 |
+| Nia CLI | `~/.bun/bin/nia` | 0.5.2 |
 | Codex CLI | `/opt/homebrew/bin/codex` | 0.124.0 |
 | Repowise | `~/.local/bin/repowise` | 0.3.0 |
 

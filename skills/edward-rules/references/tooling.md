@@ -7,6 +7,7 @@ Core CLIs:
 - MemPalace
 - Repowise
 - Nia CLI after `nia auth login`
+- Nia sandbox command: `nia search sandbox "<question>" --repository owner/repo`
 - Supabase CLI
 - Vercel CLI
 - Claude Code

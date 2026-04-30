@@ -59,6 +59,8 @@ Use Nia CLI by default after login.
 
 On Edward's machine, Nia CLI exists as `nia`. Nia requires `nia auth login` before search/vault/local sync works. The installer can install the binary, but it cannot invent the intern's Nia account or API key.
 
+For ephemeral repo exploration, use `nia search sandbox "<question>" --repository owner/repo`. There is no top-level `nia sandbox` command in Nia `0.5.2`.
+
 Nia MCP may exist in other app configs, but it is not part of the default Codex MCP stack unless Edward explicitly adds it.
 
 ## API Keys / Logins
