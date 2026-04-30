@@ -18,10 +18,22 @@ fi
 
 mkdir -p "$(dirname "$GSTACK_DIR")" "$HOME/.codex/skills"
 
+"$ROOT/scripts/install-tools.sh" || log "WARN: core CLI bootstrap had warnings."
+"$ROOT/scripts/setup-mcp.sh" || log "WARN: MCP setup had warnings."
+
 if [ -d "$GSTACK_DIR/.git" ]; then
   log "Updating gstack fork at $GSTACK_DIR"
-  git -C "$GSTACK_DIR" fetch origin
-  git -C "$GSTACK_DIR" reset --hard origin/main
+  current_branch="$(git -C "$GSTACK_DIR" branch --show-current 2>/dev/null || true)"
+  if [ -n "$(git -C "$GSTACK_DIR" status --porcelain)" ]; then
+    log "WARN: gstack dir has local changes. Skipping auto-update to avoid overwriting work."
+  elif [ "$current_branch" != "main" ]; then
+    log "WARN: gstack dir is on branch ${current_branch:-unknown}. Skipping auto-update."
+  else
+    git -C "$GSTACK_DIR" fetch origin main
+    if ! git -C "$GSTACK_DIR" merge --ff-only origin/main; then
+      log "WARN: gstack could not fast-forward. Keeping existing checkout."
+    fi
+  fi
 else
   if [ -e "$GSTACK_DIR" ]; then
     backup="$GSTACK_DIR.bak.$(date +%Y%m%d%H%M%S)"

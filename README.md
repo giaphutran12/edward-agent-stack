@@ -60,6 +60,16 @@ cd ~/edward-agent-stack
 ./scripts/verify.sh
 ```
 
+Installer behavior:
+
+- installs easy CLI tools best-effort
+- installs Caveman and Edward skills
+- installs Edward's `codex-gstack`
+- prepares a Codex MCP config template at `dist/codex-mcp.example.toml`
+- stops at auth/key gates instead of forcing broken logins
+
+Manual auth still needed for tools like Exa, Linear, Nia, GitHub, Vercel, and Supabase.
+
 ## Skills CLI Install
 
 This repo follows the Agent Skills layout, so Vercel's skills CLI can discover `skills/*/SKILL.md`:
@@ -77,6 +87,18 @@ npx --yes skills add JuliusBrussee/caveman --agent codex --skill caveman --globa
 ```
 
 If an agent host cannot discover skills, use [agents/AGENTS.md](agents/AGENTS.md) as the fallback skill index.
+
+## MCP Setup
+
+Run:
+
+```bash
+./scripts/setup-mcp.sh
+```
+
+Then copy the needed blocks from `dist/codex-mcp.example.toml` into `~/.codex/config.toml`.
+
+Do not commit keys. Exa needs a local `EXA_API_KEY`; Linear uses OAuth; Nia is CLI-first and may need `nia auth login`.
 
 ## Daily Use
 

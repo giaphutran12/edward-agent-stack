@@ -26,6 +26,8 @@ check test -f "$ROOT/skills/edward-project-notes/SKILL.md"
 check test -f "$ROOT/projects/_template/PROJECT.md"
 check test -f "$ROOT/projects/_template/decisions/_template.md"
 check test -x "$ROOT/scripts/install.sh"
+check test -x "$ROOT/scripts/install-tools.sh"
+check test -x "$ROOT/scripts/setup-mcp.sh"
 check test -x "$ROOT/scripts/update.sh"
 check test -x "$ROOT/scripts/generate-agents-fallback.sh"
 check test -x "$ROOT/scripts/repowise-update.sh"
@@ -49,6 +51,8 @@ check command -v supabase
 check command -v vercel
 check command -v claude
 check command -v nia
+
+check test -f "$ROOT/dist/codex-mcp.example.toml"
 
 if [ -d "$GSTACK_DIR/.git" ]; then
   printf 'OK   gstack dir exists: %s\n' "$GSTACK_DIR"

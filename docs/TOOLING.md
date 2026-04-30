@@ -4,6 +4,8 @@ This is the default intern tool stack.
 
 Most tools should be installed or verified by Codex through `scripts/install.sh` and `scripts/verify.sh`. Interns should not manually paste random install commands unless Codex asks them to and explains why.
 
+Install is best-effort. If auth, API keys, Docker Desktop, or a vendor login blocks setup, Codex should stop and report exactly what is missing instead of forcing it.
+
 ## Core CLIs
 
 | Tool | Why it matters | Secret needed? |
@@ -36,6 +38,8 @@ Keep these:
 - Computer Use: desktop/app control when needed.
 - Repowise: repo intelligence via MCP.
 - OpenAI Developer Docs: current OpenAI docs.
+
+Use `scripts/setup-mcp.sh` to prepare the Codex MCP template. It does not write secrets.
 
 Do not include by default:
 
