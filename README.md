@@ -48,7 +48,7 @@ Not in the default intern stack: Notion, TinyFish, OMX, Kiro, `mlx_whisper`.
 Paste this into Codex on a fresh machine:
 
 ```text
-Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, and ./scripts/verify.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Nia CLI, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. After install, tell me exactly what passed, what failed, and what I need to do next.
+Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Bitwarden CLI, Supabase CLI, Vercel CLI, Claude Code, Nia CLI, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. Use docs/AUTH_GATES.md for exact official links and safe commands. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
 ## Manual Install
@@ -59,6 +59,7 @@ cd ~/edward-agent-stack
 ./scripts/bootstrap-macos.sh
 ./scripts/install.sh
 ./scripts/verify.sh
+./scripts/auth-doctor.sh
 ```
 
 Installer behavior:
@@ -71,6 +72,7 @@ Installer behavior:
 - stops at auth/key gates instead of forcing broken logins
 
 Manual auth still needed for tools like Exa, Linear, Nia (`nia auth login`), GitHub, Vercel, and Supabase.
+Run `./scripts/auth-doctor.sh` after install for a safe missing-auth report. Detailed fixes live in [docs/AUTH_GATES.md](docs/AUTH_GATES.md).
 
 Fresh Mac details live in [docs/FRESH_MAC.md](docs/FRESH_MAC.md), including Edward's current tool snapshot and source-backed install order.
 

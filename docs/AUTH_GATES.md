@@ -1,0 +1,119 @@
+# Auth Gates
+
+The installer can install binaries. It cannot create accounts, approve OAuth, accept product licenses, or invent API keys.
+
+Run:
+
+```bash
+./scripts/auth-doctor.sh
+```
+
+The doctor prints only pass/warn status. It must not print tokens, API keys, or secret values.
+
+## What The Agent Should Tell Interns
+
+Use this when setup is incomplete:
+
+```text
+Your machine has the Edward stack installed, but some auth/API gates are still missing. Do not paste secrets into chat unless Edward explicitly asks. Open the official link, log in, create the needed token/key, then run the command below. After each step, rerun ./scripts/auth-doctor.sh.
+```
+
+## Login Checklist
+
+| Tool | Why | Command | Official link |
+| --- | --- | --- | --- |
+| Codex | primary coding agent | `codex login` | https://developers.openai.com/codex |
+| Claude Code | secondary agent | `claude auth login` | https://docs.anthropic.com/en/docs/claude-code |
+| GitHub CLI | clone/push/PR/issues | `gh auth login --web` | https://cli.github.com/manual/gh_auth_login |
+| Vercel CLI | deploy and inspect projects | `vercel login` | https://vercel.com/docs/cli/login |
+| Supabase CLI | migrations/project management | `supabase login` | https://supabase.com/docs/reference/cli/supabase-login |
+| Nia CLI | indexed repo/docs/search/vault | `nia auth login` | https://www.trynia.ai |
+| Bitwarden CLI | team secret retrieval | `bw login`, then `export BW_SESSION="$(bw unlock --raw)"` | https://bitwarden.com/help/article/cli |
+| Docker Desktop | local Supabase/services | open Docker app once | https://docs.docker.com/desktop/setup/install/mac-install/ |
+
+## Exa MCP
+
+Exa is an API-key gate. The installer writes a template only:
+
+```bash
+./scripts/setup-mcp.sh
+```
+
+Then the intern or agent must copy the `exa` block from `dist/codex-mcp.example.toml` into local `~/.codex/config.toml` and replace `<EXA_API_KEY>` with a real key.
+
+Get key:
+
+```text
+https://dashboard.exa.ai/api-keys
+```
+
+Do not commit the key. Do not put the key in this repo.
+
+## Linear MCP
+
+Linear is OAuth/workspace access. Keep the MCP config local. When Codex/browser asks for Linear auth, complete OAuth. If auth fails, confirm the intern has access to the right Linear workspace.
+
+Start from:
+
+```text
+https://linear.app
+```
+
+## Bitwarden
+
+Bitwarden is the safest default for team-shared secrets.
+
+Install:
+
+```bash
+brew install bitwarden-cli
+```
+
+Login/unlock:
+
+```bash
+bw login
+export BW_SESSION="$(bw unlock --raw)"
+```
+
+Important: Bitwarden session keys do not persist across new terminal windows. That is good. Re-run unlock when needed.
+
+Do not use Bitwarden session keys as durable machine env vars. Do not commit exported secret values.
+
+## launchctl
+
+`launchctl setenv KEY value` sets a variable for future macOS GUI apps launched from the user session. It does not update the current shell, and it is not a good secret store.
+
+Use `launchctl` only for non-secret runtime settings when a GUI app needs them.
+
+Do not use `launchctl` for API keys unless Edward explicitly decides the risk is acceptable. Prefer:
+
+- tool-native login/keychain (`gh auth login`, `supabase login`, `vercel login`)
+- Bitwarden for shared secrets
+- local ignored files for per-project keys, such as `.repowise/.env`
+- `~/.zprofile` / shell exports for non-secret CLI defaults
+
+## Repowise Gemini
+
+Repowise stores provider config in `.repowise/config.yaml`.
+
+For Gemini API key persistence per project:
+
+```bash
+cd /path/to/project
+mkdir -p .repowise
+chmod 700 .repowise
+printf 'GEMINI_API_KEY=%s\n' "$GEMINI_API_KEY" > .repowise/.env
+chmod 600 .repowise/.env
+grep -qxF '.repowise/.env' .gitignore || printf '\n# repowise API keys (local)\n.repowise/.env\n' >> .gitignore
+repowise init --provider gemini
+repowise update --provider gemini
+```
+
+If using Bitwarden, retrieve the key locally, export it for the current shell, then write `.repowise/.env`. Never print it.
+
+Get Gemini key:
+
+```text
+https://aistudio.google.com/apikey
+```

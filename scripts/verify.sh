@@ -29,6 +29,7 @@ check test -x "$ROOT/scripts/bootstrap-macos.sh"
 check test -x "$ROOT/scripts/install.sh"
 check test -x "$ROOT/scripts/install-tools.sh"
 check test -x "$ROOT/scripts/setup-mcp.sh"
+check test -x "$ROOT/scripts/auth-doctor.sh"
 check test -x "$ROOT/scripts/update.sh"
 check test -x "$ROOT/scripts/generate-agents-fallback.sh"
 check test -x "$ROOT/scripts/repowise-update.sh"
@@ -52,6 +53,12 @@ check command -v supabase
 check command -v vercel
 check command -v claude
 check command -v nia
+
+if command -v bw >/dev/null 2>&1; then
+  printf 'OK   bitwarden CLI installed\n'
+else
+  printf 'WARN bitwarden CLI missing. Run: brew install bitwarden-cli\n'
+fi
 
 if command -v nia >/dev/null 2>&1; then
   if nia auth status >/tmp/edward-agent-stack-nia-auth.out 2>/tmp/edward-agent-stack-nia-auth.err; then

@@ -104,6 +104,7 @@ brew_install_missing \
   "uv:uv" \
   "node:node" \
   "python3:python" \
+  "bw:bitwarden-cli" \
   "supabase:supabase/tap/supabase"
 
 npm_install_missing codex "@openai/codex"

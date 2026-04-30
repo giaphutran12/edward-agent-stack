@@ -30,6 +30,7 @@ See [FRESH_MAC.md](FRESH_MAC.md) for Edward's current machine snapshot and sourc
 | ffmpeg | media conversion/debugging | no |
 | Bun, Node, npm | JS/TS package/runtime stack | no |
 | jq | JSON inspection in shell | no |
+| Bitwarden CLI (`bw`) | team secret retrieval | yes, `bw login` + `bw unlock` |
 
 ## Core MCP / App Tools
 
@@ -74,6 +75,8 @@ If a tool needs a login or API key:
 3. say why it is needed
 4. ask the user to log in or load the key
 5. never print or summarize secret values
+
+Use [AUTH_GATES.md](AUTH_GATES.md) for exact official links, commands, Bitwarden guidance, and why `launchctl` is not the default API-key store.
 
 ## Install Philosophy
 
