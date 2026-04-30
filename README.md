@@ -48,7 +48,7 @@ Not in the default intern stack: Notion, TinyFish, OMX, Kiro, `mlx_whisper`.
 Paste this into Codex on a fresh machine:
 
 ```text
-Install Edward's agent stack. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/install.sh and ./scripts/verify.sh. Use /caveman ultra for terse token-saving communication. Install Edward's skills into Codex, especially $edward-rules. Install giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a secret is needed, stop and ask me to load it. After install, tell me exactly what passed, what failed, and what I need to do next.
+Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, and ./scripts/verify.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Nia CLI, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
 ## Manual Install
@@ -56,12 +56,14 @@ Install Edward's agent stack. Clone https://github.com/giaphutran12/edward-agent
 ```bash
 git clone https://github.com/giaphutran12/edward-agent-stack ~/edward-agent-stack
 cd ~/edward-agent-stack
+./scripts/bootstrap-macos.sh
 ./scripts/install.sh
 ./scripts/verify.sh
 ```
 
 Installer behavior:
 
+- bootstraps fresh macOS prerequisites: Xcode Command Line Tools prompt, Homebrew, Homebrew shell path, and Rosetta on Apple Silicon
 - installs easy CLI tools best-effort
 - installs Caveman and Edward skills
 - installs Edward's `codex-gstack`
@@ -69,6 +71,8 @@ Installer behavior:
 - stops at auth/key gates instead of forcing broken logins
 
 Manual auth still needed for tools like Exa, Linear, Nia, GitHub, Vercel, and Supabase.
+
+Fresh Mac details live in [docs/FRESH_MAC.md](docs/FRESH_MAC.md), including Edward's current tool snapshot and source-backed install order.
 
 ## Skills CLI Install
 

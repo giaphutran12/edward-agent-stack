@@ -8,18 +8,30 @@ CAVEMAN_REPO="${CAVEMAN_REPO:-JuliusBrussee/caveman}"
 
 log() { printf '%s\n' "$*"; }
 have() { command -v "$1" >/dev/null 2>&1; }
+load_homebrew_path() {
+  if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+}
 
 log "Installing Edward Agent Stack"
 
-if ! have git; then
-  log "ERROR: git is required."
-  exit 1
+if [ "$(uname -s)" = "Darwin" ] && [ -x "$ROOT/scripts/bootstrap-macos.sh" ]; then
+  "$ROOT/scripts/bootstrap-macos.sh" || log "WARN: macOS bootstrap had warnings."
+  load_homebrew_path
 fi
 
 mkdir -p "$(dirname "$GSTACK_DIR")" "$HOME/.codex/skills"
 
 "$ROOT/scripts/install-tools.sh" || log "WARN: core CLI bootstrap had warnings."
 "$ROOT/scripts/setup-mcp.sh" || log "WARN: MCP setup had warnings."
+
+if ! have git; then
+  log "ERROR: git is required after bootstrap. Install Xcode Command Line Tools or Homebrew git, then rerun."
+  exit 1
+fi
 
 if [ -d "$GSTACK_DIR/.git" ]; then
   log "Updating gstack fork at $GSTACK_DIR"

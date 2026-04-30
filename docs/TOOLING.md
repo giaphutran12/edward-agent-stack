@@ -6,6 +6,10 @@ Most tools should be installed or verified by Codex through `scripts/install.sh`
 
 Install is best-effort. If auth, API keys, Docker Desktop, or a vendor login blocks setup, Codex should stop and report exactly what is missing instead of forcing it.
 
+On a fresh MacBook, run `scripts/bootstrap-macos.sh` first. It handles the boring base layer: Xcode Command Line Tools prompt, Homebrew install, Homebrew shell path, and Rosetta on Apple Silicon. After that, `scripts/install-tools.sh` installs the developer CLIs.
+
+See [FRESH_MAC.md](FRESH_MAC.md) for Edward's current machine snapshot and source-backed install order.
+
 ## Core CLIs
 
 | Tool | Why it matters | Secret needed? |

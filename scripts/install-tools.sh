@@ -4,6 +4,14 @@ set -euo pipefail
 log() { printf '%s\n' "$*"; }
 have() { command -v "$1" >/dev/null 2>&1; }
 
+load_homebrew_path() {
+  if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+}
+
 run_best_effort() {
   label="$1"
   shift
@@ -16,6 +24,7 @@ run_best_effort() {
 }
 
 brew_install_missing() {
+  load_homebrew_path
   if ! have brew; then
     log "WARN Homebrew missing. Skipping brew packages."
     return 0
@@ -30,6 +39,23 @@ brew_install_missing() {
     fi
     run_best_effort "$cmd via brew" brew install "$formula"
   done
+}
+
+brew_install_cask_missing() {
+  load_homebrew_path
+  if ! have brew; then
+    log "WARN Homebrew missing. Skipping brew casks."
+    return 0
+  fi
+
+  cmd="$1"
+  cask="$2"
+  app_path="${3:-}"
+  if have "$cmd" || { [ -n "$app_path" ] && [ -e "$app_path" ]; }; then
+    log "OK   $cask already installed"
+    return 0
+  fi
+  run_best_effort "$cask via brew cask" brew install --cask "$cask"
 }
 
 npm_install_missing() {
@@ -98,7 +124,10 @@ else
 fi
 
 if ! have docker; then
-  log "WARN docker missing. Install Docker Desktop manually when project needs local services."
+  brew_install_cask_missing docker docker /Applications/Docker.app
+  if ! have docker; then
+    log "WARN docker CLI still missing. Open Docker Desktop once and finish setup when project needs local services."
+  fi
 else
   log "OK   docker installed"
 fi
