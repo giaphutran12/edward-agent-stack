@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Edward Agent Stack Guide</title>
 <meta name="author" content="Edward Tran">
-<meta name="description" content="Intern operating guide for Edward Agent Stack: install flow, tools, auth gates, gstack, Repowise, and escalation.">
+<meta name="description" content="Intern guide for installing Edward Agent Stack and using Codex with Edward's default workflow.">
 <meta name="keywords" content="Edward Agent Stack, intern guide, Codex, gstack, Repowise">
 <meta name="generator" content="Kami">
 <style>
@@ -53,7 +53,7 @@ td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; 
     <div>
       <div class="eyebrow">Intern Operating Guide</div>
       <h1>Edward Agent Stack</h1>
-      <p class="subtitle">A public-safe setup for interns who use Codex first, keep project context written down, and escalate to Edward only with options and evidence.</p>
+      <p class="subtitle">A practical setup guide for interns using Codex with Edward's defaults: ask Codex first, use gstack when stuck, keep project facts written down, and escalate with options.</p>
     </div>
     <p class="meta">Generated with Kami · 2026-04-30<br>Source: giaphutran12/edward-agent-stack<br>Secrets rule: never inspect, print, diff, or summarize local real env values.</p>
   </section>
@@ -69,15 +69,22 @@ td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; 
   </section>
 
   <h2>01 · What This Repo Is</h2>
-  <p class="lead">Edward Agent Stack is not a private memory dump. It is a public-safe operating system for interns: stable engineering defaults, per-project context, dated decisions, and install scripts.</p>
+  <p class="lead">This repo gives a fresh Codex session enough setup and rules to work the Edward way. It does not include Edward's private chats, raw Codex sessions, customer data, or real secrets.</p>
   <div class="grid">
-    <div class="card"><h3>Edward Rules</h3><p>Stable defaults for how Edward wants interns and agents to think: Codex first, source-backed, Postgres-first, no casual destructive work.</p></div>
-    <div class="card"><h3>Project Notes</h3><p>Current facts and priorities for one project. This is where “what matters right now” lives.</p></div>
+    <div class="card"><h3>Edward Rules</h3><p>Stable defaults: ask Codex first, back claims with sources or tests, prefer Postgres/Supabase before adding infra, and do not make destructive changes casually.</p></div>
+    <div class="card"><h3>Project Notes</h3><p>Current facts for one project: goal, stack, priority, gotchas, and what must be approved by Edward.</p></div>
   </div>
-  <div class="card"><h3>Decision Notes</h3><p>Dated receipts. If Edward made a reusable decision, Codex writes it down so the same question does not come back next week.</p></div>
+  <div class="card"><h3>Decision Notes</h3><p>Dated files that explain why a choice was made. If Edward decides something reusable, Codex writes it down so interns do not repeat the same debate.</p></div>
+
+  <h3>What This Does Not Solve</h3>
+  <ul>
+    <li>It does not replace project-specific onboarding. Each project still needs a <code>PROJECT.md</code>.</li>
+    <li>It does not make shared API keys safe. Access control still needs scoped accounts, logs, revocation, and rotation.</li>
+    <li>It does not remove judgment. Interns still need to understand Codex's options before choosing one.</li>
+  </ul>
 
   <h2>02 · Fresh Mac Install</h2>
-  <p>Paste the block below into Codex on a fresh Mac. The intern should not hand-install random tools first. Let Codex run the repo scripts, fix safe missing dependencies, and report what is blocked.</p>
+  <p>Paste the block below into Codex on a fresh Mac. The intern should not hand-install random tools first. Codex runs the scripts, fixes safe missing dependencies, and reports blocked auth/API gates.</p>
   <pre>Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Nia CLI, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print local real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it.</pre>
   <ol>
     <li><code>./scripts/bootstrap-macos.sh</code>: Xcode Command Line Tools, Homebrew, shell path, Rosetta when needed.</li>
@@ -110,7 +117,7 @@ td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; 
     <tr><td>Exa</td><td>local <code>EXA_API_KEY</code></td><td>Keep in local Codex config only.</td></tr>
     <tr><td>Repowise Gemini</td><td><code>.repowise/.env</code></td><td>Local ignored project file. Never print it.</td></tr>
   </table>
-  <div class="quote">Bitwarden is not default. A password manager avoids Slack-pasting, but cannot stop a trusted intern or local agent from copying a raw key after access is granted. Use per-user accounts, scoped/staging keys, ignored local env files, logs, revocation, and rotation.</div>
+  <div class="quote">Bitwarden is not default. A password manager can improve distribution hygiene, but it cannot stop someone from copying a raw key after access is granted. For interns, use per-user accounts when possible, scoped/staging keys, ignored local env files, logs, revocation, and rotation.</div>
 
   <h2>05 · Daily Workflow</h2>
   <ol>
@@ -120,7 +127,7 @@ td { padding: 5pt 8pt; border-bottom: 0.3pt solid #e5e3d8; vertical-align: top; 
     <li>Ask Codex first. Understand the options and blast radius before escalating.</li>
     <li>Before PR/end of meaningful work, run decision capture and update project notes if context changed.</li>
   </ol>
-  <div class="card"><h3>Default answer</h3><p><code>Did you ask Codex? What did Codex say?</code></p></div>
+  <div class="card"><h3>Default Edward Question</h3><p><code>Did you ask Codex? What did Codex say?</code></p></div>
 
   <h2>06 · GStack, Repowise, Escalation</h2>
   <h3>GStack</h3>
@@ -131,7 +138,7 @@ cd ~/.gstack/repos/gstack
 
   <h3>Repowise</h3>
   <pre>./scripts/repowise-update.sh /path/to/project --provider gemini</pre>
-  <p>Repowise is for repo/code orientation, not Edward Rules. It helps reduce context waste before agents make changes.</p>
+  <p>Repowise is for repo/code orientation, not Edward Rules. Use it before broad repo edits so Codex starts from current codebase structure instead of guessing.</p>
 
   <h3>Escalation Template</h3>
   <pre>Edward, need decision.
@@ -147,6 +154,6 @@ Tradeoff:
 Risk/blast radius:
 What I tested:
 My recommendation:</pre>
-  <p>Bring options, not chaos. Include why repo/docs/internet/Codex cannot answer it.</p>
+  <p>Send the question, context, what Codex said, options, tradeoff, risk, test evidence, and your recommendation. Include why repo/docs/internet/Codex cannot answer it.</p>
 </body>
 </html>
