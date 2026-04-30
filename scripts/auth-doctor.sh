@@ -53,22 +53,6 @@ else
   warn "Nia CLI missing. Run ./scripts/install.sh"
 fi
 
-if have bw; then
-  if bw status >/tmp/edward-agent-stack-bw-status.out 2>/tmp/edward-agent-stack-bw-status.err; then
-    if grep -q '"status":"unlocked"' /tmp/edward-agent-stack-bw-status.out; then
-      ok "Bitwarden unlocked"
-    elif grep -q '"status":"locked"' /tmp/edward-agent-stack-bw-status.out; then
-      warn "Bitwarden logged in but locked. Run: export BW_SESSION=\"$(bw unlock --raw)\""
-    else
-      warn "Bitwarden not logged in. Run: bw login"
-    fi
-  else
-    warn "Bitwarden status failed. Run: bw login"
-  fi
-else
-  warn "Bitwarden CLI missing. Run: brew install bitwarden-cli"
-fi
-
 if have docker; then
   if docker info >/tmp/edward-agent-stack-auth.out 2>/tmp/edward-agent-stack-auth.err; then
     ok "Docker Desktop running"

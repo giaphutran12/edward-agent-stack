@@ -8,11 +8,11 @@ This stack assumes interns start from a clean Apple Silicon MacBook.
 2. Homebrew: default macOS package manager. Apple Silicon prefix is `/opt/homebrew`.
 3. Homebrew shell path: add `eval "$(/opt/homebrew/bin/brew shellenv)"` to `~/.zprofile`.
 4. Node/npm/npx: install with Homebrew for the simple global baseline.
-5. Bun, Python, uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Bitwarden CLI, Supabase CLI, Vercel CLI.
+5. Bun, Python, uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI.
 6. Agent CLIs: Codex, Claude Code, Nia, Repowise.
 7. Docker Desktop: install if possible, but first run/license/login may require manual GUI.
 8. Edward stack: Caveman, Edward skills, Codex gstack fork, MCP template.
-9. Auth gates: Nia needs `nia auth login`; Bitwarden needs `bw login` and `bw unlock`; GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa needs an API key.
+9. Auth gates: Nia needs `nia auth login`; GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa and Repowise providers need API keys.
 
 Use:
 
@@ -40,7 +40,6 @@ Captured on 2026-04-30 from Edward's Mac:
 | gh | `/opt/homebrew/bin/gh` | 2.85.0 |
 | ripgrep | `/opt/homebrew/bin/rg` | 15.1.0 |
 | jq | `/usr/bin/jq` | 1.7.1 Apple |
-| Bitwarden CLI | `/opt/homebrew/bin/bw` | 2026.4.1 |
 | Docker | `/usr/local/bin/docker` | 29.1.3 |
 | Supabase CLI | `/opt/homebrew/bin/supabase` | 2.84.2 |
 | Vercel CLI | `/opt/homebrew/bin/vercel` | 50.32.5 |
