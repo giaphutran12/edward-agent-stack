@@ -20,6 +20,8 @@ Read the current task context and diff. Ask:
 
 Update the relevant Project Notes or create a Decision Note.
 
+For BLI Cockpit-managed work, also emit `decision_record` with the same decision content when Cockpit tooling is available.
+
 Decision Note template:
 
 ```text
@@ -42,6 +44,7 @@ Source:
 - Decision Note links the Edward Rule it follows.
 - Decision Note links the Project Note it affects.
 - Project Note links the Decision Note that changed it.
+- Cockpit `decision_record` event links the PR or Decision Note when available.
 - Edward Rule changes require Edward review.
 
 ## If No

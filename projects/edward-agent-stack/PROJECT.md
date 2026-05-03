@@ -1,6 +1,6 @@
 # Project Notes: Edward Agent Stack
 
-Last updated: 2026-04-30
+Last updated: 2026-05-03
 Freshness: current as of local repo state
 Owner: Edward Tran
 
@@ -23,7 +23,7 @@ Keep the install realistic:
 - Agent: Codex
 - Agent style: Caveman ultra
 - Workflow: Edward Rules, project notes, decision notes
-- Repo tools: Codex-compatible gstack fork, Repowise, MemPalace, Nia when authenticated
+- Repo tools: Codex-compatible gstack fork, Codex GStack Overlay plugin, Repowise, MemPalace, Nia when authenticated
 - App/MCP tools: Exa, Linear, Browser Use/Playwright, Computer Use, OpenAI Developer Docs
 
 ## Ask Edward Before
@@ -36,6 +36,7 @@ Keep the install realistic:
 ## Gotchas
 
 - Shared-secret vaults are project-specific. See `decisions/2026-04-30-secret-access-policy.md`.
+- `codex-gstack` is a fork. Sync it through the overlay plugin, not reset/discard/force-push flows. See `decisions/2026-05-03-codex-gstack-overlay-sync.md`.
 - Do not inspect real env files. Execution-only loading is allowed when needed.
 - Do not publish generated benchmark artifacts unless Edward asks for them.
 
@@ -47,6 +48,7 @@ Keep the install realistic:
 ## Recent Decisions
 
 - `decisions/2026-04-30-secret-access-policy.md`
+- `decisions/2026-05-03-codex-gstack-overlay-sync.md`
 
 ## Stale Or Uncertain Info
 

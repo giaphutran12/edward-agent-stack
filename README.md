@@ -9,6 +9,7 @@ This repo gives interns the standard way to work:
 - keep project facts in Project Notes
 - keep durable decisions in Decision Notes
 - escalate only with context, options, evidence, and a recommendation
+- emit BLI Cockpit events for BLI-managed intern work, when Cockpit tooling is available
 
 ## Tool Stack
 
@@ -44,6 +45,8 @@ Core MCP / app tools:
 
 Not in the default intern stack: Notion, TinyFish, OMX, Kiro, `mlx_whisper`.
 
+BLI-specific add-on: Cockpit emitter tooling (`bli-event`, `worker-emit.sh`, and a ticket-bound session launcher) should be installed when the intern is working inside BLI Cockpit-managed projects. See [docs/COCKPIT.md](docs/COCKPIT.md).
+
 ## One Block To Paste Into Codex
 
 Paste this into Codex on a fresh machine:
@@ -69,6 +72,7 @@ Installer behavior:
 - installs easy CLI tools best-effort
 - installs Caveman and Edward skills
 - installs Edward's `codex-gstack`
+- installs the Codex GStack Overlay plugin for safe upstream sync
 - prepares a Codex MCP config template at `dist/codex-mcp.example.toml`
 - stops at auth/key gates instead of forcing broken logins
 
@@ -120,12 +124,24 @@ At the start of a project task, the agent should load:
 
 `edward-rules` is the parent skill. It routes to child skills like `edward-decision-capture`, `edward-escalation`, and `edward-project-notes` without loading every detail up front.
 
+For BLI Cockpit-managed work, the agent should also verify active-ticket context before implementation:
+
+- operator identity is authenticated
+- `BLI_ACTIVE_TICKET` is set by the approved launcher
+- repo/worktree matches the ticket
+- Cockpit emits are available, or the missing tooling is reported
+
 Before opening a PR or ending a meaningful task, the agent should run decision capture:
 
 - Did Edward make a reusable decision?
 - Did project context change?
 - Should Project Notes or Decision Notes be updated?
 - If no, say `No note update needed` and why.
+
+For Cockpit-integrated work, decision capture has two outputs:
+
+- repo note: Project Notes or Decision Notes for humans and agents reading the codebase
+- Cockpit event: `decision_record` for aggregation, attribution, and cohort retrospection
 
 ## Operator Standard
 
@@ -137,6 +153,14 @@ Intern-facing docs should read like a playbook:
 - Procedure: exact commands, files, or escalation format.
 
 Only publish the final standard. Omit draft notes, process notes, and cleanup notes.
+
+Cockpit-bound writes use the same full operator standard even when `/caveman ultra` is active:
+
+- event payloads
+- findings
+- PR bodies
+- Decision Notes
+- escalation messages
 
 ## Best GStack Path For Interns
 
@@ -154,7 +178,18 @@ The fork carries Codex-specific patches on top of upstream gstack:
 - Codex subagent mapping
 - full-skill loading for review subagents
 - skip nested `/codex` and `/claude` self-invocation paths
-- default Codex model overlay
+- default Codex model overlay for `gpt-5.5`
+- safe upstream sync through the Codex GStack Overlay plugin
+
+Do not use GitHub "discard commits", `git reset --hard upstream/main`, or force
+pushes to sync the fork. Use the overlay plugin instead:
+
+```bash
+~/edward-agent-stack/scripts/install-codex-gstack-overlay.sh
+~/.agents/plugins/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/sync-upstream.sh --repo ~/.gstack/repos/gstack --no-push
+```
+
+Use `--push` only when Edward explicitly asks to update `giaphutran12/codex-gstack`.
 
 ## Repowise
 
@@ -183,7 +218,9 @@ cd ~/edward-agent-stack
 ./scripts/verify.sh
 ```
 
-Update flow mirrors gstack-upgrade: detect install, backup, fetch/reset, run setup, verify, summarize.
+Update flow detects install state, avoids overwriting local work, fast-forwards
+this stack when safe, updates `codex-gstack` through the overlay plugin, runs
+setup/verification, and summarizes the result.
 
 ## Contribution Rule
 

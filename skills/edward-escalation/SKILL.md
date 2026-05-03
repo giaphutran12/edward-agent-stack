@@ -28,3 +28,5 @@ My recommendation:
 ```
 
 Keep it short. Bring options.
+
+For BLI Cockpit-managed work, emit the same escalation as a `human_gate_hit` event when Cockpit tooling is available. Slack or Linear can be used for speed, but the structured event is the record Edward can review later.
