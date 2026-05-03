@@ -38,6 +38,13 @@ The knowledge system has three buckets:
 When Codex updates one bucket, it should cross-link related notes in the other buckets.
 Example: a Decision Note should link the Edward Rule it follows and the Project Note it affects.
 
+For BLI Cockpit-managed work, there is also a feedback surface:
+
+- Cockpit events show ticket progress, escalations, decisions, and reviews.
+- Cockpit is for manager coaching and cohort retrospection.
+- Edward Agent Stack remains the intern-facing work standard.
+- Cockpit event payloads use full operator prose, not caveman compression.
+
 ## Operator Writing Standard
 
 Intern-facing docs should state:
@@ -68,7 +75,7 @@ Edward's preferred setup:
 1. Codex
 2. MemPalace + hook for durable memory
 3. Repowise for repo orientation/sync, when healthy
-4. gstack skills for investigate/ship/autopilot/ultrawork workflows
+4. `codex-gstack` with the Codex GStack Overlay plugin for investigate/ship/autopilot/ultrawork workflows
 5. OMX not required for interns
 6. same user-scope `AGENTS.md` guidance
 
@@ -82,6 +89,16 @@ Default loop:
 6. Smoke-test cheap hypotheses before asking Edward.
 7. If answer becomes obvious, decide and continue.
 8. Ask Edward only when the tradeoff is still non-obvious, business/product impact is unclear, or action is risky/irreversible.
+
+Cockpit loop for BLI intern work:
+
+1. Start with active-ticket context and emit `ticket_claimed`.
+2. Submit plan and emit `plan_submitted`.
+3. Run plan review and emit `plan_reviewed`.
+4. Emit `human_gate_hit` for Edward escalations.
+5. Run decision capture and emit `decision_record` when a reusable decision exists.
+6. Open PR and emit `pr_opened`.
+7. Finish with a completion event after merge or handoff.
 
 ## Default Answer Shape
 
@@ -107,6 +124,8 @@ Ask Edward only if:
 - Database changes: Supabase CLI migrations/scripts only. Never use Supabase SQL editor for team work.
 - Debugging: use `gstack investigate` before saying "I'm stuck."
 - PR/shipping: use `gstack ship` so tests, review, changelog, commit, push, and PR shape are handled by the workflow.
+- GStack sync: use the Codex GStack Overlay plugin; do not reset, force-push, or discard fork commits.
+- Cockpit: for BLI-managed work, emit lifecycle events as the feedback layer for Edward's coaching.
 
 ## Hard Boundaries
 
@@ -123,5 +142,6 @@ For repo-level rules and templates, read:
 
 - `skills/edward-rules/SKILL.md`
 - `docs/ESCALATION.md`
+- `docs/COCKPIT.md`
 - `projects/_template/PROJECT.md`
 - `projects/_template/decisions/_template.md`

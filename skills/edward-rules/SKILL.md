@@ -52,6 +52,7 @@ Read these only when needed:
 - `references/default-stack.md`: stack and architecture defaults.
 - `references/tooling.md`: CLI/MCP/app tool stack.
 - `references/database.md`: Supabase/Postgres/database rules.
+- `../../docs/COCKPIT.md`: BLI Cockpit event contract for intern work.
 
 ## Always
 
@@ -59,6 +60,7 @@ Read these only when needed:
 - Understand options before escalating.
 - Use `gstack investigate` before saying stuck.
 - Use `gstack ship` for PR/review/shipping.
+- For BLI Cockpit-managed work, verify active ticket context and emit lifecycle events when tooling is available.
 - Prefer Postgres before adding Redis/vector DB/new infra.
 - Never use Supabase SQL editor for team database changes.
 - Do not delete working code casually.

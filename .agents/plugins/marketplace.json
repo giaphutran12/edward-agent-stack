@@ -1,0 +1,20 @@
+{
+  "name": "edward-agent-stack-plugins",
+  "interface": {
+    "displayName": "Edward Agent Stack Plugins"
+  },
+  "plugins": [
+    {
+      "name": "codex-gstack-overlay",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-gstack-overlay"
+      },
+      "policy": {
+        "installation": "INSTALLED_BY_DEFAULT",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

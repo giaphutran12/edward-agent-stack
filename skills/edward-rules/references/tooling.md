@@ -4,6 +4,7 @@ Core CLIs:
 
 - Codex
 - Edward's `codex-gstack`
+- Codex GStack Overlay plugin for safe upstream sync and GPT-5.5 default overlay
 - MemPalace
 - Repowise
 - Nia CLI after `nia auth login`
