@@ -20,6 +20,8 @@ Your machine has the Edward stack installed, but some auth/API gates are still m
 
 ## Login Checklist
 
+Do not use personal iCloud on intern Macs. The macOS account should be a local user; work apps should use BLI/work accounts.
+
 | Tool | Why | Command | Official link |
 | --- | --- | --- | --- |
 | Codex | primary coding agent | `codex login` | https://developers.openai.com/codex |
