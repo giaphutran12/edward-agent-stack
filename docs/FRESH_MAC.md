@@ -1,18 +1,34 @@
 # Fresh Mac Setup
 
-This stack assumes interns start from a clean Apple Silicon MacBook.
+This stack assumes interns start from a clean company-owned Apple Silicon Mac.
+
+## macOS Account Baseline
+
+Problem: personal iCloud on a company Mac can mix personal data with work data and create device ownership or Activation Lock cleanup problems when the internship ends.
+
+Standard: use a local macOS user for day-one setup. Skip Apple Account/iCloud during macOS setup. Do not sign into personal iCloud, iCloud Drive, Find My, Photos, Messages, or personal Keychain on the intern Mac.
+
+Reason: the intern only needs a working local user plus BLI/work accounts for Codex, GitHub, Slack, Teams, Outlook, Supabase, Vercel, and other work tools. Managed Apple Accounts and MDM are the right long-term company path, but they are not required for tonight's setup.
+
+Procedure:
+
+1. Create a local macOS user for the intern.
+2. Choose "Set Up Later" or "Skip" for Apple Account/iCloud prompts.
+3. Log into work apps with the intern's BLI/work email only.
+4. If Apple Account, iCloud, Find My, or Activation Lock becomes required, stop and escalate to Edward before continuing.
 
 ## Install Order
 
-1. Xcode Command Line Tools: needed for `git`, compilers, and Homebrew bootstrap.
-2. Homebrew: default macOS package manager. Apple Silicon prefix is `/opt/homebrew`.
-3. Homebrew shell path: add `eval "$(/opt/homebrew/bin/brew shellenv)"` to `~/.zprofile`.
-4. Node/npm/npx: install with Homebrew for the simple global baseline.
-5. Bun, Python, uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI.
-6. Agent CLIs: Codex, Claude Code, Repowise. Nia is optional after Edward approves seats.
-7. Docker Desktop: install if possible, but first run/license/login may require manual GUI.
-8. Edward stack: Caveman, Edward skills, Codex gstack fork, MCP template.
-9. Auth gates: GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa and Repowise providers need API keys. Nia needs `nia auth login` only if Edward approves a Nia seat.
+1. Local macOS user: no personal iCloud or Apple Account.
+2. Xcode Command Line Tools: needed for `git`, compilers, and Homebrew bootstrap.
+3. Homebrew: default macOS package manager. Apple Silicon prefix is `/opt/homebrew`.
+4. Homebrew shell path: add `eval "$(/opt/homebrew/bin/brew shellenv)"` to `~/.zprofile`.
+5. Node/npm/npx: install with Homebrew for the simple global baseline.
+6. Bun, Python, uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI.
+7. Agent CLIs: Codex, Claude Code, Repowise. Nia is optional after Edward approves seats.
+8. Docker Desktop: install if possible, but first run/license/login may require manual GUI.
+9. Edward stack: Caveman, Edward skills, Codex gstack fork, MCP template.
+10. Auth gates: GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa and Repowise providers need API keys. Nia needs `nia auth login` only if Edward approves a Nia seat.
 
 Use:
 

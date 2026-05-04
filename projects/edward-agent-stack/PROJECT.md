@@ -14,6 +14,7 @@ The finished material should read like an operator playbook: problem, standard, 
 
 Keep the install realistic:
 
+- Start company Macs with a local macOS user and no personal iCloud.
 - Codex installs the boring tooling.
 - Humans complete account/API-key gates.
 - Agent reports what is missing instead of forcing broken auth.
@@ -50,6 +51,7 @@ Keep the install realistic:
 - `decisions/2026-04-30-secret-access-policy.md`
 - `decisions/2026-05-03-codex-gstack-overlay-sync.md`
 - `decisions/2026-05-04-raw-capture-first.md`
+- `decisions/2026-05-04-local-macos-account-setup.md`
 
 ## Stale Or Uncertain Info
 

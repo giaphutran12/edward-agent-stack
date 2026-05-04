@@ -4,6 +4,7 @@ Operator playbook and install stack for interns working with Edward.
 
 This repo gives interns the standard way to work:
 
+- start from a company Mac local user, not personal iCloud
 - install the same core agent tools
 - load Edward's default engineering rules
 - keep project facts in Project Notes
@@ -52,7 +53,7 @@ BLI-specific add-on: Cockpit emitter tooling (`bli-event`, `worker-emit.sh`, and
 Paste this into Codex on a fresh machine:
 
 ```text
-Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Treat Nia as optional; do not create or require a Nia account unless Edward approves a seat. Do not inspect or print local real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. Use docs/AUTH_GATES.md for exact official links and safe commands. After install, tell me exactly what passed, what failed, and what I need to do next.
+Install Edward's agent stack on this fresh company Mac. During macOS setup, use a local macOS user and skip Apple Account/iCloud; do not use a personal iCloud account. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Treat Nia as optional; do not create or require a Nia account unless Edward approves a seat. Do not inspect or print local real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. Use docs/AUTH_GATES.md for exact official links and safe commands. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
 Installer maintainers should run the clean-home test before changing setup behavior:
