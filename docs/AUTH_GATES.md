@@ -27,7 +27,7 @@ Your machine has the Edward stack installed, but some auth/API gates are still m
 | GitHub CLI | clone/push/PR/issues | `gh auth login --web` | https://cli.github.com/manual/gh_auth_login |
 | Vercel CLI | deploy and inspect projects | `vercel login` | https://vercel.com/docs/cli/login |
 | Supabase CLI | migrations/project management | `supabase login` | https://supabase.com/docs/reference/cli/supabase-login |
-| Nia CLI | indexed repo/docs/search/vault | `nia auth login` | https://www.trynia.ai |
+| Nia CLI | optional indexed repo/docs/search/vault after Edward approves a seat | `nia auth login` | https://www.trynia.ai |
 | Docker Desktop | local Supabase/services | open Docker app once | https://docs.docker.com/desktop/setup/install/mac-install/ |
 
 ## Exa MCP

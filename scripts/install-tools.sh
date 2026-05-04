@@ -107,9 +107,13 @@ brew_install_missing \
   "supabase:supabase/tap/supabase"
 
 npm_install_missing codex "@openai/codex"
-npm_install_missing nia "@nozomioai/nia"
-if have nia; then
-  log "WARN Nia CLI requires login before use. Run: nia auth login"
+if [ "${EDWARD_STACK_INSTALL_NIA:-0}" = "1" ]; then
+  npm_install_missing nia "@nozomioai/nia"
+  if have nia; then
+    log "WARN Nia CLI requires login before use. Run: nia auth login"
+  fi
+else
+  log "Skipping Nia CLI by default. Set EDWARD_STACK_INSTALL_NIA=1 if Edward approves a Nia seat."
 fi
 npm_install_missing vercel "vercel"
 npm_install_missing claude "@anthropic-ai/claude-code"

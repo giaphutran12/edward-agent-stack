@@ -50,7 +50,7 @@ fi
 if have nia; then
   check_cmd "Nia authenticated" nia auth status
 else
-  warn "Nia CLI missing. Run ./scripts/install.sh"
+  warn "Nia CLI missing; optional unless Edward approves a Nia seat"
 fi
 
 if have docker; then
