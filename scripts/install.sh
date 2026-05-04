@@ -21,7 +21,7 @@ log "Installing Edward Agent Stack"
 if [ "${EDWARD_STACK_SKIP_MACOS_BOOTSTRAP:-0}" = "1" ]; then
   log "Skipping macOS bootstrap because EDWARD_STACK_SKIP_MACOS_BOOTSTRAP=1."
 elif [ "$(uname -s)" = "Darwin" ] && [ -x "$ROOT/scripts/bootstrap-macos.sh" ]; then
-  "$ROOT/scripts/bootstrap-macos.sh" || log "WARN: macOS bootstrap had warnings."
+  "$ROOT/scripts/bootstrap-macos.sh"
   load_homebrew_path
 fi
 

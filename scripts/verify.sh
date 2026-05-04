@@ -45,6 +45,9 @@ check test -x "$ROOT/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/app
 check test -x "$ROOT/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/verify.sh"
 check test -f "$ROOT/plugins/codex-gstack-overlay/patches/0001-codex-default-gpt-5-5.patch"
 
+if [ "$(uname -s)" = "Darwin" ]; then
+  check command -v brew
+fi
 check command -v git
 check command -v codex
 check command -v gh

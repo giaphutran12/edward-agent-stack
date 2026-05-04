@@ -3,6 +3,10 @@ set -euo pipefail
 
 log() { printf '%s\n' "$*"; }
 have() { command -v "$1" >/dev/null 2>&1; }
+die() {
+  log "ERROR $*"
+  exit 1
+}
 
 run_best_effort() {
   label="$1"
@@ -48,6 +52,7 @@ if ! xcode-select -p >/dev/null 2>&1; then
   log "WARN Xcode Command Line Tools missing."
   run_best_effort "Xcode Command Line Tools prompt" xcode-select --install
   log "If macOS opened a dialog, finish that install, then rerun this script."
+  die "Xcode Command Line Tools gate still open. Finish the macOS prompt, then rerun ./scripts/install.sh"
 else
   log "OK   Xcode Command Line Tools present"
 fi
@@ -68,10 +73,14 @@ if ! have brew; then
     run_best_effort "Homebrew" env NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ensure_homebrew_path
   else
-    log "ERROR curl missing. Cannot install Homebrew automatically."
+    die "curl missing. Cannot install Homebrew automatically."
   fi
 else
   log "OK   Homebrew present: $(brew --prefix)"
+fi
+
+if ! have brew; then
+  die "Homebrew is required for Edward Agent Stack fresh-Mac setup. Install or fix Homebrew, then rerun ./scripts/install.sh"
 fi
 
 if have brew; then

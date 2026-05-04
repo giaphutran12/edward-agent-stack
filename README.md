@@ -76,6 +76,7 @@ cd ~/edward-agent-stack
 Installer behavior:
 
 - bootstraps fresh macOS prerequisites: Xcode Command Line Tools prompt, Homebrew, Homebrew shell path, and Rosetta on Apple Silicon
+- treats Homebrew as a required fresh-Mac baseline on macOS; if Xcode CLT or Homebrew needs a manual prompt, setup stops and tells the intern what to finish before rerunning
 - installs easy CLI tools best-effort
 - installs Caveman and Edward skills
 - installs Edward's `codex-gstack`
