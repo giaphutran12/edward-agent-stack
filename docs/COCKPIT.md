@@ -39,6 +39,22 @@ Emit these events during BLI intern work when Cockpit tooling is available:
 | PR opened | `pr_opened` | PR URL, verification, decision capture status |
 | Task complete | `worker_returned` | result, links, remaining risk |
 
+### Raw Evidence Lane
+
+Problem: analysis-only telemetry loses facts. If the original session material is missing, future coaching, audits, and better evaluators cannot recover it.
+
+Standard: capture the raw session evidence first, then layer summaries, scores, and coaching analysis on top.
+
+Reason: raw evidence is the source of truth. Summaries are useful views, but they are not allowed to be the only record.
+
+Procedure:
+
+1. Store raw session exports in an access-controlled evidence pack.
+2. Emit Cockpit lifecycle events with operator, ticket, repo, branch, timestamps, evidence-pack manifest path, and counts or hashes.
+3. Keep normal event payloads readable for managers.
+4. Keep raw evidence out of stdout, PR bodies, Slack, and generated docs unless Edward explicitly approves that destination.
+5. Run analysis from the evidence pack so new evaluators can be added later without losing past context.
+
 ### Active Ticket Binding
 
 Start BLI work from a launcher that binds the session to the active ticket.

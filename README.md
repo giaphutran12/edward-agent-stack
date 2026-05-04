@@ -55,6 +55,12 @@ Paste this into Codex on a fresh machine:
 Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Nia CLI, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print local real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. Use docs/AUTH_GATES.md for exact official links and safe commands. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
+Installer maintainers should run the clean-home test before changing setup behavior:
+
+```bash
+./scripts/fresh-mac-sandbox.sh --keep
+```
+
 ## Manual Install
 
 ```bash

@@ -23,6 +23,30 @@ Use:
 ./scripts/auth-doctor.sh
 ```
 
+## Sandbox Test
+
+Problem: a setup repo can pass on Edward's long-lived machine while failing in a clean user home.
+
+Standard: before changing installer behavior, run the fresh-home sandbox.
+
+Reason: the sandbox catches missing skill links, gstack setup assumptions, MCP template issues, and auth-doctor behavior without relying on Edward's existing `~/.codex`, `~/.agents`, or `~/.gstack` state.
+
+Procedure:
+
+```bash
+./scripts/fresh-mac-sandbox.sh --keep
+```
+
+Default mode uses a temp `HOME` and skips base macOS bootstrap. It refuses to install global tools unless `--allow-global-installs` is passed.
+
+If Playwright Chromium reports `bootstrap_check_in ... Permission denied`, the command runner sandbox blocked browser launch. Rerun the same sandbox command from a normal Terminal or an approved unrestricted Codex command.
+
+Use the full macOS bootstrap only on a throwaway Mac or first-run intern Mac:
+
+```bash
+./scripts/fresh-mac-sandbox.sh --with-macos-bootstrap --allow-global-installs --keep
+```
+
 ## Edward Machine Snapshot
 
 Captured on 2026-04-30 from Edward's Mac:
