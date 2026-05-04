@@ -21,7 +21,7 @@ Procedure:
 
 1. Local macOS user: no personal iCloud or Apple Account.
 2. Xcode Command Line Tools: needed for `git`, compilers, and Homebrew bootstrap.
-3. Homebrew: default macOS package manager. Apple Silicon prefix is `/opt/homebrew`.
+3. Homebrew: required macOS package manager. Apple Silicon prefix is `/opt/homebrew`.
 4. Homebrew shell path: add `eval "$(/opt/homebrew/bin/brew shellenv)"` to `~/.zprofile`.
 5. Node/npm/npx: install with Homebrew for the simple global baseline.
 6. Bun, Python, uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI.
@@ -37,6 +37,24 @@ Use:
 ./scripts/install.sh
 ./scripts/verify.sh
 ./scripts/auth-doctor.sh
+```
+
+## Homebrew Gate
+
+Problem: without Homebrew, fresh Macs drift into manual one-off installs and the stack cannot reliably install Node, Bun, GitHub CLI, ripgrep, jq, tmux, ffmpeg, uv, Supabase CLI, Vercel CLI, Docker Desktop, and other basics.
+
+Standard: Homebrew is required for macOS setup. `./scripts/bootstrap-macos.sh` installs or verifies it before core tools. If Xcode Command Line Tools or Homebrew needs a password/dialog/manual step, the installer stops and tells the intern to finish that gate before rerunning.
+
+Reason: the day-one setup should be repeatable. The agent should not hide a missing package manager behind later tool failures.
+
+Procedure:
+
+```bash
+./scripts/bootstrap-macos.sh
+command -v brew
+brew --prefix
+./scripts/install.sh
+./scripts/verify.sh
 ```
 
 ## Sandbox Test

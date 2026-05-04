@@ -15,6 +15,7 @@ The finished material should read like an operator playbook: problem, standard, 
 Keep the install realistic:
 
 - Start company Macs with a local macOS user and no personal iCloud.
+- Treat Homebrew as a required macOS baseline, not an optional convenience.
 - Codex installs the boring tooling.
 - Humans complete account/API-key gates.
 - Agent reports what is missing instead of forcing broken auth.
@@ -40,6 +41,7 @@ Keep the install realistic:
 - `codex-gstack` is a fork. Sync it through the overlay plugin, not reset/discard/force-push flows. See `decisions/2026-05-03-codex-gstack-overlay-sync.md`.
 - Do not inspect real env files. Execution-only loading is allowed when needed.
 - Do not publish generated benchmark artifacts unless Edward asks for them.
+- If Homebrew/Xcode CLT setup needs a GUI prompt or password, stop and rerun after the human finishes that gate.
 
 ## Related Edward Rules
 
@@ -52,6 +54,7 @@ Keep the install realistic:
 - `decisions/2026-05-03-codex-gstack-overlay-sync.md`
 - `decisions/2026-05-04-raw-capture-first.md`
 - `decisions/2026-05-04-local-macos-account-setup.md`
+- `decisions/2026-05-04-homebrew-required-baseline.md`
 
 ## Stale Or Uncertain Info
 

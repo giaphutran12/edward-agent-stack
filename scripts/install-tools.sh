@@ -26,6 +26,10 @@ run_best_effort() {
 brew_install_missing() {
   load_homebrew_path
   if ! have brew; then
+    if [ "$(uname -s)" = "Darwin" ]; then
+      log "ERROR Homebrew missing. Run ./scripts/bootstrap-macos.sh before installing core tools."
+      return 1
+    fi
     log "WARN Homebrew missing. Skipping brew packages."
     return 0
   fi
@@ -44,6 +48,10 @@ brew_install_missing() {
 brew_install_cask_missing() {
   load_homebrew_path
   if ! have brew; then
+    if [ "$(uname -s)" = "Darwin" ]; then
+      log "ERROR Homebrew missing. Run ./scripts/bootstrap-macos.sh before installing brew casks."
+      return 1
+    fi
     log "WARN Homebrew missing. Skipping brew casks."
     return 0
   fi
