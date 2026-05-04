@@ -19,7 +19,7 @@ See [FRESH_MAC.md](FRESH_MAC.md) for Edward's current machine snapshot and sourc
 | Codex GStack Overlay plugin | safe upstream sync for `codex-gstack`; preserves Edward's Codex patches and GPT-5.5 default | no |
 | MemPalace | durable agent memory | no, local setup |
 | Repowise | repo/code intelligence | provider API key for generation |
-| Nia CLI | search indexed repo/docs/context when available | yes, `nia auth login` |
+| Nia CLI | optional indexed repo/docs/context search after Edward approves seats | yes, `nia auth login` |
 | Supabase CLI | database migrations and local/remote Supabase workflows | project login/token may be needed |
 | Vercel CLI | deploy and inspect Vercel projects | account login/token may be needed |
 | Claude Code | secondary agent option | account login |
@@ -56,7 +56,7 @@ Do not include by default:
 
 ## Nia
 
-Use Nia CLI by default after login.
+Nia is optional for interns. Do not block day-1 setup on Nia, and do not ask an intern to create a paid Nia account unless Edward approves a seat.
 
 On Edward's machine, Nia CLI exists as `nia`. Nia requires `nia auth login` before search/vault/local sync works. The installer can install the binary, but it cannot invent the intern's Nia account or API key.
 

@@ -9,10 +9,10 @@ This stack assumes interns start from a clean Apple Silicon MacBook.
 3. Homebrew shell path: add `eval "$(/opt/homebrew/bin/brew shellenv)"` to `~/.zprofile`.
 4. Node/npm/npx: install with Homebrew for the simple global baseline.
 5. Bun, Python, uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI.
-6. Agent CLIs: Codex, Claude Code, Nia, Repowise.
+6. Agent CLIs: Codex, Claude Code, Repowise. Nia is optional after Edward approves seats.
 7. Docker Desktop: install if possible, but first run/license/login may require manual GUI.
 8. Edward stack: Caveman, Edward skills, Codex gstack fork, MCP template.
-9. Auth gates: Nia needs `nia auth login`; GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa and Repowise providers need API keys.
+9. Auth gates: GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa and Repowise providers need API keys. Nia needs `nia auth login` only if Edward approves a Nia seat.
 
 Use:
 

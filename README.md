@@ -20,7 +20,7 @@ Core CLIs:
 - Edward's `codex-gstack`
 - MemPalace
 - Repowise
-- Nia CLI
+- Nia CLI, optional after Edward approves seats
 - Supabase CLI
 - Vercel CLI
 - Claude Code
@@ -52,7 +52,7 @@ BLI-specific add-on: Cockpit emitter tooling (`bli-event`, `worker-emit.sh`, and
 Paste this into Codex on a fresh machine:
 
 ```text
-Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Nia CLI, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Do not inspect or print local real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. Use docs/AUTH_GATES.md for exact official links and safe commands. After install, tell me exactly what passed, what failed, and what I need to do next.
+Install Edward's agent stack on this fresh MacBook. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Treat Nia as optional; do not create or require a Nia account unless Edward approves a seat. Do not inspect or print local real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. Use docs/AUTH_GATES.md for exact official links and safe commands. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
 Installer maintainers should run the clean-home test before changing setup behavior:
@@ -82,7 +82,7 @@ Installer behavior:
 - prepares a Codex MCP config template at `dist/codex-mcp.example.toml`
 - stops at auth/key gates instead of forcing broken logins
 
-Manual auth still needed for tools like Exa, Linear, Nia (`nia auth login`), GitHub, Vercel, and Supabase.
+Manual auth still needed for tools like Exa, Linear, GitHub, Vercel, and Supabase. Nia is optional; use `nia auth login` only if Edward approves a Nia seat for this intern.
 Run `./scripts/auth-doctor.sh` after install for a safe missing-auth report. Detailed fixes live in [docs/AUTH_GATES.md](docs/AUTH_GATES.md).
 
 Fresh Mac details live in [docs/FRESH_MAC.md](docs/FRESH_MAC.md), including Edward's current tool snapshot and source-backed install order.
@@ -115,7 +115,7 @@ Run:
 
 Then copy the needed blocks from `dist/codex-mcp.example.toml` into `~/.codex/config.toml`.
 
-Do not commit keys. Exa needs a local `EXA_API_KEY`; Linear uses OAuth; Nia is CLI-first and requires `nia auth login`.
+Do not commit keys. Exa needs a local `EXA_API_KEY`; Linear uses OAuth. Nia is optional and requires `nia auth login` only after Edward approves a seat.
 
 ## Daily Workflow
 
