@@ -1,6 +1,6 @@
 # Project Notes: Edward Agent Stack
 
-Last updated: 2026-05-03
+Last updated: 2026-05-04
 Freshness: current as of local repo state
 Owner: Edward Tran
 
@@ -49,6 +49,7 @@ Keep the install realistic:
 
 - `decisions/2026-04-30-secret-access-policy.md`
 - `decisions/2026-05-03-codex-gstack-overlay-sync.md`
+- `decisions/2026-05-04-raw-capture-first.md`
 
 ## Stale Or Uncertain Info
 
