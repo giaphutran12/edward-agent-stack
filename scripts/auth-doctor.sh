@@ -8,7 +8,25 @@ have() { command -v "$1" >/dev/null 2>&1; }
 check_cmd() {
   label="$1"
   shift
-  if "$@" >/tmp/edward-agent-stack-auth.out 2>/tmp/edward-agent-stack-auth.err; then
+  timeout_seconds="${AUTH_CHECK_TIMEOUT_SECONDS:-20}"
+  "$@" >/tmp/edward-agent-stack-auth.out 2>/tmp/edward-agent-stack-auth.err &
+  pid="$!"
+  elapsed=0
+
+  while kill -0 "$pid" 2>/dev/null; do
+    if [ "$elapsed" -ge "$timeout_seconds" ]; then
+      kill "$pid" 2>/dev/null || true
+      sleep 1
+      kill -9 "$pid" 2>/dev/null || true
+      wait "$pid" 2>/dev/null || true
+      warn "$label timed out after ${timeout_seconds}s"
+      return
+    fi
+    sleep 1
+    elapsed=$((elapsed + 1))
+  done
+
+  if wait "$pid"; then
     ok "$label"
   else
     warn "$label"

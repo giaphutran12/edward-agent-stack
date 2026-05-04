@@ -1,0 +1,118 @@
+{
+  "output": "/Users/edwardtran/BLI/edward-clone/artifacts/presentations/pearlportal-intern-onboarding-visual-2026-05-05.pptx",
+  "outputBytes": 3479424,
+  "slideCount": 10,
+  "slideSize": {
+    "width": 1280,
+    "height": 720
+  },
+  "previewDir": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview",
+  "previewPaths": [
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-01.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-02.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-03.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-04.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-05.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-06.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-07.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-08.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-09.png",
+    "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/slide-10.png"
+  ],
+  "layoutDir": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final",
+  "layoutResults": [
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-01.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-02.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-03.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-04.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-05.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-06.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-07.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-08.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-09.layout.json"
+    },
+    {
+      "layoutPath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/layout/final/slide-10.layout.json"
+    }
+  ],
+  "contactSheet": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/preview/contact-sheet.png",
+  "slides": [
+    {
+      "index": 1,
+      "requestedSlideNumber": 1,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-01.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 2,
+      "requestedSlideNumber": 2,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-02.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 3,
+      "requestedSlideNumber": 3,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-03.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 4,
+      "requestedSlideNumber": 4,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-04.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 5,
+      "requestedSlideNumber": 5,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-05.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 6,
+      "requestedSlideNumber": 6,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-06.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 7,
+      "requestedSlideNumber": 7,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-07.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 8,
+      "requestedSlideNumber": 8,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-08.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 9,
+      "requestedSlideNumber": 9,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-09.mjs",
+      "exportName": "default"
+    },
+    {
+      "index": 10,
+      "requestedSlideNumber": 10,
+      "modulePath": "/private/tmp/codex-presentations/manual-20260505-pearlportal-intern-facing-v2/slides/slide-10.mjs",
+      "exportName": "default"
+    }
+  ]
+}
