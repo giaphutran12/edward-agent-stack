@@ -1,7 +1,7 @@
 ---
 title: "Implement CRM sync adapter and retry worker with seeded retry flaw"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_006_crm_worker"
 ---
 
@@ -40,4 +40,31 @@ npm run typecheck
 
 ## Completion Evidence
 
-Record commands and identify worker entrypoint.
+Completed in branch `codex/tkt_lead_ops_006_crm_worker`.
+
+Worker entrypoint:
+
+```bash
+cd assessments/lead-ops-assessment
+npm run worker:crm-sync -- --scenario=success --now=2026-05-16T01:00:00.000Z --max-jobs=1
+```
+
+Implementation entrypoint file: `assessments/lead-ops-assessment/src/jobs/crmSyncWorker.ts`
+
+Verification run:
+
+```bash
+cd assessments/lead-ops-assessment
+npm run test:public -- --run crm
+npm run test:public -- --run worker
+npm run typecheck
+npm run worker:crm-sync -- --scenario=success --now=2026-05-16T01:00:00.000Z --max-jobs=1
+git diff --check
+```
+
+Notes:
+
+- CRM adapter is fixture-backed and supports fake 200, 409, 422, 429, and 500 responses.
+- Public tests cover successful sync, 429 retry scheduling, 500 retry scheduling, and exhausted 500 DLQ behavior.
+- Intentional baseline flaws are seeded: the retry policy retries all 4xx responses including 422, and `Retry-After` seconds are treated as milliseconds.
+- Cockpit event tooling was unavailable in this session: `BLI_ACTIVE_TICKET`, `BLI_OPERATOR_JWT`, and `bli-event` were missing.

@@ -5,7 +5,15 @@ import success200 from "../../fixtures/crm/success-200.json";
 import validation422 from "../../fixtures/crm/validation-422.json";
 import type { CrmFixtureResponse } from "../domain/types";
 
-export type FakeCrmScenario = "success" | "conflict" | "validation" | "rate-limit" | "server-error";
+export const fakeCrmScenarios = [
+  "success",
+  "conflict",
+  "validation",
+  "rate-limit",
+  "server-error"
+] as const;
+
+export type FakeCrmScenario = (typeof fakeCrmScenarios)[number];
 
 const fixtures: Record<FakeCrmScenario, CrmFixtureResponse> = {
   success: success200,
@@ -21,4 +29,8 @@ export class FakeCrmClient {
   upsertLead(_leadId: string): CrmFixtureResponse {
     return structuredClone(fixtures[this.scenario]);
   }
+}
+
+export function isFakeCrmScenario(value: string): value is FakeCrmScenario {
+  return (fakeCrmScenarios as readonly string[]).includes(value);
 }

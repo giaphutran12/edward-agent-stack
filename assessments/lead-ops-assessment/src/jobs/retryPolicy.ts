@@ -16,7 +16,7 @@ export function nextJobState(job: CrmSyncJob, response: CrmFixtureResponse, now:
   }
 
   const attemptCount = job.attemptCount + 1;
-  const retryable = response.status === 409 || response.status === 429 || response.status >= 500;
+  const retryable = isRetryableCrmFailure(response.status);
   if (retryable && attemptCount < MAX_ATTEMPTS) {
     return {
       ...job,
@@ -39,6 +39,10 @@ export function nextJobState(job: CrmSyncJob, response: CrmFixtureResponse, now:
   };
 }
 
+export function isRetryableCrmFailure(status: number): boolean {
+  return (status >= 400 && status < 500) || status >= 500;
+}
+
 export function retryDelayMs(response: CrmFixtureResponse): number {
   const retryAfter = response.headers?.["Retry-After"];
   if (!retryAfter) {
@@ -46,5 +50,5 @@ export function retryDelayMs(response: CrmFixtureResponse): number {
   }
 
   const seconds = Number.parseInt(retryAfter, 10);
-  return Number.isFinite(seconds) ? seconds * 1000 : DEFAULT_RETRY_DELAY_MS;
+  return Number.isFinite(seconds) ? seconds : DEFAULT_RETRY_DELAY_MS;
 }

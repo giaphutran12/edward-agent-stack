@@ -15,6 +15,7 @@ Run from this directory:
 npm install
 npm run reset
 npm run typecheck
+npm run worker:crm-sync -- --scenario=success --now=2026-05-16T01:00:00.000Z --max-jobs=1
 npm test
 npm run test:public
 npm run build
@@ -38,6 +39,7 @@ Use `.env.example` only as documentation for placeholder config names. Do not cr
 
 1. Install dependencies with `npm install`.
 2. Reset deterministic demo data with `npm run reset` when you want a fresh local snapshot.
-3. Run public verification with `npm run typecheck`, `npm run test:public`, and `npm run build`.
-4. Start the UI with `npm run dev`.
-5. Use the fake fixtures and route helpers to inspect lead intake, CRM sync, and operator visibility behavior.
+3. Run the local CRM worker with `npm run worker:crm-sync -- --scenario=success --now=2026-05-16T01:00:00.000Z --max-jobs=1`.
+4. Run public verification with `npm run typecheck`, `npm run test:public`, and `npm run build`.
+5. Start the UI with `npm run dev`.
+6. Use the fake fixtures and route helpers to inspect lead intake, CRM sync, and operator visibility behavior.

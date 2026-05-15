@@ -22,6 +22,7 @@ From this directory:
 ```bash
 npm install
 npm run reset
+npm run worker:crm-sync -- --scenario=success --now=2026-05-16T01:00:00.000Z --max-jobs=1
 npm run typecheck
 npm run test:public
 npm run build
@@ -43,6 +44,16 @@ Reset local test/demo state with:
 ```bash
 npm run reset
 ```
+
+## CRM Worker
+
+Run the local `crm_sync` worker without any real network:
+
+```bash
+npm run worker:crm-sync -- --scenario=success --now=2026-05-16T01:00:00.000Z --max-jobs=1
+```
+
+Use `--scenario=success`, `conflict`, `validation`, `rate-limit`, or `server-error` to select the fake CRM fixture response.
 
 ## Operating The App
 

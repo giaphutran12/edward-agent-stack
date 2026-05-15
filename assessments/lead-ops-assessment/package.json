@@ -12,6 +12,7 @@
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "reset": "node scripts/reset-demo-state.mjs",
+    "worker:crm-sync": "tsx src/jobs/crmSyncWorker.ts",
     "test": "vitest run",
     "test:public": "vitest run tests/public"
   },
@@ -27,6 +28,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "jsdom": "^27.2.0",
+    "tsx": "^4.22.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
     "vitest": "^4.0.16"
