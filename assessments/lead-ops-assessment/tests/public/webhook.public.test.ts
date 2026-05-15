@@ -21,7 +21,12 @@ describe("lead webhook route", () => {
 
     expect(result.status).toBe(202);
     expect(result.leadId).toBe("lead_new-001");
-    expect(repository.listCrmSyncJobs()).toHaveLength(1);
+    expect(repository.listCrmSyncJobs()).toContainEqual(
+      expect.objectContaining({
+        leadId: "lead_new-001",
+        status: "pending"
+      })
+    );
   });
 
   it("rejects malformed lead payloads", () => {

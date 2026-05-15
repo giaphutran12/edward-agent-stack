@@ -8,6 +8,18 @@ import type {
 } from "../domain/types";
 import { createInitialState } from "./fixtures";
 
+export interface LeadWriteAndQueueInput {
+  lead: Lead;
+  inboundEvent: InboundEvent;
+  crmSyncJob: CrmSyncJob | null;
+  auditEntries?: AuditEntry[];
+}
+
+export interface LeadWriteAndQueueResult {
+  lead: Lead;
+  crmSyncJob: CrmSyncJob | null;
+}
+
 export class LeadOpsRepository {
   private state: AppState;
 
@@ -54,6 +66,10 @@ export class LeadOpsRepository {
     this.state.inboundEvents.push(structuredClone(event));
   }
 
+  listInboundEvents(): InboundEvent[] {
+    return structuredClone(this.state.inboundEvents);
+  }
+
   hasInboundEvent(providerEventId: string): boolean {
     return this.state.inboundEvents.some((event) => event.providerEventId === providerEventId);
   }
@@ -63,6 +79,10 @@ export class LeadOpsRepository {
   }
 
   enqueueCrmSyncJob(job: CrmSyncJob): CrmSyncJob {
+    if (this.state.crmSyncJobs.some((item) => item.id === job.id)) {
+      throw new Error(`CRM sync job already exists: ${job.id}`);
+    }
+
     this.state.crmSyncJobs.push(structuredClone(job));
     return structuredClone(job);
   }
@@ -85,12 +105,41 @@ export class LeadOpsRepository {
     this.state.deadLetterJobs.push(structuredClone(job));
   }
 
+  listDeadLetterJobs(): DeadLetterJob[] {
+    return structuredClone(this.state.deadLetterJobs);
+  }
+
+  listAuditEntries(): AuditEntry[] {
+    return structuredClone(this.state.auditEntries);
+  }
+
   listFailedJobs(): CrmSyncJob[] {
     return structuredClone(
       this.state.crmSyncJobs.filter((job) =>
         job.status === "retry_scheduled" || job.status === "dead_lettered"
       )
     );
+  }
+
+  writeLeadAndEnqueueCrmSync(input: LeadWriteAndQueueInput): LeadWriteAndQueueResult {
+    const before = this.snapshot();
+
+    try {
+      const lead = this.upsertLead(input.lead);
+      this.addInboundEvent(input.inboundEvent);
+      const crmSyncJob = input.crmSyncJob
+        ? this.enqueueCrmSyncJob(input.crmSyncJob)
+        : null;
+
+      for (const entry of input.auditEntries ?? []) {
+        this.addAuditEntry(entry);
+      }
+
+      return { lead, crmSyncJob };
+    } catch (error) {
+      this.restore(before);
+      throw error;
+    }
   }
 }
 

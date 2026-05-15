@@ -69,6 +69,7 @@ The source repo may contain both candidate-safe and reviewer-only files. The can
 | `src/` | yes | Baseline app, fake integrations, seeded implementation flaws. |
 | `tests/setup.ts`, `tests/public/` | yes | Test setup and public tests that pass on baseline. |
 | `fixtures/` or `src/fixtures/` | yes | Fake webhook, CRM, queue, and UI data. |
+| `scripts/reset-demo-state.mjs` | yes | Candidate-safe deterministic local reset command. |
 | `assignment/` | yes | Candidate prompt and submission checklist. |
 | `AI_USAGE.md` | yes | Candidate AI disclosure template. |
 | `ASSESSMENT.md` | yes | Candidate write-up template. |
@@ -126,6 +127,8 @@ assessments/lead-ops-assessment/
       malformed.json
       partial-null-update.json
       signed-create.json
+    repository/
+      seed-state.json
   public/
   review/
     FINAL_REVIEW.md
@@ -144,6 +147,7 @@ assessments/lead-ops-assessment/
       webhook-idempotency.hidden.test.ts
     model-solution.patch
   scripts/
+    reset-demo-state.mjs
     export-candidate-package.sh
     verify-candidate-export.sh
   src/

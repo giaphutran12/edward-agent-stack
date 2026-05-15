@@ -1,7 +1,7 @@
 ---
 title: "Build deterministic data model and fixtures"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_003_data"
 ---
 
@@ -38,4 +38,11 @@ npm run typecheck
 
 ## Completion Evidence
 
-List created modules and fixture files.
+- Implemented deterministic data surface in `assessments/lead-ops-assessment/src/domain/types.ts`, `src/repository/fixtures.ts`, `src/repository/repository.ts`, and `src/repository/reset.ts`.
+- Added canonical seed fixture `assessments/lead-ops-assessment/fixtures/repository/seed-state.json` with representative leads, inbound events, CRM sync jobs, DLQ jobs, and audit entries.
+- Added local reset command `npm run reset` backed by `assessments/lead-ops-assessment/scripts/reset-demo-state.mjs`.
+- Confirmed webhook/CRM fixture coverage for duplicate webhook delivery, partial update, CRM 422, CRM 429, and CRM 500.
+- Added public seed tests for deterministic reset, required fixtures, and atomic lead write plus CRM enqueue rollback.
+- Verification passed:
+  - `npm run test:public -- --run seed`
+  - `npm run typecheck`

@@ -21,6 +21,7 @@ From this directory:
 
 ```bash
 npm install
+npm run reset
 npm run typecheck
 npm run test:public
 npm run build
@@ -37,7 +38,11 @@ The repository uses deterministic fake data:
 - CRM fixture responses for success, conflict, validation failure, rate limit, and server error.
 - Local queue and DLQ state for worker tests and demos.
 
-Reset local test/demo state with the reset command provided by the app implementation.
+Reset local test/demo state with:
+
+```bash
+npm run reset
+```
 
 ## Operating The App
 

@@ -44,6 +44,7 @@ The export may include:
 - `assignment/`
 - `docs/RUNBOOK.md`
 - `fixtures/`
+- `scripts/reset-demo-state.mjs`
 - `public/`
 - `review/FINAL_REVIEW.md`
 - `review/intern-a-performance-cleanup.md`

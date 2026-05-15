@@ -13,6 +13,7 @@ Run from this directory:
 
 ```bash
 npm install
+npm run reset
 npm run typecheck
 npm test
 npm run test:public
@@ -30,11 +31,13 @@ Use `.env.example` only as documentation for placeholder config names. Do not cr
 - `src/jobs/` contains local queue and CRM worker primitives.
 - `src/server/routes/` contains route-level handlers that compose the domain modules.
 - `src/app/` contains the Vite/React ops UI.
+- `fixtures/repository/` contains the canonical deterministic seed snapshot.
 - `tests/public/` contains candidate-safe tests that should pass on the baseline.
 
 ## Local Workflow
 
 1. Install dependencies with `npm install`.
-2. Run public verification with `npm run typecheck`, `npm run test:public`, and `npm run build`.
-3. Start the UI with `npm run dev`.
-4. Use the fake fixtures and route helpers to inspect lead intake, CRM sync, and operator visibility behavior.
+2. Reset deterministic demo data with `npm run reset` when you want a fresh local snapshot.
+3. Run public verification with `npm run typecheck`, `npm run test:public`, and `npm run build`.
+4. Start the UI with `npm run dev`.
+5. Use the fake fixtures and route helpers to inspect lead intake, CRM sync, and operator visibility behavior.

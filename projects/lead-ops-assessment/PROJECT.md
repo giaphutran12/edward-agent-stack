@@ -61,4 +61,6 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 
 ## Stale Or Uncertain Info
 
-- TICKET-002 scaffold is complete. Future tickets still need to flesh out deterministic data modeling, seeded flaws, candidate prompts, reviewer-only materials, export tooling, and final readiness checks.
+- TICKET-002 scaffold is complete.
+- TICKET-003 deterministic data modeling is complete: seeded leads, inbound events, CRM sync jobs, DLQ jobs, audit entries, fixture-backed reset command, and atomic lead write plus CRM enqueue are in place.
+- Future tickets still need to flesh out seeded flaws, candidate prompts, reviewer-only materials, export tooling, and final readiness checks.
