@@ -56,6 +56,7 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 ## Recent Decisions
 
 - `decisions/2026-05-16-lead-ops-assessment-autorunner.md`
+- `decisions/2026-05-16-file-boundaries-and-export-policy.md`
 
 ## Stale Or Uncertain Info
 
