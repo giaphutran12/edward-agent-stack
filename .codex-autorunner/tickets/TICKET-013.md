@@ -1,7 +1,7 @@
 ---
 title: "Add candidate export and duplication tooling"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_013_export"
 ---
 
@@ -39,4 +39,7 @@ bash scripts/verify-candidate-export.sh
 
 ## Completion Evidence
 
-Record export path and verify output.
+- Export path: `/Users/edwardtran/BLI/edward-clone/assessments/lead-ops-assessment/tmp/candidate-exports/lead-ops-assessment-candidate-20260515T192552Z`
+- Verify command: `bash scripts/verify-candidate-export.sh`
+- Verify output: `npm ci` completed with 0 vulnerabilities, `npm run typecheck` passed, and `npm run test:public` passed with 7 test files and 28 tests.
+- Exclusion checks passed: reviewer paths, hidden tests, answer key, scoring rubric, expected findings, model solution, reviewer npm scripts, real env filenames, `node_modules`, `dist`, `coverage`, and `tmp` were absent from the exported package before install verification.

@@ -33,6 +33,7 @@ The export may include:
 
 - `README.md`
 - `.env.example`
+- generated candidate `.gitignore`
 - `package.json`
 - `package-lock.json`
 - `index.html`
