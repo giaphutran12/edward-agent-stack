@@ -1,7 +1,7 @@
 ---
 title: "Implement inbound webhook integration with seeded idempotency flaw"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_004_webhook"
 ---
 
@@ -42,3 +42,8 @@ npm run typecheck
 ## Completion Evidence
 
 Record public test output and note the seeded flaw exists for hidden tests.
+
+- `npm run test:public -- --run webhook` passed from `assessments/lead-ops-assessment`: 6 test files passed, 14 tests passed.
+- `npm run typecheck` passed from `assessments/lead-ops-assessment`.
+- Seeded flaw exists for hidden replay coverage: duplicate detection checks the generated inbox event id against stored provider event ids, so replayed provider deliveries can create duplicate CRM sync work.
+- Cockpit fallback context: `BLI_ACTIVE_TICKET`, operator JWT, `bli-event`, and `gstack` were not available in this shell, so this ticket file remained the control plane.

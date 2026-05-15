@@ -27,6 +27,31 @@ describe("lead webhook route", () => {
         status: "pending"
       })
     );
+    expect(repository.listInboundEvents()).toContainEqual(
+      expect.objectContaining({
+        providerEventId: "evt_create_001",
+        rawPayload: body,
+        normalizedLeadId: "lead_new-001"
+      })
+    );
+  });
+
+  it("rejects payloads with an invalid signature", () => {
+    const repository = new LeadOpsRepository();
+    const body = webhookFixtures.signedCreate;
+    const rawBody = JSON.stringify(body);
+
+    const result = handleLeadWebhook(repository, {
+      body,
+      rawBody,
+      signature: "local-sha256=bad-signature",
+      sharedSecret: "local-placeholder",
+      receivedAt: "2026-05-16T00:00:00.000Z"
+    });
+
+    expect(result.status).toBe(401);
+    expect(repository.findLeadById("lead_new-001")).toBeUndefined();
+    expect(repository.listCrmSyncJobs()).toHaveLength(4);
   });
 
   it("rejects malformed lead payloads", () => {

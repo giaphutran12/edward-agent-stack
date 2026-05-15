@@ -1,9 +1,11 @@
 import type { CrmSyncJob } from "../domain/types";
 import type { LeadOpsRepository } from "../repository/repository";
 
-export function createCrmSyncJob(leadId: string, now: string): CrmSyncJob {
+export function createCrmSyncJob(leadId: string, now: string, sourceId?: string): CrmSyncJob {
+  const sourceSuffix = sourceId ? `_${sourceId}` : "";
+
   return {
-    id: `job_${leadId}_${Date.parse(now)}`,
+    id: `job_${leadId}_${Date.parse(now)}${sourceSuffix}`,
     leadId,
     operation: "upsert_lead",
     status: "pending",

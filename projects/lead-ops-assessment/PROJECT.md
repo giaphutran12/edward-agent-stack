@@ -63,4 +63,5 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 
 - TICKET-002 scaffold is complete.
 - TICKET-003 deterministic data modeling is complete: seeded leads, inbound events, CRM sync jobs, DLQ jobs, audit entries, fixture-backed reset command, and atomic lead write plus CRM enqueue are in place.
-- Future tickets still need to flesh out seeded flaws, candidate prompts, reviewer-only materials, export tooling, and final readiness checks.
+- TICKET-004 inbound webhook integration is complete: signed fake webhook payloads normalize into lead changes, raw accepted inbox events persist, lead mutation and CRM enqueue stay atomic, invalid signatures and malformed payloads are covered by public tests, and the intended replay idempotency flaw is seeded.
+- Future tickets still need to flesh out remaining seeded flaws, candidate prompts, reviewer-only materials, export tooling, and final readiness checks.

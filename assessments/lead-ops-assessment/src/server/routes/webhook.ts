@@ -33,16 +33,17 @@ export function handleLeadWebhook(repository: LeadOpsRepository, request: Webhoo
 
   try {
     const change = normalizeLeadSourcePayload(request.body, request.receivedAt);
-    const replay = repository.hasInboundEvent(change.providerEventId);
+    const eventSequence = repository.listInboundEvents().filter((item) =>
+      item.providerEventId === change.providerEventId
+    ).length + 1;
+    const eventId = `inbound_${change.providerEventId}_${String(eventSequence).padStart(3, "0")}`;
+    const replay = repository.hasInboundEvent(eventId);
 
     const existing = repository.findLeadByProviderId(change.providerLeadId);
     const lead = mergeLeadChange(existing, change, request.receivedAt);
 
     const event: InboundEvent = {
-      id: `inbound_${change.providerEventId}_${String(
-        repository.listInboundEvents().filter((item) => item.providerEventId === change.providerEventId)
-          .length + 1
-      ).padStart(3, "0")}`,
+      id: eventId,
       provider: change.provider,
       providerEventId: change.providerEventId,
       receivedAt: request.receivedAt,
@@ -55,7 +56,7 @@ export function handleLeadWebhook(repository: LeadOpsRepository, request: Webhoo
     const result = repository.writeLeadAndEnqueueCrmSync({
       lead,
       inboundEvent: event,
-      crmSyncJob: replay ? null : createCrmSyncJob(lead.id, request.receivedAt),
+      crmSyncJob: replay ? null : createCrmSyncJob(lead.id, request.receivedAt, event.id),
       auditEntries: [
         {
           id: `audit_${change.providerEventId}_${event.id}`,
