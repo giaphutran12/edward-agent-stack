@@ -18,7 +18,7 @@ Explain the current system in your own words.
 
 Key invariants this system should protect:
 
-- 
+-
 
 ## 2. Targeted Fixes
 
@@ -70,11 +70,11 @@ npm run dev, if used:
 
 What tradeoffs did you make to keep the work inside the timebox?
 
-- 
+-
 
 What risk remains after your changes?
 
-- 
+-
 
 ## 6. Follow-Up Delegation Plan
 
@@ -89,14 +89,14 @@ Work I would delegate:
 
 Work I would keep myself:
 
-- 
+-
 
 What I would ask an intern to test or document next:
 
-- 
+-
 
 ## 7. Notes For Reviewer
 
 Anything else the reviewer should know:
 
-- 
+-

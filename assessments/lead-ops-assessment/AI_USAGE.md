@@ -24,19 +24,19 @@ Tools used:
 
 Prompts or task summaries given to AI:
 
-- 
+-
 
 AI-generated code or text accepted into the submission:
 
-- 
+-
 
 What you independently verified:
 
-- 
+-
 
 What you changed, rejected, or corrected from AI output:
 
-- 
+-
 
 ## Safety Check
 

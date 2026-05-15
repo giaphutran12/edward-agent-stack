@@ -3,7 +3,7 @@ diff --git a/assessments/lead-ops-assessment/src/app/pages/FailedJobsPage.tsx b/
 +++ b/assessments/lead-ops-assessment/src/app/pages/FailedJobsPage.tsx
 @@ -7,6 +7,32 @@ interface FailedJobsPageProps {
  }
- 
+
  const visibleJobStatuses: CrmJobStatus[] = ["retry_scheduled"];
 +const recentFailureWindowMs = 45 * 60 * 1000;
 +
@@ -31,7 +31,7 @@ diff --git a/assessments/lead-ops-assessment/src/app/pages/FailedJobsPage.tsx b/
 +    latestNextRunAt - nextRunAt <= recentFailureWindowMs
 +  );
 +}
- 
+
  function errorMessage(error: Error | string): string {
    return typeof error === "string" ? error : error.message;
 @@ -17,7 +43,14 @@ export function FailedJobsPage({
@@ -48,7 +48,7 @@ diff --git a/assessments/lead-ops-assessment/src/app/pages/FailedJobsPage.tsx b/
 +        Date.parse(secondJob.nextRunAt) - Date.parse(firstJob.nextRunAt)
 +    );
    let body;
- 
+
    if (isLoading) {
 @@ -38,7 +71,7 @@ export function FailedJobsPage({
          {visibleJobs.map((job) => (
@@ -64,7 +64,7 @@ diff --git a/assessments/lead-ops-assessment/tests/public/ui.public.test.tsx b/a
 +++ b/assessments/lead-ops-assessment/tests/public/ui.public.test.tsx
 @@ -101,7 +101,7 @@ describe("ops UI", () => {
      render(<FailedJobsPage jobs={[failedJobFixture]} />);
- 
+
      expect(screen.getByText("lead_public_001")).toBeInTheDocument();
 -    expect(screen.getByText("retry_scheduled")).toBeInTheDocument();
 +    expect(screen.getByText("Retrying")).toBeInTheDocument();

@@ -4,7 +4,7 @@ index 7e7ae5d..1b7483c 100644
 +++ b/assessments/lead-ops-assessment/src/repository/repository.ts
 @@ -122,25 +122,18 @@ export class LeadOpsRepository {
    }
- 
+
    writeLeadAndEnqueueCrmSync(input: LeadWriteAndQueueInput): LeadWriteAndQueueResult {
 -    const before = this.snapshot();
 -
@@ -36,5 +36,5 @@ index 7e7ae5d..1b7483c 100644
 +    return { lead, crmSyncJob };
    }
  }
- 
+
  export const defaultRepository = new LeadOpsRepository();

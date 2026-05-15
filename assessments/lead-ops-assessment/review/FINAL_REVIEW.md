@@ -29,19 +29,19 @@ Summary:
 
 Blocking findings:
 
-- 
+-
 
 Non-blocking notes:
 
-- 
+-
 
 Regression test or verification I would require:
 
-- 
+-
 
 Final merge condition:
 
-- 
+-
 
 ## Intern B Review
 
@@ -56,26 +56,26 @@ Summary:
 
 Blocking findings:
 
-- 
+-
 
 Non-blocking notes:
 
-- 
+-
 
 Regression test or verification I would require:
 
-- 
+-
 
 Final merge condition:
 
-- 
+-
 
 ## Overall Review Notes
 
 What I would delegate back to the intern:
 
-- 
+-
 
 What I would handle myself:
 
-- 
+-
