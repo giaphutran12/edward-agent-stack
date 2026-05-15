@@ -1,6 +1,6 @@
-import { mergeLeadChange } from "../../domain/leadMerge";
+import { mergeLeadChangeWithAudit } from "../../domain/leadMerge";
 import { normalizeLeadSourcePayload } from "../../domain/normalization";
-import type { InboundEvent, LeadSourcePayload } from "../../domain/types";
+import type { AuditEntry, InboundEvent, LeadSourcePayload } from "../../domain/types";
 import { verifyLeadSourceSignature } from "../../integrations/leadSourceSignature";
 import { createCrmSyncJob } from "../../jobs/queue";
 import type { LeadOpsRepository } from "../../repository/repository";
@@ -39,9 +39,6 @@ export function handleLeadWebhook(repository: LeadOpsRepository, request: Webhoo
     const eventId = `inbound_${change.providerEventId}_${String(eventSequence).padStart(3, "0")}`;
     const replay = repository.hasInboundEvent(eventId);
 
-    const existing = repository.findLeadByProviderId(change.providerLeadId);
-    const lead = mergeLeadChange(existing, change, request.receivedAt);
-
     const event: InboundEvent = {
       id: eventId,
       provider: change.provider,
@@ -49,26 +46,29 @@ export function handleLeadWebhook(repository: LeadOpsRepository, request: Webhoo
       receivedAt: request.receivedAt,
       signatureValid,
       rawPayload: request.body,
-      normalizedLeadId: lead.id,
+      normalizedLeadId: null,
       replayMarker: replay
+    };
+    const existing = repository.findLeadByProviderId(change.providerLeadId);
+    const mergeResult = mergeLeadChangeWithAudit(existing, change, request.receivedAt, event.id);
+    const lead = mergeResult.lead;
+    event.normalizedLeadId = lead.id;
+    const webhookAuditEntry: AuditEntry = {
+      id: `audit_${change.providerEventId}_${event.id}`,
+      leadId: lead.id,
+      actor: "system",
+      action: replay ? "webhook.replayed" : "webhook.accepted",
+      summary: replay
+        ? `Ignored duplicate provider delivery ${change.providerEventId}.`
+        : `Accepted provider delivery ${change.providerEventId} and queued CRM sync.`,
+      createdAt: request.receivedAt
     };
 
     const result = repository.writeLeadAndEnqueueCrmSync({
       lead,
       inboundEvent: event,
       crmSyncJob: replay ? null : createCrmSyncJob(lead.id, request.receivedAt, event.id),
-      auditEntries: [
-        {
-          id: `audit_${change.providerEventId}_${event.id}`,
-          leadId: lead.id,
-          actor: "system",
-          action: replay ? "webhook.replayed" : "webhook.accepted",
-          summary: replay
-            ? `Ignored duplicate provider delivery ${change.providerEventId}.`
-            : `Accepted provider delivery ${change.providerEventId} and queued CRM sync.`,
-          createdAt: request.receivedAt
-        }
-      ]
+      auditEntries: [webhookAuditEntry, ...mergeResult.auditEntries]
     });
 
     return { status: 202, leadId: result.lead.id, replay };
