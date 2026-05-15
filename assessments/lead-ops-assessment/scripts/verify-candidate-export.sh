@@ -75,6 +75,7 @@ for forbidden_path in \
   "docs/ARCHITECTURE.md" \
   "docs/EXPORT_POLICY.md" \
   "docs/CANDIDATE_REPO_RUNBOOK.md" \
+  "docs/READINESS_REPORT.md" \
   "reviewer" \
   "reviewer/ANSWER_KEY.md" \
   "reviewer/EXPECTED_FINDINGS.md" \
@@ -84,6 +85,7 @@ for forbidden_path in \
   "scripts/export-candidate-package.sh" \
   "scripts/verify-candidate-export.sh" \
   "scripts/verify-hidden-tests.mjs" \
+  "scripts/verify-answer-key.mjs" \
   "scripts/check-intern-a.mjs" \
   "scripts/check-intern-b.mjs" \
   ".codex-autorunner" \

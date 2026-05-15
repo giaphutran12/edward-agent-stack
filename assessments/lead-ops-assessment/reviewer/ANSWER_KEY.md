@@ -21,14 +21,10 @@ From `assessments/lead-ops-assessment/`:
 ```bash
 npm run test:public
 npm run reviewer:verify-baseline
-git apply --check reviewer/model-solution.patch
-git apply reviewer/model-solution.patch
-npm run typecheck
-npm run test:public
-npm run reviewer:verify-hidden
+npm run reviewer:verify-answer-key
 ```
 
-Use `npm run reviewer:verify-baseline` only on the seeded baseline. Use `npm run reviewer:verify-hidden` on a candidate solution or model-solution branch.
+Use `npm run reviewer:verify-baseline` only on the seeded baseline. Use `npm run reviewer:verify-answer-key` to apply `reviewer/model-solution.patch` in a temporary copy and prove the model solution passes typecheck, public tests, and hidden tests without mutating the seeded baseline. Use `npm run reviewer:verify-hidden` on a candidate solution or model-solution branch.
 
 ## Hidden Test Map
 

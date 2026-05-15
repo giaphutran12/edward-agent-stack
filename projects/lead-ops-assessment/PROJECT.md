@@ -10,7 +10,7 @@ Build a repeatable private take-home assignment repo for a high-ownership AI-nat
 
 ## Current Priority
 
-Use Codex Autorunner to build the whole package end to end:
+The V1 assessment package is ready for Edward to duplicate into private per-candidate repos. Final QA passed for:
 
 - candidate-safe lead-ops app
 - fake integrations and async worker
@@ -19,7 +19,9 @@ Use Codex Autorunner to build the whole package end to end:
 - public tests
 - hidden reviewer tests
 - answer key and scoring rubric
+- answer-key temp-copy verifier
 - candidate export/duplication flow
+- readiness report
 
 ## Stack
 
@@ -47,6 +49,8 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 - Complexity should come from cross-boundary correctness, not random vendor count.
 - Candidate export must never include reviewer answer key, hidden tests, model solution, or other candidate submissions.
 - Public tests should pass on the candidate baseline; hidden tests should fail against baseline only in expected ways and pass against the answer key.
+- Generated candidate exports under `assessments/lead-ops-assessment/tmp/` must stay excluded from Vitest discovery so root public-test counts remain deterministic.
+- Use `npm run reviewer:verify-answer-key` to apply `reviewer/model-solution.patch` in a temporary copy; do not mutate the seeded baseline just to prove the answer key.
 - Use `.env.example` only. Do not create real env files.
 
 ## Related Edward Rules
@@ -73,4 +77,4 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 - TICKET-011 candidate-facing assignment docs are complete: `assignment/PROMPT.md`, `assignment/SUBMISSION_CHECKLIST.md`, `AI_USAGE.md`, `ASSESSMENT.md`, and `review/FINAL_REVIEW.md` define the timeboxed candidate workflow, AI disclosure requirement, exact verification commands, write-up template, and intern PR review output template without exposing reviewer-only answers.
 - TICKET-012 reviewer answer-key package is complete: `reviewer/ANSWER_KEY.md`, `reviewer/SCORING_RUBRIC.md`, `reviewer/EXPECTED_FINDINGS.md`, and `reviewer/model-solution.patch` map hidden tests to seeded bugs, define a 100-point rubric, calibrate intern PR review findings, and provide an apply-ready model solution that remains excluded from candidate export. The CRM worker hidden tests now isolate seeded queue state before enqueuing verifier jobs, so model-solution verification targets the intended `422` and `Retry-After` bugs.
 - TICKET-013 candidate export and duplication tooling is complete: `scripts/export-candidate-package.sh` creates a fresh candidate-safe package under `tmp/candidate-exports/`, strips reviewer-only npm scripts, generates a candidate `.gitignore`, and excludes reviewer-only files; `scripts/verify-candidate-export.sh` checks file boundaries and runs `npm ci`, `npm run typecheck`, and `npm run test:public` in a temporary verification copy; `docs/CANDIDATE_REPO_RUNBOOK.md` documents one private GitHub repo per candidate.
-- Future tickets still need final readiness checks.
+- TICKET-014 final readiness QA is complete: ticket lint, candidate install/typecheck/public tests/build, baseline hidden verifier, temporary-copy answer-key verifier, candidate export, export verification, and `docs/READINESS_REPORT.md` all pass. Final verified export path: `assessments/lead-ops-assessment/tmp/candidate-exports/lead-ops-assessment-candidate-20260515T193217Z`.

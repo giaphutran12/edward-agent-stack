@@ -1,7 +1,7 @@
 ---
 title: "Run final end-to-end QA and readiness review"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_014_final_qa"
 ---
 
@@ -50,4 +50,21 @@ test -f docs/READINESS_REPORT.md
 
 ## Completion Evidence
 
-Paste concise command results and final export path.
+- `python3 .codex-autorunner/bin/lint_tickets.py`: `OK: 14 ticket(s) linted.`
+- `npm install`: audited 165 packages, found 0 vulnerabilities.
+- `npm run typecheck`: passed.
+- `npm run test:public`: 7 test files passed, 28 tests passed.
+- `npm run build`: passed; Vite built 35 modules.
+- `npm run reviewer:verify-baseline`: hidden baseline verification passed with exactly 5 expected hidden failures.
+- `npm run reviewer:verify-answer-key`: temporary-copy answer-key verification passed; hidden verification passed 5/5.
+- `bash scripts/export-candidate-package.sh`: candidate export created.
+- `bash scripts/verify-candidate-export.sh`: candidate export verified after `npm ci`, `npm run typecheck`, and `npm run test:public`.
+- `test -f docs/READINESS_REPORT.md`: passed.
+
+Final export path:
+
+```text
+/Users/edwardtran/BLI/edward-clone/assessments/lead-ops-assessment/tmp/candidate-exports/lead-ops-assessment-candidate-20260515T193217Z
+```
+
+Runtime note: Cockpit binding was unavailable in this fallback shell because `BLI_ACTIVE_TICKET` was unset, operator JWT was absent, and `bli-event` was missing. The dispatch file from the prompt was also absent, so this ticket file remained the control plane.
