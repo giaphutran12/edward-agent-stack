@@ -35,6 +35,7 @@ The export may include:
 - `.env.example`
 - `package.json`
 - `package-lock.json`
+- `index.html`
 - `tsconfig.json`
 - `vitest.config.ts`
 - `vite.config.ts`
@@ -50,6 +51,7 @@ The export may include:
 - `review/intern-b-ui-polish.md`
 - `review/intern-b-ui-polish.patch`
 - `src/`
+- `tests/setup.ts`
 - `tests/public/`
 
 Candidate-safe files may mention the high-level workflow and fake integrations. They must not name exact seeded bug answers, hidden-test expectations, scoring answers, or model solution details.

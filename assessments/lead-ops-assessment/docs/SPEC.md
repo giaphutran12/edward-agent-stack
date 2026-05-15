@@ -65,9 +65,9 @@ The source repo may contain both candidate-safe and reviewer-only files. The can
 | --- | --- | --- |
 | `README.md` | yes | Candidate setup and app overview without answers. |
 | `.env.example` | yes | Placeholder names only. No real secrets. |
-| `package.json`, lockfile, TypeScript/test/build config | yes | One-command install and verification. |
+| `package.json`, lockfile, `index.html`, TypeScript/test/build config | yes | One-command install and verification. |
 | `src/` | yes | Baseline app, fake integrations, seeded implementation flaws. |
-| `tests/public/` | yes | Public tests that pass on baseline. |
+| `tests/setup.ts`, `tests/public/` | yes | Test setup and public tests that pass on baseline. |
 | `fixtures/` or `src/fixtures/` | yes | Fake webhook, CRM, queue, and UI data. |
 | `assignment/` | yes | Candidate prompt and submission checklist. |
 | `AI_USAGE.md` | yes | Candidate AI disclosure template. |
@@ -97,6 +97,7 @@ assessments/lead-ops-assessment/
   README.md
   package.json
   package-lock.json
+  index.html
   tsconfig.json
   vitest.config.ts
   vite.config.ts
@@ -153,6 +154,7 @@ assessments/lead-ops-assessment/
         FailedJobsPage.tsx
         LeadDetailPage.tsx
         LeadListPage.tsx
+      styles.css
     domain/
       assignment.ts
       leadMerge.ts
@@ -177,6 +179,7 @@ assessments/lead-ops-assessment/
         leads.ts
         webhook.ts
   tests/
+    setup.ts
     public/
       crm.public.test.ts
       merge.public.test.ts

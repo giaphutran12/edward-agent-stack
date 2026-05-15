@@ -17,6 +17,8 @@ CLAUDE.local.md
 EDWARD_CLONE_*.md
 skills/edward-intern-coach/references/operating-manual.md
 dist/
+node_modules/
+coverage/
 tmp/
 .gstack/
 

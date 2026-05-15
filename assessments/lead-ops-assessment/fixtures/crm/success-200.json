@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "body": {
+    "remoteId": "crm_demo_001",
+    "message": "Lead upserted"
+  }
+}

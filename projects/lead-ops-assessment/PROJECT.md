@@ -23,11 +23,12 @@ Use Codex Autorunner to build the whole package end to end:
 
 ## Stack
 
-- Frontend: TypeScript app surface chosen by the implementation ticket
-- Backend: TypeScript domain modules and fake fixture-backed integrations
+- Frontend: Vite + React + TypeScript app in `assessments/lead-ops-assessment/`
+- Backend: pure TypeScript route/domain/job modules and fake fixture-backed integrations
 - Database: deterministic local fixture/repository layer, no real external database required
 - Jobs: local fake queue and DLQ worker
 - Deploy: not required for V1; package must run locally and export clean candidate copies
+- Tests: Vitest public test suite under `tests/public/`
 
 ## Known User Pain
 
@@ -60,4 +61,4 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 
 ## Stale Or Uncertain Info
 
-- Final app stack is specified as TypeScript and local fixtures, but ticket execution may choose the exact app framework during scaffold work.
+- TICKET-002 scaffold is complete. Future tickets still need to flesh out deterministic data modeling, seeded flaws, candidate prompts, reviewer-only materials, export tooling, and final readiness checks.

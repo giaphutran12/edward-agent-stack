@@ -1,0 +1,11 @@
+{
+  "provider": "acme-leads",
+  "eventId": "evt_update_001",
+  "lead": {
+    "id": "demo-001",
+    "email": null,
+    "phone": null,
+    "name": "Ada Lovelace",
+    "company": "Example Enterprise"
+  }
+}

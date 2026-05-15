@@ -1,0 +1,6 @@
+{
+  "provider": "acme-leads",
+  "lead": {
+    "email": "missing-id@example.invalid"
+  }
+}
