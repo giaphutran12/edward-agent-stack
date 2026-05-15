@@ -55,7 +55,7 @@ h2 {
 
 .layout-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr) minmax(280px, 1fr);
   gap: 16px;
 }
 
@@ -77,10 +77,46 @@ h2 {
 
 .lead-list li,
 .job-list li {
-  display: grid;
-  gap: 4px;
   border-bottom: 1px solid #e4e7eb;
   padding-bottom: 12px;
+}
+
+.lead-list li:last-child,
+.job-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.lead-row {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 8px;
+  text-align: left;
+}
+
+.lead-row:hover,
+.lead-row:focus-visible {
+  border-color: #bcccdc;
+  background: #f8fafc;
+  outline: none;
+}
+
+.lead-row[aria-pressed="true"] {
+  border-color: #486581;
+  background: #f0f4f8;
+}
+
+.row-main,
+.row-meta,
+.job-list li {
+  display: grid;
+  gap: 4px;
 }
 
 .lead-list span,
@@ -88,6 +124,12 @@ h2 {
 .lead-list small,
 .job-list small {
   color: #52606d;
+}
+
+.lead-list strong,
+.job-list strong,
+.detail-list dd {
+  overflow-wrap: anywhere;
 }
 
 .detail-list {
@@ -103,6 +145,14 @@ h2 {
 
 .detail-list dd {
   margin: 0;
+}
+
+.state-copy {
+  color: #52606d;
+}
+
+.state-copy-error {
+  color: #b42318;
 }
 
 @media (max-width: 900px) {

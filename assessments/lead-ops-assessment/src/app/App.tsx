@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import "./styles.css";
 import { LeadOpsRepository } from "../repository/repository";
 import { FailedJobsPage } from "./pages/FailedJobsPage";
@@ -6,9 +7,15 @@ import { LeadListPage } from "./pages/LeadListPage";
 
 const repository = new LeadOpsRepository();
 const leads = repository.listLeads();
-const failedJobs = repository.listFailedJobs();
+const crmJobs = repository.listCrmSyncJobs();
 
 export function App() {
+  const [selectedLeadId, setSelectedLeadId] = useState<string | undefined>(leads[0]?.id);
+  const selectedLead = useMemo(
+    () => leads.find((lead) => lead.id === selectedLeadId),
+    [selectedLeadId]
+  );
+
   return (
     <main className="app-shell">
       <header className="topbar">
@@ -19,9 +26,13 @@ export function App() {
       </header>
 
       <section className="layout-grid" aria-label="Lead operations workspace">
-        <LeadListPage leads={leads} />
-        <LeadDetailPage lead={leads[0]} />
-        <FailedJobsPage jobs={failedJobs} />
+        <LeadListPage
+          leads={leads}
+          selectedLeadId={selectedLeadId}
+          onSelectLead={setSelectedLeadId}
+        />
+        <LeadDetailPage lead={selectedLead} />
+        <FailedJobsPage jobs={crmJobs} />
       </section>
     </main>
   );
