@@ -28,7 +28,7 @@ Use Codex Autorunner to build the whole package end to end:
 - Database: deterministic local fixture/repository layer, no real external database required
 - Jobs: local fake queue and DLQ worker
 - Deploy: not required for V1; package must run locally and export clean candidate copies
-- Tests: Vitest public test suite under `tests/public/`
+- Tests: Vitest public test suite under `tests/public/`; reviewer-only hidden suite under `reviewer/hidden-tests/` with `npm run reviewer:verify-baseline` for expected baseline failures and `npm run reviewer:verify-hidden` for solution verification.
 
 ## Known User Pain
 
@@ -67,4 +67,5 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 - TICKET-005 lead merge and assignment behavior is complete: existing lead updates merge through `src/domain/leadMerge.ts`, assignment state and audit entries live in `src/domain/assignment.ts`, webhook writes include assignment audit entries, public merge/assignment tests pass, and the intended partial `null` contact overwrite flaw remains seeded.
 - TICKET-006 CRM worker behavior is complete: fixture-backed CRM responses cover 200, 409, 422, 429, and 500; `src/jobs/crmSyncWorker.ts` exposes the local `crm_sync` worker entrypoint through `npm run worker:crm-sync`; public CRM/worker tests cover success, 429/500 retries, and DLQ movement; the intended 422 retry-classification flaw and Retry-After seconds-as-milliseconds flaw are seeded.
 - TICKET-007 operator UI is complete: `src/app/pages/` provides lead list, lead detail, and failed CRM job panels with loading, empty, and error states; public UI tests cover lead list, lead detail, and failed-job fixture rendering; the intended failed-job visibility flaw remains seeded by filtering UI-visible jobs with a status mismatch that hides DLQ jobs.
-- Future tickets still need to flesh out remaining seeded flaws, candidate prompts, reviewer-only materials, export tooling, and final readiness checks.
+- TICKET-008 public and hidden testing contract is complete: `npm run test:public` passes 28 public tests on the baseline, `reviewer/hidden-tests/` covers all five intended seeded bugs, and `npm run reviewer:verify-baseline` expects exactly five hidden failures on the seeded baseline.
+- Future tickets still need to flesh out candidate prompts, fake intern PR artifacts, reviewer answer-key materials, export tooling, and final readiness checks.

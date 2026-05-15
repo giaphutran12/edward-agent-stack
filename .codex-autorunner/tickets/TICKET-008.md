@@ -1,7 +1,7 @@
 ---
 title: "Add public tests and hidden-test harness"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_008_tests"
 ---
 
@@ -39,3 +39,7 @@ npm run reviewer:verify-baseline
 ## Completion Evidence
 
 Record count of public tests passed and count of expected hidden failures.
+
+- `npm run test:public`: 28 public tests passed across 7 files.
+- `npm run reviewer:verify-baseline`: 5 expected hidden failures observed across 5 hidden tests.
+- Hidden tests live under `assessments/lead-ops-assessment/reviewer/hidden-tests/`; reviewer docs and export policy mark them reviewer-only and excluded from candidate export.

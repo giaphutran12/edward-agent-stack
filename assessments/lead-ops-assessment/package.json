@@ -14,7 +14,10 @@
     "reset": "node scripts/reset-demo-state.mjs",
     "worker:crm-sync": "tsx src/jobs/crmSyncWorker.ts",
     "test": "vitest run",
-    "test:public": "vitest run tests/public"
+    "test:public": "vitest run tests/public",
+    "test:hidden": "vitest run reviewer/hidden-tests",
+    "reviewer:verify-hidden": "node scripts/verify-hidden-tests.mjs",
+    "reviewer:verify-baseline": "node scripts/verify-hidden-tests.mjs --expect-baseline-failures"
   },
   "dependencies": {
     "react": "^19.2.1",

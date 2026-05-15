@@ -74,6 +74,8 @@ The export must exclude:
 - `reviewer/model-solution.patch`
 - `scripts/export-candidate-package.sh`
 - `scripts/verify-candidate-export.sh`
+- `scripts/verify-hidden-tests.mjs`
+- reviewer-only npm scripts from exported `package.json`: `test:hidden` and `reviewer:*`
 - hidden tests anywhere outside `reviewer/`
 - model solution patches or answer-key branches
 - `.codex-autorunner/`
@@ -120,6 +122,8 @@ Verification must prove:
 - `npm run test:public` passes.
 - Reviewer-only files are absent.
 - Hidden tests are absent.
+- Reviewer hidden-test verifier scripts are absent.
+- Reviewer-only npm scripts are absent from exported `package.json`.
 - Model solution material is absent.
 - `.env.example` is present.
 - Real env files are absent.

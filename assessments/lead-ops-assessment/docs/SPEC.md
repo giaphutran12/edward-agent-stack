@@ -150,6 +150,7 @@ assessments/lead-ops-assessment/
     reset-demo-state.mjs
     export-candidate-package.sh
     verify-candidate-export.sh
+    verify-hidden-tests.mjs
   src/
     app/
       App.tsx
@@ -241,6 +242,14 @@ Hidden tests must fail against the candidate baseline for intended seeded bug co
 - `Retry-After` seconds are treated as milliseconds.
 
 Hidden tests must pass against the model solution.
+
+Reviewer-only hidden-test commands:
+
+- `npm run reviewer:verify-baseline` validates the seeded baseline by expecting the intended hidden-test failures.
+- `npm run reviewer:verify-hidden` runs hidden tests as a normal pass/fail verifier for an answer-key or candidate solution tree.
+
+`reviewer/hidden-tests/` and `scripts/verify-hidden-tests.mjs` are reviewer-only and must be excluded from candidate exports.
+Candidate export tooling must also remove reviewer-only package scripts such as `test:hidden` and `reviewer:*` from the exported `package.json`.
 
 ## Grading Signal
 
