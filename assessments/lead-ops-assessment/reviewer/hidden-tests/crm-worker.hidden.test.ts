@@ -4,9 +4,20 @@ import { processNextCrmSyncJob } from "../../src/jobs/crmSyncWorker";
 import { enqueueCrmSync } from "../../src/jobs/queue";
 import { LeadOpsRepository } from "../../src/repository/repository";
 
+function repositoryWithoutCrmJobs(): LeadOpsRepository {
+  const repository = new LeadOpsRepository();
+  repository.restore({
+    ...repository.snapshot(),
+    crmSyncJobs: [],
+    deadLetterJobs: []
+  });
+
+  return repository;
+}
+
 describe("CRM worker hidden tests", () => {
   it("moves terminal CRM validation failures to the DLQ without retrying", () => {
-    const repository = new LeadOpsRepository();
+    const repository = repositoryWithoutCrmJobs();
     const now = "2026-05-16T02:10:00.000Z";
     const queuedJob = enqueueCrmSync(repository, "lead_demo-001", now);
 
@@ -27,7 +38,7 @@ describe("CRM worker hidden tests", () => {
   });
 
   it("treats Retry-After header values as seconds when scheduling rate-limit retries", () => {
-    const repository = new LeadOpsRepository();
+    const repository = repositoryWithoutCrmJobs();
     const now = "2026-05-16T02:15:00.000Z";
     enqueueCrmSync(repository, "lead_demo-001", now);
 

@@ -1,0 +1,75 @@
+diff --git a/src/server/routes/webhook.ts b/src/server/routes/webhook.ts
+--- a/src/server/routes/webhook.ts
++++ b/src/server/routes/webhook.ts
+@@ -31,11 +31,11 @@ export function handleLeadWebhook(repository: LeadOpsRepository, request: Webhoo
+ 
+   try {
+     const change = normalizeLeadSourcePayload(request.body, request.receivedAt);
++    const replay = repository.hasInboundEvent(change.providerEventId);
+     const eventSequence = repository.listInboundEvents().filter((item) =>
+       item.providerEventId === change.providerEventId
+     ).length + 1;
+     const eventId = `inbound_${change.providerEventId}_${String(eventSequence).padStart(3, "0")}`;
+-    const replay = repository.hasInboundEvent(eventId);
+ 
+     const event: InboundEvent = {
+       id: eventId,
+diff --git a/src/domain/leadMerge.ts b/src/domain/leadMerge.ts
+--- a/src/domain/leadMerge.ts
++++ b/src/domain/leadMerge.ts
+@@ -17,6 +17,13 @@ function inboundSourceWins(existing: Lead, change: LeadChange): boolean {
+   return sourcePriority(change.provider) >= sourcePriority(existing.provider);
+ }
+ 
++function mergeContactField(
++  existingValue: string | null,
++  incomingValue: string | null | undefined
++): string | null {
++  return incomingValue === undefined || incomingValue === null ? existingValue : incomingValue;
++}
++
+ export function createLeadFromChange(change: LeadChange, now: string): Lead {
+   const assignment = resolveAssignmentState(undefined, change.company ?? null);
+ 
+@@ -58,8 +65,8 @@ export function mergeLeadChangeWithAudit(
+ 
+   const lead: Lead = {
+     ...existing,
+-    email: shouldApplyInbound && change.email !== undefined ? change.email : existing.email,
+-    phone: shouldApplyInbound && change.phone !== undefined ? change.phone : existing.phone,
++    email: shouldApplyInbound ? mergeContactField(existing.email, change.email) : existing.email,
++    phone: shouldApplyInbound ? mergeContactField(existing.phone, change.phone) : existing.phone,
+     name: shouldApplyInbound ? change.name ?? existing.name : existing.name,
+     company,
+     owner: assignment.owner,
+diff --git a/src/jobs/retryPolicy.ts b/src/jobs/retryPolicy.ts
+--- a/src/jobs/retryPolicy.ts
++++ b/src/jobs/retryPolicy.ts
+@@ -36,7 +36,7 @@ export function nextJobState(job: CrmSyncJob, response: CrmFixtureResponse, now:
+ }
+ 
+ export function isRetryableCrmFailure(status: number): boolean {
+-  return (status >= 400 && status < 500) || status >= 500;
++  return status === 429 || status >= 500;
+ }
+ 
+ export function retryDelayMs(response: CrmFixtureResponse): number {
+@@ -46,5 +46,5 @@ export function retryDelayMs(response: CrmFixtureResponse): number {
+   }
+ 
+   const seconds = Number.parseInt(retryAfter, 10);
+-  return Number.isFinite(seconds) ? seconds : DEFAULT_RETRY_DELAY_MS;
++  return Number.isFinite(seconds) ? seconds * 1000 : DEFAULT_RETRY_DELAY_MS;
+ }
+diff --git a/src/app/pages/FailedJobsPage.tsx b/src/app/pages/FailedJobsPage.tsx
+--- a/src/app/pages/FailedJobsPage.tsx
++++ b/src/app/pages/FailedJobsPage.tsx
+@@ -5,7 +5,7 @@ interface FailedJobsPageProps {
+   error?: Error | string | null;
+ }
+ 
+-const visibleJobStatuses: CrmJobStatus[] = ["retry_scheduled"];
++const visibleJobStatuses: CrmJobStatus[] = ["retry_scheduled", "dead_lettered"];
+ 
+ function errorMessage(error: Error | string): string {
+   return typeof error === "string" ? error : error.message;
