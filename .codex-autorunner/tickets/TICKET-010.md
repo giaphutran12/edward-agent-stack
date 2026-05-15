@@ -1,7 +1,7 @@
 ---
 title: "Create fake intern PR patch B for ops visibility regression"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_010_intern_b"
 ---
 
@@ -39,3 +39,8 @@ npm run reviewer:check-intern-b
 ## Completion Evidence
 
 Record patch path and expected reviewer finding.
+
+- Patch path: `assessments/lead-ops-assessment/review/intern-b-ui-polish.patch`
+- Candidate-facing PR description: `assessments/lead-ops-assessment/review/intern-b-ui-polish.md`
+- Expected reviewer finding: block the PR because the failed jobs panel hides older unresolved `retry_scheduled` CRM sync failures without an operator-visible escape hatch, weakening recovery visibility.
+- Verification: `git apply --check review/intern-b-ui-polish.patch` and `npm run reviewer:check-intern-b`

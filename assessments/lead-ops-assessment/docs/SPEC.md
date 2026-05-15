@@ -152,6 +152,7 @@ assessments/lead-ops-assessment/
     verify-candidate-export.sh
     verify-hidden-tests.mjs
     check-intern-a.mjs
+    check-intern-b.mjs
   src/
     app/
       App.tsx
@@ -249,8 +250,9 @@ Reviewer-only hidden-test commands:
 - `npm run reviewer:verify-baseline` validates the seeded baseline by expecting the intended hidden-test failures.
 - `npm run reviewer:verify-hidden` runs hidden tests as a normal pass/fail verifier for an answer-key or candidate solution tree.
 - `npm run reviewer:check-intern-a` validates the first fake intern patch and expected reviewer finding.
+- `npm run reviewer:check-intern-b` validates the second fake intern patch and expected reviewer finding.
 
-`reviewer/hidden-tests/`, `scripts/verify-hidden-tests.mjs`, and `scripts/check-intern-a.mjs` are reviewer-only and must be excluded from candidate exports.
+`reviewer/hidden-tests/`, `scripts/verify-hidden-tests.mjs`, `scripts/check-intern-a.mjs`, and `scripts/check-intern-b.mjs` are reviewer-only and must be excluded from candidate exports.
 Candidate export tooling must also remove reviewer-only package scripts such as `test:hidden` and `reviewer:*` from the exported `package.json`.
 
 ## Grading Signal

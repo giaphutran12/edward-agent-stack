@@ -22,10 +22,12 @@ From `assessments/lead-ops-assessment/`:
 npm run test:public
 npm run reviewer:verify-baseline
 npm run reviewer:verify-hidden
+npm run reviewer:check-intern-a
+npm run reviewer:check-intern-b
 ```
 
 Use `npm run reviewer:verify-baseline` on the seeded candidate baseline. It expects the hidden tests to fail for the intended seeded bugs and exits successfully only when those expected failures are present.
 
 Use `npm run reviewer:verify-hidden` on an answer-key or candidate solution tree. It expects all hidden tests to pass.
 
-Do not copy `reviewer/`, `reviewer/hidden-tests/`, `scripts/verify-hidden-tests.mjs`, answer-key material, or model-solution material into candidate exports.
+Do not copy `reviewer/`, `reviewer/hidden-tests/`, `scripts/verify-hidden-tests.mjs`, `scripts/check-intern-a.mjs`, `scripts/check-intern-b.mjs`, answer-key material, or model-solution material into candidate exports.

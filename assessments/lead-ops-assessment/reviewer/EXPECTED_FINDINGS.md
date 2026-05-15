@@ -33,3 +33,19 @@ This should keep the lead write, inbound event, audit entries, and CRM enqueue a
 Why it blocks:
 
 A missing sync job is an operational correctness bug. Operators would see an accepted lead without downstream CRM work, and the retry/DLQ flow would have no job to recover.
+
+## Intern B: UI Polish For Failed CRM Jobs
+
+Expected verdict: block.
+
+Expected blocking finding:
+
+The patch narrows `FailedJobsPage` to only retry jobs inside a recent `nextRunAt` window. Older retry_scheduled failures remain unresolved but disappear from `Failed CRM Jobs` with no operator-visible escape hatch.
+
+Expected reviewer comment:
+
+This panel is an operational recovery queue, not just a recent activity feed. Please keep every unresolved failed CRM job visible by default, or add an explicit operator-controlled filter with counts and a "show all" path. Keep status copy human-readable only if the canonical failed state remains inspectable.
+
+Why it blocks:
+
+Hiding older retry jobs makes stale CRM sync failures look resolved. Operators can miss accounts that still need recovery, escalation, or DLQ investigation.

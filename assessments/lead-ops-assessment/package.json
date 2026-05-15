@@ -18,7 +18,8 @@
     "test:hidden": "vitest run reviewer/hidden-tests",
     "reviewer:verify-hidden": "node scripts/verify-hidden-tests.mjs",
     "reviewer:verify-baseline": "node scripts/verify-hidden-tests.mjs --expect-baseline-failures",
-    "reviewer:check-intern-a": "node scripts/check-intern-a.mjs"
+    "reviewer:check-intern-a": "node scripts/check-intern-a.mjs",
+    "reviewer:check-intern-b": "node scripts/check-intern-b.mjs"
   },
   "dependencies": {
     "react": "^19.2.1",
