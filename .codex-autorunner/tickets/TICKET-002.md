@@ -1,7 +1,7 @@
 ---
 title: "Scaffold lead-ops assessment app"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_002_scaffold"
 ---
 
@@ -50,4 +50,25 @@ npm run test:public
 
 ## Completion Evidence
 
-Record Node/npm versions and command results.
+Node/npm:
+
+- `node --version`: `v25.9.0`
+- `npm --version`: `11.12.1`
+
+Command results from `assessments/lead-ops-assessment/`:
+
+- `test -f package.json`: passed.
+- `test -f .env.example`: passed.
+- `test ! -f .env`: passed.
+- `npm install`: passed; initial fresh install added 160 packages and found 0 vulnerabilities. A final metadata sync after tightening the Node engine audited 162 packages and found 0 vulnerabilities.
+- `npm run typecheck`: passed.
+- `npm run build`: passed; Vite built `dist/` successfully.
+- `npm run test:public`: passed; 6 test files and 9 tests passed.
+- `npm test`: passed; 6 test files and 9 tests passed.
+- `npm run dev -- --port 5173`: started successfully; `curl -I http://127.0.0.1:5173/` returned `HTTP/1.1 200 OK`.
+
+Control-plane notes:
+
+- `BLI_ACTIVE_TICKET` was not set in the shell, so Cockpit active-ticket binding could not be verified from environment.
+- Cockpit CLI was not available, so lifecycle events were not emitted.
+- Provided `DISPATCH.md` path was missing locally: `.codex-autorunner/runs/38002d98-664c-4751-93d6-f42f91605093/DISPATCH.md`.

@@ -1,0 +1,73 @@
+diff --git a/assessments/lead-ops-assessment/src/app/pages/FailedJobsPage.tsx b/assessments/lead-ops-assessment/src/app/pages/FailedJobsPage.tsx
+--- a/assessments/lead-ops-assessment/src/app/pages/FailedJobsPage.tsx
++++ b/assessments/lead-ops-assessment/src/app/pages/FailedJobsPage.tsx
+@@ -7,6 +7,32 @@ interface FailedJobsPageProps {
+ }
+
+ const visibleJobStatuses: CrmJobStatus[] = ["retry_scheduled"];
++const recentFailureWindowMs = 45 * 60 * 1000;
++
++const statusLabels: Partial<Record<CrmJobStatus, string>> = {
++  retry_scheduled: "Retrying"
++};
++
++function getLatestNextRunAt(jobs: CrmSyncJob[]): number {
++  return jobs.reduce((latestNextRunAt, job) => {
++    const nextRunAt = Date.parse(job.nextRunAt);
++
++    if (!Number.isFinite(nextRunAt)) {
++      return latestNextRunAt;
++    }
++
++    return Math.max(latestNextRunAt, nextRunAt);
++  }, 0);
++}
++
++function isInRecentFailureWindow(job: CrmSyncJob, latestNextRunAt: number): boolean {
++  const nextRunAt = Date.parse(job.nextRunAt);
++
++  return (
++    Number.isFinite(nextRunAt) &&
++    latestNextRunAt - nextRunAt <= recentFailureWindowMs
++  );
++}
+
+ function errorMessage(error: Error | string): string {
+   return typeof error === "string" ? error : error.message;
+@@ -17,7 +43,14 @@ export function FailedJobsPage({
+   isLoading = false,
+   error = null
+ }: FailedJobsPageProps) {
+-  const visibleJobs = jobs.filter((job) => visibleJobStatuses.includes(job.status));
++  const retryJobs = jobs.filter((job) => visibleJobStatuses.includes(job.status));
++  const latestNextRunAt = getLatestNextRunAt(retryJobs);
++  const visibleJobs = retryJobs
++    .filter((job) => isInRecentFailureWindow(job, latestNextRunAt))
++    .sort(
++      (firstJob, secondJob) =>
++        Date.parse(secondJob.nextRunAt) - Date.parse(firstJob.nextRunAt)
++    );
+   let body;
+
+   if (isLoading) {
+@@ -38,7 +71,7 @@ export function FailedJobsPage({
+         {visibleJobs.map((job) => (
+           <li key={job.id}>
+             <strong>{job.leadId}</strong>
+-            <span>{job.status}</span>
++            <span>{statusLabels[job.status] ?? job.status}</span>
+             <small>{job.lastError ?? "Waiting for retry"}</small>
+           </li>
+         ))}
+diff --git a/assessments/lead-ops-assessment/tests/public/ui.public.test.tsx b/assessments/lead-ops-assessment/tests/public/ui.public.test.tsx
+--- a/assessments/lead-ops-assessment/tests/public/ui.public.test.tsx
++++ b/assessments/lead-ops-assessment/tests/public/ui.public.test.tsx
+@@ -101,7 +101,7 @@ describe("ops UI", () => {
+     render(<FailedJobsPage jobs={[failedJobFixture]} />);
+
+     expect(screen.getByText("lead_public_001")).toBeInTheDocument();
+-    expect(screen.getByText("retry_scheduled")).toBeInTheDocument();
++    expect(screen.getByText("Retrying")).toBeInTheDocument();
+     expect(screen.getByText("Rate limit exceeded")).toBeInTheDocument();
+   });
+ });

@@ -1,0 +1,221 @@
+{
+  "leads": [
+    {
+      "id": "lead_demo-001",
+      "provider": "acme-leads",
+      "providerLeadId": "demo-001",
+      "email": "ada@example.invalid",
+      "phone": "+1555010101",
+      "name": "Ada Lovelace",
+      "company": "Example Enterprise",
+      "owner": "enterprise-ops",
+      "status": "working",
+      "lastInboundEventId": "evt_seed_001",
+      "crmRemoteId": "crm_demo_001",
+      "createdAt": "2026-05-16T00:00:00.000Z",
+      "updatedAt": "2026-05-16T00:00:00.000Z"
+    },
+    {
+      "id": "lead_demo-002",
+      "provider": "acme-leads",
+      "providerLeadId": "demo-002",
+      "email": "grace@example.invalid",
+      "phone": null,
+      "name": "Grace Hopper",
+      "company": "Compiler Labs",
+      "owner": "growth-ops",
+      "status": "new",
+      "lastInboundEventId": "evt_seed_002",
+      "crmRemoteId": null,
+      "createdAt": "2026-05-16T00:00:00.000Z",
+      "updatedAt": "2026-05-16T00:00:00.000Z"
+    },
+    {
+      "id": "lead_demo-003",
+      "provider": "acme-leads",
+      "providerLeadId": "demo-003",
+      "email": "katherine@example.invalid",
+      "phone": "+1555010303",
+      "name": "Katherine Johnson",
+      "company": "Orbital Analytics",
+      "owner": "growth-ops",
+      "status": "qualified",
+      "lastInboundEventId": "evt_seed_003",
+      "crmRemoteId": null,
+      "createdAt": "2026-05-16T00:00:00.000Z",
+      "updatedAt": "2026-05-16T00:00:00.000Z"
+    }
+  ],
+  "inboundEvents": [
+    {
+      "id": "inbound_evt_seed_001_001",
+      "provider": "acme-leads",
+      "providerEventId": "evt_seed_001",
+      "receivedAt": "2026-05-16T00:00:00.000Z",
+      "signatureValid": true,
+      "rawPayload": {
+        "provider": "acme-leads",
+        "eventId": "evt_seed_001",
+        "lead": {
+          "id": "demo-001",
+          "email": "ada@example.invalid",
+          "phone": "+1555010101",
+          "name": "Ada Lovelace",
+          "company": "Example Enterprise"
+        }
+      },
+      "normalizedLeadId": "lead_demo-001",
+      "replayMarker": false
+    },
+    {
+      "id": "inbound_evt_seed_002_001",
+      "provider": "acme-leads",
+      "providerEventId": "evt_seed_002",
+      "receivedAt": "2026-05-16T00:00:00.000Z",
+      "signatureValid": true,
+      "rawPayload": {
+        "provider": "acme-leads",
+        "eventId": "evt_seed_002",
+        "lead": {
+          "id": "demo-002",
+          "email": "grace@example.invalid",
+          "phone": null,
+          "name": "Grace Hopper",
+          "company": "Compiler Labs"
+        }
+      },
+      "normalizedLeadId": "lead_demo-002",
+      "replayMarker": false
+    },
+    {
+      "id": "inbound_evt_seed_002_002",
+      "provider": "acme-leads",
+      "providerEventId": "evt_seed_002",
+      "receivedAt": "2026-05-16T00:00:00.000Z",
+      "signatureValid": true,
+      "rawPayload": {
+        "provider": "acme-leads",
+        "eventId": "evt_seed_002",
+        "lead": {
+          "id": "demo-002",
+          "email": "grace@example.invalid",
+          "phone": null,
+          "name": "Grace Hopper",
+          "company": "Compiler Labs"
+        }
+      },
+      "normalizedLeadId": "lead_demo-002",
+      "replayMarker": true
+    },
+    {
+      "id": "inbound_evt_seed_003_001",
+      "provider": "acme-leads",
+      "providerEventId": "evt_seed_003",
+      "receivedAt": "2026-05-16T00:00:00.000Z",
+      "signatureValid": true,
+      "rawPayload": {
+        "provider": "acme-leads",
+        "eventId": "evt_seed_003",
+        "lead": {
+          "id": "demo-003",
+          "email": "katherine@example.invalid",
+          "phone": "+1555010303",
+          "name": "Katherine Johnson",
+          "company": "Orbital Analytics"
+        }
+      },
+      "normalizedLeadId": "lead_demo-003",
+      "replayMarker": false
+    }
+  ],
+  "crmSyncJobs": [
+    {
+      "id": "job_seed_completed_demo-001",
+      "leadId": "lead_demo-001",
+      "operation": "upsert_lead",
+      "status": "completed",
+      "attemptCount": 1,
+      "nextRunAt": "2026-05-16T00:00:00.000Z",
+      "lastResponseCode": 200,
+      "lastError": null,
+      "createdAt": "2026-05-16T00:00:00.000Z",
+      "updatedAt": "2026-05-16T00:00:00.000Z"
+    },
+    {
+      "id": "job_seed_pending_demo-002",
+      "leadId": "lead_demo-002",
+      "operation": "upsert_lead",
+      "status": "pending",
+      "attemptCount": 0,
+      "nextRunAt": "2026-05-16T01:00:00.000Z",
+      "lastResponseCode": null,
+      "lastError": null,
+      "createdAt": "2026-05-16T00:00:00.000Z",
+      "updatedAt": "2026-05-16T00:00:00.000Z"
+    },
+    {
+      "id": "job_seed_retry_demo-003",
+      "leadId": "lead_demo-003",
+      "operation": "upsert_lead",
+      "status": "retry_scheduled",
+      "attemptCount": 1,
+      "nextRunAt": "2026-05-16T00:30:00.000Z",
+      "lastResponseCode": 429,
+      "lastError": "Rate limit exceeded",
+      "createdAt": "2026-05-16T00:00:00.000Z",
+      "updatedAt": "2026-05-16T00:00:00.000Z"
+    },
+    {
+      "id": "job_seed_dead_demo-003",
+      "leadId": "lead_demo-003",
+      "operation": "upsert_lead",
+      "status": "dead_lettered",
+      "attemptCount": 3,
+      "nextRunAt": "2026-05-16T00:00:00.000Z",
+      "lastResponseCode": 500,
+      "lastError": "Temporary CRM outage",
+      "createdAt": "2026-05-16T00:00:00.000Z",
+      "updatedAt": "2026-05-16T00:00:00.000Z"
+    }
+  ],
+  "deadLetterJobs": [
+    {
+      "id": "dlq_job_seed_dead_demo-003",
+      "originalJobId": "job_seed_dead_demo-003",
+      "leadId": "lead_demo-003",
+      "terminalReason": "Temporary CRM outage",
+      "responseCode": 500,
+      "payloadSnapshot": {
+        "operation": "upsert_lead",
+        "leadId": "lead_demo-003"
+      },
+      "createdAt": "2026-05-16T00:00:00.000Z"
+    }
+  ],
+  "auditEntries": [
+    {
+      "id": "audit_seed_001",
+      "leadId": "lead_demo-001",
+      "actor": "system",
+      "action": "lead.seeded",
+      "summary": "Seeded working lead with completed CRM sync.",
+      "createdAt": "2026-05-16T00:00:00.000Z"
+    },
+    {
+      "id": "audit_seed_002",
+      "leadId": "lead_demo-002",
+      "actor": "system",
+      "action": "lead.seeded",
+      "summary": "Seeded new lead with pending CRM sync.",
+      "createdAt": "2026-05-16T00:00:00.000Z"
+    },
+    {
+      "id": "audit_seed_003",
+      "leadId": "lead_demo-003",
+      "actor": "system",
+      "action": "crm_sync.dead_lettered",
+      "summary": "Seeded CRM sync failure visible to operators.",
+      "createdAt": "2026-05-16T00:00:00.000Z"
+    }
+  ]
+}

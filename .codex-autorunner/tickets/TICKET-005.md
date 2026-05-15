@@ -1,7 +1,7 @@
 ---
 title: "Implement lead merge and assignment with seeded null overwrite flaw"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_005_merge"
 ---
 
@@ -39,4 +39,19 @@ npm run typecheck
 
 ## Completion Evidence
 
-Record public test output and the files where merge semantics live.
+- `npm run test:public -- --run merge`
+  - `Test Files  7 passed (7)`
+  - `Tests  17 passed (17)`
+- `npm run test:public -- --run assignment`
+  - `Test Files  7 passed (7)`
+  - `Tests  17 passed (17)`
+- `npm run typecheck`
+  - `tsc --noEmit` completed successfully.
+
+Merge and assignment semantics live in:
+
+- `assessments/lead-ops-assessment/src/domain/leadMerge.ts`
+- `assessments/lead-ops-assessment/src/domain/assignment.ts`
+- `assessments/lead-ops-assessment/src/server/routes/webhook.ts`
+- `assessments/lead-ops-assessment/tests/public/merge.public.test.ts`
+- `assessments/lead-ops-assessment/tests/public/assignment.public.test.ts`

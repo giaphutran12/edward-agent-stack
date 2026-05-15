@@ -1,0 +1,166 @@
+:root {
+  color: #1f2933;
+  background: #f5f7fa;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: #52606d;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr) minmax(280px, 1fr);
+  gap: 16px;
+}
+
+.panel {
+  min-height: 240px;
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 20px;
+}
+
+.lead-list,
+.job-list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.lead-list li,
+.job-list li {
+  border-bottom: 1px solid #e4e7eb;
+  padding-bottom: 12px;
+}
+
+.lead-list li:last-child,
+.job-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.lead-row {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 8px;
+  text-align: left;
+}
+
+.lead-row:hover,
+.lead-row:focus-visible {
+  border-color: #bcccdc;
+  background: #f8fafc;
+  outline: none;
+}
+
+.lead-row[aria-pressed="true"] {
+  border-color: #486581;
+  background: #f0f4f8;
+}
+
+.row-main,
+.row-meta,
+.job-list li {
+  display: grid;
+  gap: 4px;
+}
+
+.lead-list span,
+.job-list span,
+.lead-list small,
+.job-list small {
+  color: #52606d;
+}
+
+.lead-list strong,
+.job-list strong,
+.detail-list dd {
+  overflow-wrap: anywhere;
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 10px 16px;
+}
+
+.detail-list dt {
+  color: #52606d;
+  font-weight: 700;
+}
+
+.detail-list dd {
+  margin: 0;
+}
+
+.state-copy {
+  color: #52606d;
+}
+
+.state-copy-error {
+  color: #b42318;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    padding: 20px;
+  }
+
+  .layout-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "provider": "acme-leads",
+  "eventId": "evt_create_001",
+  "lead": {
+    "id": "new-001",
+    "email": "new@example.invalid",
+    "phone": "+1555010202",
+    "name": "New Lead",
+    "company": "NewCo"
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "Lock assessment spec and file boundaries"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_001_spec"
 ---
 
@@ -44,3 +44,18 @@ rg -n "webhook.*CRM.*DLQ|candidate-safe|reviewer-only|seeded bug" assessments/le
 ## Completion Evidence
 
 Add paths created and any spec decisions changed from `.codex-autorunner/contextspace/spec.md`.
+
+Created:
+
+- `assessments/lead-ops-assessment/docs/SPEC.md`
+- `assessments/lead-ops-assessment/docs/ARCHITECTURE.md`
+- `assessments/lead-ops-assessment/docs/RUNBOOK.md`
+- `assessments/lead-ops-assessment/docs/EXPORT_POLICY.md`
+- `projects/lead-ops-assessment/decisions/2026-05-16-file-boundaries-and-export-policy.md`
+
+Spec decisions changed from `.codex-autorunner/contextspace/spec.md`:
+
+- No product-scope change. The source spec is now locked into concrete file boundaries and an implementation directory structure.
+- `docs/SPEC.md`, `docs/ARCHITECTURE.md`, `docs/EXPORT_POLICY.md`, reviewer docs, hidden tests, model solution, export tooling, readiness report, `.codex-autorunner/`, and `projects/` are reviewer-only or build-control surfaces and must be excluded from candidate export.
+- `docs/RUNBOOK.md`, app source, fixtures, public tests, candidate prompt/templates, AI disclosure template, assessment template, and fake intern patches are candidate-safe.
+- All integrations remain fake and fixture-backed. The docs explicitly prohibit real customer data, real env files, and real external API accounts.

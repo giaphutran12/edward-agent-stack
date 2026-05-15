@@ -1,7 +1,7 @@
 ---
 title: "Write candidate prompt and submission templates"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_011_candidate_docs"
 ---
 
@@ -44,4 +44,21 @@ rg -n "AI tools are allowed|timebox|intern PR|regression test|delegation" assign
 
 ## Completion Evidence
 
-Record candidate-facing files created.
+- Created `assessments/lead-ops-assessment/assignment/PROMPT.md`.
+- Created `assessments/lead-ops-assessment/assignment/SUBMISSION_CHECKLIST.md`.
+- Created `assessments/lead-ops-assessment/AI_USAGE.md`.
+- Created `assessments/lead-ops-assessment/ASSESSMENT.md`.
+- Created `assessments/lead-ops-assessment/review/FINAL_REVIEW.md`.
+- Verified with:
+
+```bash
+cd assessments/lead-ops-assessment
+test -f assignment/PROMPT.md
+test -f assignment/SUBMISSION_CHECKLIST.md
+test -f AI_USAGE.md
+test -f ASSESSMENT.md
+test -f review/FINAL_REVIEW.md
+rg -n "AI tools are allowed|timebox|intern PR|regression test|delegation" assignment AI_USAGE.md ASSESSMENT.md review/FINAL_REVIEW.md
+```
+
+Runtime note: Cockpit binding was unavailable in this fallback session because `BLI_ACTIVE_TICKET`, `BLI_OPERATOR_JWT`, and `bli-event` were missing. The dispatch path from the prompt was also absent, and the active git branch was `codex/tkt_lead_ops_010_intern_b` rather than a TICKET-011 branch, so this ticket file was used as the control plane.

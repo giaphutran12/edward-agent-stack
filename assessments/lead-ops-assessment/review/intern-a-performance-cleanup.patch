@@ -1,0 +1,40 @@
+diff --git a/assessments/lead-ops-assessment/src/repository/repository.ts b/assessments/lead-ops-assessment/src/repository/repository.ts
+index 7e7ae5d..1b7483c 100644
+--- a/assessments/lead-ops-assessment/src/repository/repository.ts
++++ b/assessments/lead-ops-assessment/src/repository/repository.ts
+@@ -122,25 +122,18 @@ export class LeadOpsRepository {
+   }
+
+   writeLeadAndEnqueueCrmSync(input: LeadWriteAndQueueInput): LeadWriteAndQueueResult {
+-    const before = this.snapshot();
+-
+-    try {
+-      const lead = this.upsertLead(input.lead);
+-      this.addInboundEvent(input.inboundEvent);
+-      const crmSyncJob = input.crmSyncJob
+-        ? this.enqueueCrmSyncJob(input.crmSyncJob)
+-        : null;
+-
+-      for (const entry of input.auditEntries ?? []) {
+-        this.addAuditEntry(entry);
+-      }
+-
+-      return { lead, crmSyncJob };
+-    } catch (error) {
+-      this.restore(before);
+-      throw error;
++    const lead = this.upsertLead(input.lead);
++    this.addInboundEvent(input.inboundEvent);
++    const crmSyncJob = input.crmSyncJob
++      ? this.enqueueCrmSyncJob(input.crmSyncJob)
++      : null;
++
++    for (const entry of input.auditEntries ?? []) {
++      this.addAuditEntry(entry);
+     }
++
++    return { lead, crmSyncJob };
+   }
+ }
+
+ export const defaultRepository = new LeadOpsRepository();
