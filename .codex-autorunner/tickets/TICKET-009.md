@@ -1,7 +1,7 @@
 ---
 title: "Create fake intern PR patch A for atomicity regression"
 agent: "codex"
-done: false
+done: true
 ticket_id: "tkt_lead_ops_009_intern_a"
 ---
 
@@ -38,4 +38,17 @@ npm run reviewer:check-intern-a
 
 ## Completion Evidence
 
-Record patch path and expected reviewer finding.
+Patch path: `assessments/lead-ops-assessment/review/intern-a-performance-cleanup.patch`
+
+Candidate-facing PR description: `assessments/lead-ops-assessment/review/intern-a-performance-cleanup.md`
+
+Reviewer-only expected finding: `assessments/lead-ops-assessment/reviewer/EXPECTED_FINDINGS.md` records a blocking Intern A finding for removing the rollback guard from `LeadOpsRepository.writeLeadAndEnqueueCrmSync`, which can leave an accepted lead and inbound event without a matching CRM sync job when enqueue fails.
+
+Verification:
+
+```bash
+cd assessments/lead-ops-assessment
+git apply --check review/intern-a-performance-cleanup.patch
+npm run reviewer:check-intern-a
+npm run test:public
+```

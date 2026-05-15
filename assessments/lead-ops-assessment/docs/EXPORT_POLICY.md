@@ -75,6 +75,7 @@ The export must exclude:
 - `scripts/export-candidate-package.sh`
 - `scripts/verify-candidate-export.sh`
 - `scripts/verify-hidden-tests.mjs`
+- `scripts/check-intern-a.mjs`
 - reviewer-only npm scripts from exported `package.json`: `test:hidden` and `reviewer:*`
 - hidden tests anywhere outside `reviewer/`
 - model solution patches or answer-key branches
