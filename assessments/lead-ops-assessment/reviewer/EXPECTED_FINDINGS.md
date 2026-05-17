@@ -18,6 +18,8 @@ The fake intern patches are candidate-facing, but the answer key must stay revie
 
 When grading an intern PR review, compare the candidate's comments against the expected blocking issue, impact, and requested change. Award credit for equivalent reasoning even if the wording differs.
 
+If a live candidate repo contains automated review comments, do not grade a paraphrase as senior review. Full credit requires independent evidence from the patch, code path, test gap, or operational impact.
+
 Use these script names when checking artifacts:
 
 - `npm run reviewer:check-intern-a`
@@ -68,6 +70,7 @@ Do not give blocking-credit for:
 - Style-only feedback.
 - Approval because public tests pass.
 - A vague "could be racey" comment without naming the missing rollback or lost CRM job.
+- Repeating an automated review comment without naming the transaction boundary and failure mode in the candidate's own reasoning.
 
 ## Intern B: UI Polish For Failed CRM Jobs
 
@@ -107,3 +110,4 @@ Do not give blocking-credit for:
 - Color, spacing, or copy comments only.
 - Approval because the simplified list looks cleaner.
 - Feedback that asks for labels but misses hidden unresolved work.
+- Repeating an automated review comment without explaining why recovery queues cannot hide unresolved work.

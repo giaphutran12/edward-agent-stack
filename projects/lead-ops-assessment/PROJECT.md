@@ -1,6 +1,6 @@
 # Project Notes: Lead Ops Assessment
 
-Last updated: 2026-05-16
+Last updated: 2026-05-17
 Freshness: current as of local repo state
 Owner: Edward Tran
 
@@ -10,7 +10,7 @@ Build a repeatable private take-home assignment repo for a high-ownership AI-nat
 
 ## Current Priority
 
-The V1 assessment package is ready for Edward to duplicate into private per-candidate repos. Final QA passed for:
+The V1 assessment package is ready for Edward to duplicate into private per-candidate repos, with one hardening pass after a blind-agent calibration run. Final QA passed for:
 
 - candidate-safe lead-ops app
 - fake integrations and async worker
@@ -20,6 +20,8 @@ The V1 assessment package is ready for Edward to duplicate into private per-cand
 - hidden reviewer tests
 - answer key and scoring rubric
 - answer-key temp-copy verifier
+- blind-agent no-pass calibration and tightened scoring gates
+- `BUG_TRIAGE.md` candidate defect-discovery template
 - candidate export/duplication flow
 - readiness report
 
@@ -49,6 +51,8 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 - Complexity should come from cross-boundary correctness, not random vendor count.
 - Candidate export must never include reviewer answer key, hidden tests, model solution, or other candidate submissions.
 - Public tests should pass on the candidate baseline; hidden tests should fail against baseline only in expected ways and pass against the answer key.
+- A candidate can implement only one or two targeted fixes, but must still discover and rank the broader defect set in `BUG_TRIAGE.md`.
+- Do not treat automated Codex PR comments as enough for full review credit; require independent diff, code, evidence, impact, and test reasoning.
 - Generated candidate exports under `assessments/lead-ops-assessment/tmp/` must stay excluded from Vitest discovery so root public-test counts remain deterministic.
 - Use `npm run reviewer:verify-answer-key` to apply `reviewer/model-solution.patch` in a temporary copy; do not mutate the seeded baseline just to prove the answer key.
 - Use `.env.example` only. Do not create real env files.
@@ -62,6 +66,7 @@ Edward needs the assessment fast and does not want to manually babysit every imp
 
 - `decisions/2026-05-16-lead-ops-assessment-autorunner.md`
 - `decisions/2026-05-16-file-boundaries-and-export-policy.md`
+- `decisions/2026-05-17-blind-agent-calibration.md`
 
 ## Stale Or Uncertain Info
 

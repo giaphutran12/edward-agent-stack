@@ -11,7 +11,7 @@ The goal is to show how you understand a system, improve it safely, test regress
 
 ## Standard
 
-Work in your private candidate repo. Keep the change focused. Do not try to rewrite the whole app or fix every possible issue.
+Work in your private candidate repo. Keep code changes focused, but do not stop at the first bug you find. The reviewer is looking for your defect triage, prioritization, and ownership judgment as much as your patch.
 
 AI tools are allowed, but you must disclose how you used them in `AI_USAGE.md`. You own the final answer, code, tests, and review judgment.
 
@@ -21,21 +21,26 @@ AI tools are allowed, but you must disclose how you used them in `AI_USAGE.md`. 
    Explain the current flow from webhook intake through CRM sync and operator visibility. Name the invariants you think matter most.
 
 2. Implement one or two targeted fixes.
-   Choose fixes with clear product or operational value. Keep each fix small enough that a reviewer can understand it quickly.
+   Choose fixes with clear product or operational value. At least one fix should touch backend correctness or data/queue behavior, and at least one fix should touch operator visibility or recovery. Keep each fix small enough that a reviewer can understand it quickly.
 
-3. Add regression tests.
+3. Complete `BUG_TRIAGE.md`.
+   List at least five suspected defects or operational risks. Severity-rank them, cite evidence, and state whether each one was fixed, delegated, deferred, or rejected after investigation. This is required even if you only implement one or two fixes.
+
+4. Add regression tests.
    Add at least one regression test for each behavior you change. Public tests should still pass.
 
-4. Review the intern PRs.
+5. Review the intern PRs.
    Review the open `Intern A` and `Intern B` pull requests in your private repo. If your repo does not have those PRs, use the matching fallback materials in `review/`. Complete `review/FINAL_REVIEW.md` with a real approve, request-changes, or block decision and the reasoning behind it.
 
-5. Prepare for the onsite incident exercise.
+   If an automated reviewer has already commented on a PR, treat it as one signal only. You still need to inspect the diff, explain the operational impact, and state the regression test or verification you would require.
+
+6. Prepare for the onsite incident exercise.
    Read `incident/README.md` before the live follow-up. Complete `incident/INCIDENT_RESPONSE.md` only if the reviewer asks you to do the incident exercise. Treat Codex review as one input, not the final answer.
 
-6. Write a follow-up delegation plan.
+7. Write a follow-up delegation plan.
    In `ASSESSMENT.md`, list what you would delegate next, what you would keep yourself, and the acceptance checks for that work.
 
-7. Complete the AI disclosure.
+8. Complete the AI disclosure.
    Fill out `AI_USAGE.md`, even if you did not use AI tools.
 
 ## Procedure
@@ -50,6 +55,7 @@ Submit:
 
 - code changes for your one or two targeted fixes
 - regression tests for those fixes
+- completed `BUG_TRIAGE.md`
 - completed `ASSESSMENT.md`
 - completed `AI_USAGE.md`
 - completed `review/FINAL_REVIEW.md`

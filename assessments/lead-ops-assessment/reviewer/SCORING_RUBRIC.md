@@ -4,15 +4,15 @@ Candidate export: excluded
 
 ## Problem
 
-Reviewers need a 100-point rubric that rewards working fixes, system understanding, product judgment, leadership, incident ownership, verification, and responsible AI use.
+Reviewers need a 100-point rubric that rewards defect discovery, working fixes, system understanding, product judgment, leadership, incident ownership, verification, and responsible AI use.
 
 ## Standard
 
-Score the submitted implementation, write-up, tests, intern PR review, and incident response together. Award equivalent credit for valid alternate implementations that preserve the intended product behavior and operational safety.
+Score the submitted triage, implementation, write-up, tests, intern PR review, and incident response together. Award equivalent credit for valid alternate implementations that preserve the intended product behavior and operational safety.
 
 ## Reason
 
-The role needs more than code changes. A strong candidate should trace failures across webhook ingestion, merge semantics, CRM retry/DLQ behavior, operator UI, vague broker complaints, rollout decisions, and review leadership.
+The role needs more than code changes. A strong candidate should find and rank failures across webhook ingestion, merge semantics, CRM retry/DLQ behavior, operator UI, vague broker complaints, rollout decisions, and review leadership.
 
 ## Procedure
 
@@ -22,46 +22,78 @@ Use this scale after running public tests and any reviewer-only checks available
 
 | Category | Points |
 | --- | ---: |
-| Code correctness | 25 |
-| System understanding | 15 |
-| Product judgment | 15 |
+| Defect discovery and prioritization | 15 |
+| Code correctness | 20 |
+| System understanding | 12 |
+| Product judgment | 10 |
 | Leadership and intern review | 15 |
 | Incident ownership | 15 |
-| Verification discipline | 10 |
+| Verification discipline | 8 |
 | AI judgment | 5 |
 | Total | 100 |
 
-## Code Correctness: 25 Points
+## Hard Gates And Score Caps
+
+Apply these caps after adding category points:
+
+| Gate | Cap |
+| --- | ---: |
+| Candidate finds fewer than four of the five seeded defects across code changes and `BUG_TRIAGE.md` | 74 |
+| Candidate entirely misses the partial-null data-loss risk | 74 |
+| Candidate entirely misses terminal CRM `422` classification / DLQ handling | 74 |
+| Candidate implements only UI/presentation changes and no backend correctness fix | 74 |
+| Candidate review mainly paraphrases automated PR comments without independent diff, code, test, or impact evidence | 79 |
+| Candidate keeps a broken deploy live in the incident exercise without extraordinary evidence | 79 |
+| Candidate submits no `BUG_TRIAGE.md` or equivalent defect inventory | 70 |
+| Candidate leaks reviewer-only material, real secrets, or real customer data | 0-39 depending on severity |
+
+These gates prevent a polished one-bug AI patch from reading like senior ownership.
+
+## Defect Discovery And Prioritization: 15 Points
 
 | Item | Points |
 | --- | ---: |
-| Fixes webhook idempotency so duplicate provider deliveries do not enqueue duplicate CRM jobs | 5 |
-| Fixes partial update merge so `null` contact fields do not erase trusted email or phone | 4 |
-| Fixes terminal `422` handling so validation failures move to DLQ with evidence | 5 |
-| Fixes `Retry-After` unit handling for rate-limit retries | 4 |
-| Fixes failed jobs UI so DLQ / `dead_lettered` jobs are operator-visible | 4 |
-| Maintains existing public behavior, types, and local architecture without broad rewrites | 3 |
+| Identifies webhook duplicate-delivery/idempotency risk with concrete evidence | 2 |
+| Identifies partial-null update data-loss risk with concrete evidence | 3 |
+| Identifies terminal `422` validation failure / DLQ risk with concrete evidence | 3 |
+| Identifies `Retry-After` unit/rate-limit risk with concrete evidence | 2 |
+| Identifies failed-job or DLQ operator-visibility risk with concrete evidence | 2 |
+| Severity-ranks issues, states fixed/deferred/delegated decisions, and gives acceptance checks | 3 |
 
-## System Understanding: 15 Points
+## Code Correctness: 20 Points
 
 | Item | Points |
 | --- | ---: |
-| Explains the full webhook to merge to queue to CRM to DLQ to UI lifecycle | 5 |
-| Identifies why idempotency belongs at provider event boundary, not receive timestamp or UI layer | 3 |
+| Fixes at least one backend correctness boundary with a targeted implementation | 4 |
+| Fixes at least one operator visibility or recovery boundary with a targeted implementation | 4 |
+| Fixes webhook idempotency so duplicate provider deliveries do not enqueue duplicate CRM jobs, if selected | 3 |
+| Fixes partial update merge so `null` contact fields do not erase trusted email or phone, if selected | 3 |
+| Fixes terminal `422` handling so validation failures move to DLQ with evidence, if selected | 3 |
+| Fixes `Retry-After` unit handling for rate-limit retries, if selected | 2 |
+| Fixes failed jobs UI so DLQ / `dead_lettered` jobs are operator-visible, if selected | 2 |
+| Maintains existing public behavior, types, and local architecture without broad rewrites | 2 |
+
+If a candidate implements more than two fixes, score the best relevant items while still applying the hard gates. If they implement fewer fixes but clearly discover and prioritize the remaining seeded defects, award discovery credit above instead of correctness credit.
+
+## System Understanding: 12 Points
+
+| Item | Points |
+| --- | ---: |
+| Explains the full webhook to merge to queue to CRM to DLQ to UI lifecycle | 4 |
+| Identifies why idempotency belongs at provider event boundary, not receive timestamp or UI layer | 2 |
 | Explains partial update semantics and source trust tradeoffs | 2 |
 | Distinguishes retryable provider failures from terminal validation failures | 2 |
 | Connects DLQ visibility to operator recovery and customer/account impact | 2 |
-| Keeps scope focused on fake fixture-backed local system | 1 |
 
-## Product Judgment: 15 Points
+## Product Judgment: 10 Points
 
 | Item | Points |
 | --- | ---: |
-| Prioritizes correctness and recovery over cosmetic polish | 4 |
-| Describes user/operator impact in concrete terms | 4 |
-| Chooses fixes that preserve a simple candidate-local workflow | 3 |
-| Avoids unnecessary infrastructure, vendor accounts, or real data | 2 |
-| Keeps UI behavior inspectable and trustworthy under failure | 2 |
+| Prioritizes correctness and recovery over cosmetic polish | 3 |
+| Describes user/operator impact in concrete terms | 3 |
+| Chooses fixes that preserve a simple candidate-local workflow | 2 |
+| Avoids unnecessary infrastructure, vendor accounts, or real data | 1 |
+| Keeps UI behavior inspectable and trustworthy under failure | 1 |
 
 ## Leadership And Intern Review: 15 Points
 
@@ -72,27 +104,32 @@ Use this scale after running public tests and any reviewer-only checks available
 | Gives concrete requested changes and regression-test asks | 3 |
 | Separates blocking correctness risks from non-blocking style or polish comments | 2 |
 
+Do not award full credit when the candidate only restates automated review comments. Full review credit requires the candidate to cite the diff or code path, explain operator impact, and name the regression test or verification that would make the PR mergeable.
+
 ## Incident Ownership: 15 Points
 
 | Item | Points |
 | --- | ---: |
 | Treats the broker complaint as real signal without treating vague wording as complete proof | 2 |
 | Asks for concrete identifiers: broker, lead/client, timestamp, environment, expected vs actual | 2 |
-| Uses deploy, queue, log, screenshot, and Codex evidence to form a bounded hypothesis | 3 |
+| Requests or uses deploy, queue, log, screenshot, and Codex evidence to form a bounded hypothesis | 3 |
 | Separates likely UI visibility regression from worker, vendor, permission, stale browser, and data issues | 2 |
 | Chooses rollback or immediate fix-forward instead of keeping a broken deploy live | 2 |
 | Writes clear ops communication with current facts, action, and needed info | 2 |
 | Creates a focused follow-up ticket and delegation split with acceptance checks | 2 |
 
-## Verification Discipline: 10 Points
+Full incident credit requires the candidate to ask for queue state and worker/deploy logs before finalizing the root cause. A candidate may choose fix-forward or rollback, but must not treat the automated review comment as proof by itself.
+
+## Verification Discipline: 8 Points
 
 | Item | Points |
 | --- | ---: |
-| Runs and reports `npm run test:public` or explains any local blocker | 2 |
-| Adds or describes targeted regression tests for the fixed behaviors | 3 |
+| Runs and reports `npm run test:public` or explains any local blocker | 1 |
+| Adds or describes targeted regression tests for the fixed behaviors | 2 |
 | Uses deterministic fixtures and avoids real env/secret files | 2 |
 | Verifies TypeScript/build health where relevant | 1 |
-| Provides concise evidence in the submission without leaking reviewer-only material | 2 |
+| Runs the CRM worker or direct repro command when touching queue, retry, DLQ, or job visibility behavior | 1 |
+| Provides concise evidence in the submission without leaking reviewer-only material | 1 |
 
 ## AI Judgment: 5 Points
 
@@ -108,12 +145,12 @@ Use this scale after running public tests and any reviewer-only checks available
 
 | Band | Meaning |
 | --- | --- |
-| 90-100 | Strong hire signal. Fixes core bugs, explains system tradeoffs, verifies well, gives high-quality review feedback, and owns the incident decision. |
-| 75-89 | Solid signal. Most core behavior is correct, with minor gaps in explanation, tests, or review precision. |
+| 90-100 | Strong hire signal. Finds the core bug set, fixes high-value boundaries, explains system tradeoffs, verifies well, gives high-quality review feedback, and owns the incident decision. |
+| 75-89 | Solid signal. Finds most core behavior risks, fixes at least one backend boundary and one operator/recovery boundary, with minor gaps in explanation, tests, or review precision. |
 | 60-74 | Mixed signal. Some important fixes or review findings are present, but at least one major boundary is weak. |
 | 40-59 | Weak signal. Candidate finds surface issues but misses multiple operational correctness risks. |
 | 0-39 | No hire signal for this role. Submission does not show reliable ownership of cross-boundary behavior. |
 
 ## Calibration Notes
 
-Do not require candidates to match the model patch line for line. Do require them to preserve the product standard: idempotent ingest, safe partial update behavior, correct `422` and retry handling, DLQ visibility, and clear review leadership.
+Do not require candidates to match the model patch line for line. Do require them to find and account for the product standard: idempotent ingest, safe partial update behavior, correct `422` and retry handling, DLQ visibility, and clear review leadership.

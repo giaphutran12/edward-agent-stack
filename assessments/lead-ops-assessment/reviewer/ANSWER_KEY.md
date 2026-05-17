@@ -8,11 +8,11 @@ Reviewers need one private map from hidden tests to intended bugs so grading is 
 
 ## Standard
 
-Grade equivalent fixes and reasoning, not exact wording. A passing solution should preserve public behavior, pass reviewer hidden verification, and explain the operational impact of each fix.
+Grade equivalent fixes and reasoning, not exact wording. A strong full solution should preserve public behavior, pass reviewer hidden verification, and explain the operational impact of each fix. A timeboxed lead-level solution may implement only one or two fixes, but it must still discover and prioritize the remaining critical defects in `BUG_TRIAGE.md` or equivalent written evidence.
 
 ## Reason
 
-The assessment measures cross-boundary judgment. The same symptoms can be fixed in more than one valid way, but the expected outcome is stable: duplicate webhooks are idempotent, partial updates preserve trusted data, terminal CRM failures go to DLQ, retry timing respects provider units, and operators can see failed work.
+The assessment measures cross-boundary judgment. The same symptoms can be fixed in more than one valid way, but the expected outcome is stable: duplicate webhooks are idempotent, partial updates preserve trusted data, terminal CRM failures go to DLQ, retry timing respects provider units, and operators can see failed work. Candidates who only fix the most obvious bug without naming the remaining high-risk boundaries should not pass.
 
 ## Procedure
 
@@ -26,6 +26,12 @@ npm run reviewer:verify-answer-key
 
 Use `npm run reviewer:verify-baseline` only on the seeded baseline. Use `npm run reviewer:verify-answer-key` to apply `reviewer/model-solution.patch` in a temporary copy and prove the model solution passes typecheck, public tests, and hidden tests without mutating the seeded baseline. Use `npm run reviewer:verify-hidden` on a candidate solution or model-solution branch.
 
+If a candidate intentionally implements only one or two fixes, hidden tests may still fail for deferred bugs. In that case, grade the failed hidden areas against `BUG_TRIAGE.md`:
+
+- full credit for a deferred area requires the candidate to identify the risk, cite evidence, name impact, assign severity, and give an acceptance check
+- no-pass cap applies if the candidate entirely misses partial-null data loss or terminal `422` handling
+- do not let a clean public test run outweigh an untriaged hidden correctness failure
+
 ## Hidden Test Map
 
 | Hidden test | Intended bug | Expected fix |
@@ -35,6 +41,25 @@ Use `npm run reviewer:verify-baseline` only on the seeded baseline. Use `npm run
 | `reviewer/hidden-tests/crm-worker.hidden.test.ts` / `CRM worker hidden tests moves terminal CRM validation failures to the DLQ without retrying` | Retry policy retries all 4xx responses, including terminal `422` validation failures. | Classify `422` as non-retryable, mark the job `dead_lettered`, and add a DLQ record with response evidence. |
 | `reviewer/hidden-tests/crm-worker.hidden.test.ts` / `CRM worker hidden tests treats Retry-After header values as seconds when scheduling rate-limit retries` | Retry policy treats numeric `Retry-After` values as milliseconds. | Convert numeric `Retry-After` seconds to milliseconds before computing `nextRunAt`. |
 | `reviewer/hidden-tests/ops-ui.hidden.test.tsx` / `ops UI hidden tests surfaces dead-lettered CRM sync jobs for operator recovery` | Failed jobs UI omits `dead_lettered` CRM sync jobs, so terminal failures disappear from operator recovery. | Include `dead_lettered` jobs in the failed jobs panel by default, or provide an explicit operator-visible filter that still surfaces DLQ work. |
+
+## Triage Expectations
+
+`BUG_TRIAGE.md` should include at least five suspected defects or risks. The best answers identify all five seeded defects even if only one or two are implemented.
+
+Minimum passing triage for this role:
+
+- Names at least four of the five seeded bug areas.
+- Includes partial-null data loss.
+- Includes terminal CRM validation failure handling.
+- Gives evidence for each named issue, not just generic risk language.
+- Uses severity and acceptance checks to show what gets fixed now versus delegated.
+
+Bad triage patterns:
+
+- Lists only the two intern PR findings.
+- Lists generic issues like "add logging" or "make UI prettier" with no reproduction.
+- Treats public tests passing as proof that no other correctness bugs exist.
+- Says "Codex found it" without code, fixture, log, test, or operational evidence.
 
 ## Expected Fix Notes
 
@@ -125,6 +150,7 @@ Use `reviewer/EXPECTED_FINDINGS.md` for detailed review calibration.
 - `intern-b`: expected verdict is block because hiding old retry or DLQ work breaks the operator recovery queue.
 
 Non-blocking comments may receive credit only when the candidate also identifies the blocking operational risk.
+Automated PR comments may be treated as evidence, but never as the whole review. Award full credit only if the candidate independently explains the diff, impact, requested change, and regression test.
 
 ## Model Solution
 
