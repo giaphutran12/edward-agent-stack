@@ -1,0 +1,6 @@
+2026-05-17T08:41:03.112Z worker=crm_sync env=staging deploy=staging-2026.05.17.2 job=job_samson_retry_old_001 lead=lead_samson_142 status=retry_scheduled attempt=2 response=429 nextRunAt=2026-05-17T08:18:00.000Z
+2026-05-17T08:43:19.445Z deploy=staging-2026.05.17.3 event=deploy_started commit=intern-b-ui-polish
+2026-05-17T08:49:58.731Z deploy=staging-2026.05.17.3 event=deploy_completed ci=passed public_tests=passed build=passed
+2026-05-17T09:04:11.008Z worker=crm_sync env=staging deploy=staging-2026.05.17.3 job=job_samson_dead_002 lead=lead_samson_143 status=dead_lettered attempt=3 response=422 error="Missing AML document package"
+2026-05-17T09:12:45.991Z worker=crm_sync env=staging deploy=staging-2026.05.17.3 job=job_samson_retry_new_003 lead=lead_samson_144 status=retry_scheduled attempt=1 response=500 nextRunAt=2026-05-17T09:22:00.000Z
+2026-05-17T09:24:03.210Z ui=failed_crm_jobs env=staging deploy=staging-2026.05.17.3 user=broker_maya search=samson rendered_count=0

@@ -217,5 +217,7 @@ Start:
 6. Create your work on a branch in this repo.
 7. Open your final pull request in this same private repo.
 
+Note: incident/ is for reviewer-led follow-up. You only need to complete incident/INCIDENT_RESPONSE.md if we explicitly assign that exercise.
+
 Do not share repo access or copy your work into another candidate's repo.
 ```

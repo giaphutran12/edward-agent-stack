@@ -4,7 +4,7 @@ Status: candidate-facing
 
 ## Problem
 
-Reviewers need one consistent package from every candidate: focused code, regression tests, written system reasoning, AI disclosure, and intern PR review judgment.
+Reviewers need one consistent package from every candidate: focused code, regression tests, written system reasoning, AI disclosure, and intern PR review judgment. The incident exercise is for reviewer-led follow-up unless explicitly assigned.
 
 ## Standard
 
@@ -15,7 +15,7 @@ Run every required command from `assessments/lead-ops-assessment/`. If a command
 Run these before submitting:
 
 ```bash
-npm install
+npm ci
 npm run reset
 npm run typecheck
 npm run test:public
@@ -39,6 +39,7 @@ npm run dev
 - `ASSESSMENT.md` explains the system, targeted fixes, regression test coverage, tradeoffs, and delegation plan.
 - `AI_USAGE.md` discloses AI use. AI tools are allowed, but disclosure is required.
 - `review/FINAL_REVIEW.md` contains your intern PR review decision.
+- `incident/INCIDENT_RESPONSE.md` contains your broker complaint triage only if the reviewer assigned the incident exercise.
 - Code changes are limited to one or two targeted fixes.
 - Regression tests are included for changed behavior.
 - No real `.env` files, customer data, external service credentials, answer keys, hidden tests, or reviewer-only material are included.
