@@ -44,6 +44,7 @@ export_dir="$(resolve_export_dir "${1:-}")"
 [ -d "${export_dir}" ] || die "export path is not a directory: ${export_dir}"
 
 required_paths=(
+  ".devcontainer/devcontainer.json"
   ".gitignore"
   ".env.example"
   "AI_USAGE.md"

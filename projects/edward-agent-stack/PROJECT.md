@@ -1,6 +1,6 @@
 # Project Notes: Edward Agent Stack
 
-Last updated: 2026-05-04
+Last updated: 2026-05-17
 Freshness: current as of local repo state
 Owner: Edward Tran
 
@@ -12,13 +12,15 @@ The finished material should read like an operator playbook: problem, standard, 
 
 ## Current Priority
 
-Keep the install realistic:
+Keep the intern and candidate setup realistic:
 
 - Start company Macs with a local macOS user and no personal iCloud.
 - Treat Homebrew as a required macOS baseline, not an optional convenience.
 - Codex installs the boring tooling.
 - Humans complete account/API-key gates.
 - Agent reports what is missing instead of forcing broken auth.
+- Candidate take-home repos should be private, one repo per candidate, and safe to run without secrets or global installers.
+- When possible, offer Codespaces before local setup so candidates can start from a browser.
 
 ## Stack
 
@@ -55,6 +57,7 @@ Keep the install realistic:
 - `decisions/2026-05-04-raw-capture-first.md`
 - `decisions/2026-05-04-local-macos-account-setup.md`
 - `decisions/2026-05-04-homebrew-required-baseline.md`
+- `decisions/2026-05-17-candidate-repo-rollout.md`
 
 ## Stale Or Uncertain Info
 

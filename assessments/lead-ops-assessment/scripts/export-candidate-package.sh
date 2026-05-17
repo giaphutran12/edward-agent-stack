@@ -65,6 +65,7 @@ candidate_files=(
 )
 
 candidate_dirs=(
+  ".devcontainer"
   "assignment"
   "fixtures"
   "public"

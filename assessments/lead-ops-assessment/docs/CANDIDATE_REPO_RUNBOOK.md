@@ -48,7 +48,9 @@ gh repo create "${ORG}/${REPO}" \
 Push only the verified export:
 
 ```bash
-cd "${EXPORT_DIR}"
+PUBLISH_DIR="$(mktemp -d /tmp/lead-ops-candidate-publish.XXXXXX)"
+cp -R "${EXPORT_DIR}/." "${PUBLISH_DIR}/"
+cd "${PUBLISH_DIR}"
 git init
 git add .
 git commit -m "Add lead ops assessment candidate package"
@@ -69,6 +71,30 @@ gh api \
 ```
 
 Tell the candidate to work in their private repo and open their final PR there. Do not invite candidates to the reviewer source repo, a shared assessment repo, or another candidate's repo.
+
+Create a numbered batch when the candidate names are not known yet:
+
+```bash
+ORG="your-github-org"
+EXPORT_DIR="$(sed -n '1p' tmp/candidate-exports/latest.txt)"
+PUBLISH_DIR="$(mktemp -d /tmp/lead-ops-candidate-publish.XXXXXX)"
+
+cp -R "${EXPORT_DIR}/." "${PUBLISH_DIR}/"
+cd "${PUBLISH_DIR}"
+git init -b main
+git add .
+git commit -m "Add lead ops assessment candidate package"
+
+for CANDIDATE_NUMBER in 01 02 03 04 05 06 07; do
+  REPO="lead-ops-assessment-candidate-${CANDIDATE_NUMBER}"
+  gh repo create "${ORG}/${REPO}" \
+    --private \
+    --description "Private Lead Ops Assessment repo for candidate ${CANDIDATE_NUMBER}" \
+    --disable-wiki
+  git remote add "candidate-${CANDIDATE_NUMBER}" "git@github.com:${ORG}/${REPO}.git"
+  git push "candidate-${CANDIDATE_NUMBER}" main
+done
+```
 
 ## Reviewer Handling
 
@@ -100,3 +126,28 @@ For each candidate, record:
 - verification command output summary
 - invite timestamp
 - reviewer responsible
+
+## Candidate Message Template
+
+Send this after adding the candidate to exactly one private repo:
+
+```text
+You now have access to your private Lead Ops Assessment repo:
+
+{PRIVATE_REPO_URL}
+
+Safety notes:
+- This repo does not require secrets, real customer data, vendor accounts, OAuth, global installs, curl/bash installers, or binary downloads.
+- If you do not want to install Node.js locally, use GitHub Codespaces from the repo page. Codespaces will use the included devcontainer and run npm ci for you.
+- If you run it locally, use Node.js 20.19+ and npm 10+.
+
+Start:
+1. Open the repo.
+2. Read README.md, ASSESSMENT.md, and assignment/PROMPT.md.
+3. Run npm ci.
+4. Run npm run typecheck, npm run test:public, and npm run build.
+5. Create your work on a branch in this repo.
+6. Open your final pull request in this same private repo.
+
+Do not share repo access or copy your work into another candidate's repo.
+```
