@@ -26,8 +26,8 @@ AI tools are allowed, but you must disclose how you used them in `AI_USAGE.md`. 
 3. Add regression tests.
    Add at least one regression test for each behavior you change. Public tests should still pass.
 
-4. Review the intern PR artifacts.
-   Review the fake intern PR materials in `review/`. Complete `review/FINAL_REVIEW.md` with a real approve, request-changes, or block decision and the reasoning behind it.
+4. Review the intern PRs.
+   Review the open `Intern A` and `Intern B` pull requests in your private repo. If your repo does not have those PRs, use the matching fallback materials in `review/`. Complete `review/FINAL_REVIEW.md` with a real approve, request-changes, or block decision and the reasoning behind it.
 
 5. Write a follow-up delegation plan.
    In `ASSESSMENT.md`, list what you would delegate next, what you would keep yourself, and the acceptance checks for that work.
