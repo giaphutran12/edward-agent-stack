@@ -33,6 +33,7 @@ Implementation tickets must keep these constraints intact:
 - Keep public tests passing on the candidate baseline.
 - Keep hidden tests reviewer-only. Hidden tests should fail against the candidate baseline only for intended seeded bugs and pass against the answer-key solution.
 - Keep reviewer-only files out of the candidate export.
+- Keep the incident exercise as reviewer-led follow-up material: candidates may see the initial incident packet, while queue/log reveal files stay reviewer-only until requested.
 
 ## Product Scope
 
@@ -44,7 +45,8 @@ The app is a believable inherited lead operations tool with these user surfaces:
 - Local demo/reset commands for reviewers and candidates.
 - Candidate prompt and submission templates.
 - Two fake intern PR patches for candidate code review.
-- Reviewer-only answer key, hidden tests, scoring rubric, and model solution.
+- Interviewer-led incident triage packet for vague broker complaint handling, Codex-review judgment, rollout decisions, ops communication, and delegation.
+- Reviewer-only answer keys, incident reveal files, hidden tests, scoring rubric, and model solution.
 
 Out of scope:
 
@@ -74,13 +76,14 @@ The source repo may contain both candidate-safe and reviewer-only files. The can
 | `AI_USAGE.md` | yes | Candidate AI disclosure template. |
 | `ASSESSMENT.md` | yes | Candidate write-up template. |
 | `review/` | yes | Candidate-facing intern patches and final review template. |
+| `incident/` | yes | Candidate-facing initial incident packet and response template. |
 | `docs/RUNBOOK.md` | yes | Candidate-safe local setup and operations runbook. |
 | `docs/SPEC.md` | no | Reveals seeded bug map and file boundary decisions. |
 | `docs/ARCHITECTURE.md` | no | Reviewer implementation reference and hidden-test contract. |
 | `docs/EXPORT_POLICY.md` | no | Reviewer/admin export rules. |
 | `docs/CANDIDATE_REPO_RUNBOOK.md` | no | Reviewer/admin private-repo duplication procedure. |
 | `docs/READINESS_REPORT.md` | no | Final reviewer QA evidence. |
-| `reviewer/` | no | Answer key, scoring rubric, hidden tests, model solution. |
+| `reviewer/` | no | Answer keys, incident reveal files, scoring rubric, hidden tests, model solution. |
 | `scripts/export-candidate-package.sh` | no | Reviewer/admin export tool. |
 | `scripts/verify-candidate-export.sh` | no | Reviewer/admin export verification tool. |
 | `.codex-autorunner/` | no | Build-control ticket queue. |
@@ -136,9 +139,23 @@ assessments/lead-ops-assessment/
     intern-a-performance-cleanup.patch
     intern-b-ui-polish.md
     intern-b-ui-polish.patch
+  incident/
+    README.md
+    BROKER_SLACK_THREAD.md
+    SCREENSHOT_NOTES.md
+    RECENT_DEPLOY.md
+    CODEX_REVIEW.md
+    INCIDENT_RESPONSE.md
+    assets/
+      failed-crm-jobs-empty-state.html
+      failed-crm-jobs-empty-state.png
   reviewer/
     ANSWER_KEY.md
     EXPECTED_FINDINGS.md
+    INCIDENT_ANSWER_KEY.md
+    incident-reveals/
+      QUEUE_SNAPSHOT.json
+      CRM_SYNC_LOG.txt
     SCORING_RUBRIC.md
     hidden-tests/
       crm-worker.hidden.test.ts

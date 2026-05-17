@@ -1,0 +1,53 @@
+{
+  "capturedAt": "2026-05-17T09:27:12.000Z",
+  "environment": "staging",
+  "searchHint": "samson",
+  "crmSyncJobs": [
+    {
+      "id": "job_samson_retry_old_001",
+      "leadId": "lead_samson_142",
+      "operation": "upsert_lead",
+      "status": "retry_scheduled",
+      "attemptCount": 2,
+      "nextRunAt": "2026-05-17T08:18:00.000Z",
+      "lastResponseCode": 429,
+      "lastError": "Rate limit exceeded",
+      "createdAt": "2026-05-17T07:42:00.000Z",
+      "updatedAt": "2026-05-17T08:18:00.000Z"
+    },
+    {
+      "id": "job_samson_dead_002",
+      "leadId": "lead_samson_143",
+      "operation": "upsert_lead",
+      "status": "dead_lettered",
+      "attemptCount": 3,
+      "nextRunAt": "2026-05-17T08:40:00.000Z",
+      "lastResponseCode": 422,
+      "lastError": "Missing AML document package",
+      "createdAt": "2026-05-17T07:55:00.000Z",
+      "updatedAt": "2026-05-17T08:40:00.000Z"
+    },
+    {
+      "id": "job_samson_retry_new_003",
+      "leadId": "lead_samson_144",
+      "operation": "upsert_lead",
+      "status": "retry_scheduled",
+      "attemptCount": 1,
+      "nextRunAt": "2026-05-17T09:22:00.000Z",
+      "lastResponseCode": 500,
+      "lastError": "Temporary CRM outage",
+      "createdAt": "2026-05-17T09:02:00.000Z",
+      "updatedAt": "2026-05-17T09:12:00.000Z"
+    }
+  ],
+  "deadLetterJobs": [
+    {
+      "id": "dlq_job_samson_dead_002",
+      "originalJobId": "job_samson_dead_002",
+      "leadId": "lead_samson_143",
+      "terminalReason": "Missing AML document package",
+      "responseCode": 422,
+      "createdAt": "2026-05-17T08:40:00.000Z"
+    }
+  ]
+}

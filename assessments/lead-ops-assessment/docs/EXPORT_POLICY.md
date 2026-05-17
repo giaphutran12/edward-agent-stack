@@ -46,6 +46,7 @@ The export may include:
 - `assignment/`
 - `docs/RUNBOOK.md`
 - `fixtures/`
+- `incident/`
 - `scripts/reset-demo-state.mjs`
 - `public/`
 - `review/FINAL_REVIEW.md`
@@ -71,6 +72,8 @@ The export must exclude:
 - `reviewer/`
 - `reviewer/ANSWER_KEY.md`
 - `reviewer/EXPECTED_FINDINGS.md`
+- `reviewer/INCIDENT_ANSWER_KEY.md`
+- `reviewer/incident-reveals/`
 - `reviewer/SCORING_RUBRIC.md`
 - `reviewer/hidden-tests/`
 - `reviewer/model-solution.patch`
@@ -134,6 +137,8 @@ Verification must prove:
 - Real env files are absent.
 - Fake fixture-backed integrations are present.
 - Intern patch files are present.
+- Incident exercise files are present.
+- Reviewer-only incident answer key and reveal files are absent.
 
 ## Private Repo Duplication
 

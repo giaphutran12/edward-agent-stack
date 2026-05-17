@@ -29,10 +29,13 @@ AI tools are allowed, but you must disclose how you used them in `AI_USAGE.md`. 
 4. Review the intern PRs.
    Review the open `Intern A` and `Intern B` pull requests in your private repo. If your repo does not have those PRs, use the matching fallback materials in `review/`. Complete `review/FINAL_REVIEW.md` with a real approve, request-changes, or block decision and the reasoning behind it.
 
-5. Write a follow-up delegation plan.
+5. Prepare for the onsite incident exercise.
+   Read `incident/README.md` before the live follow-up. Complete `incident/INCIDENT_RESPONSE.md` only if the reviewer asks you to do the incident exercise. Treat Codex review as one input, not the final answer.
+
+6. Write a follow-up delegation plan.
    In `ASSESSMENT.md`, list what you would delegate next, what you would keep yourself, and the acceptance checks for that work.
 
-6. Complete the AI disclosure.
+7. Complete the AI disclosure.
    Fill out `AI_USAGE.md`, even if you did not use AI tools.
 
 ## Procedure
@@ -50,5 +53,6 @@ Submit:
 - completed `ASSESSMENT.md`
 - completed `AI_USAGE.md`
 - completed `review/FINAL_REVIEW.md`
+- completed `incident/INCIDENT_RESPONSE.md`, if the reviewer assigned the incident exercise
 
 Do not include reviewer-only hidden tests, answer keys, model solutions, or any material from another candidate.

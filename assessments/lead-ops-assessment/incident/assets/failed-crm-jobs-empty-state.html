@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Failed CRM Jobs Screenshot</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #eef1f4;
+        color: #1f2933;
+      }
+
+      body {
+        margin: 0;
+        background: #eef1f4;
+      }
+
+      .app {
+        display: grid;
+        grid-template-columns: 244px 1fr;
+        min-height: 760px;
+      }
+
+      aside {
+        background: #1f2933;
+        color: #d9e2ec;
+        padding: 22px 18px;
+      }
+
+      .brand {
+        color: #ffffff;
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 28px;
+      }
+
+      .nav {
+        display: grid;
+        gap: 8px;
+      }
+
+      .nav div {
+        border-radius: 6px;
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+
+      .nav .active {
+        background: #31404f;
+        color: #ffffff;
+      }
+
+      main {
+        padding: 24px 30px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 22px;
+      }
+
+      .env {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        color: #52606d;
+        font-size: 13px;
+      }
+
+      .badge {
+        border: 1px solid #bcccdc;
+        border-radius: 999px;
+        background: #ffffff;
+        padding: 5px 10px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: 0;
+      }
+
+      .panel {
+        background: #ffffff;
+        border: 1px solid #d9e2ec;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(31, 41, 51, 0.08);
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #d9e2ec;
+        padding: 16px 18px;
+      }
+
+      .filters {
+        display: flex;
+        gap: 10px;
+      }
+
+      input,
+      select {
+        height: 34px;
+        border: 1px solid #bcccdc;
+        border-radius: 6px;
+        padding: 0 10px;
+        color: #1f2933;
+        background: #ffffff;
+        font-size: 13px;
+      }
+
+      .table-head,
+      .empty-row {
+        display: grid;
+        grid-template-columns: 1fr 160px 170px 220px;
+        gap: 16px;
+        align-items: center;
+        padding: 12px 18px;
+      }
+
+      .table-head {
+        background: #f5f7fa;
+        color: #52606d;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .empty {
+        min-height: 250px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        color: #52606d;
+      }
+
+      .empty strong {
+        display: block;
+        color: #1f2933;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .footer {
+        margin-top: 14px;
+        color: #7b8794;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside>
+        <div class="brand">Lead Ops Console</div>
+        <div class="nav">
+          <div>Leads</div>
+          <div>Assignments</div>
+          <div class="active">Failed CRM Jobs</div>
+          <div>Audit Log</div>
+          <div>Settings</div>
+        </div>
+      </aside>
+      <main>
+        <div class="topbar">
+          <h1>Failed CRM Jobs</h1>
+          <div class="env">
+            <span class="badge">Staging</span>
+            <span class="badge">staging-2026.05.17.3</span>
+            <span>Captured 2026-05-17 09:24</span>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-header">
+            <strong>Recovery Queue</strong>
+            <div class="filters">
+              <input value="samson" aria-label="Search" />
+              <select aria-label="Status">
+                <option>Recent retries</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-head">
+            <div>Lead</div>
+            <div>Status</div>
+            <div>Next run</div>
+            <div>Last error</div>
+          </div>
+          <div class="empty">
+            <div>
+              <strong>No failed CRM jobs</strong>
+              <span>No recent retry jobs match this view.</span>
+            </div>
+          </div>
+        </section>
+        <div class="footer">Showing recent retry work only. Internal staging screenshot from broker report.</div>
+      </main>
+    </div>
+  </body>
+</html>

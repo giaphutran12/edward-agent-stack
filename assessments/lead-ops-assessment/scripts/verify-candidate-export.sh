@@ -54,6 +54,14 @@ required_paths=(
   "assignment/SUBMISSION_CHECKLIST.md"
   "docs/RUNBOOK.md"
   "fixtures"
+  "incident/README.md"
+  "incident/BROKER_SLACK_THREAD.md"
+  "incident/SCREENSHOT_NOTES.md"
+  "incident/RECENT_DEPLOY.md"
+  "incident/CODEX_REVIEW.md"
+  "incident/INCIDENT_RESPONSE.md"
+  "incident/assets/failed-crm-jobs-empty-state.html"
+  "incident/assets/failed-crm-jobs-empty-state.png"
   "package-lock.json"
   "package.json"
   "review/FINAL_REVIEW.md"
@@ -80,6 +88,8 @@ for forbidden_path in \
   "reviewer" \
   "reviewer/ANSWER_KEY.md" \
   "reviewer/EXPECTED_FINDINGS.md" \
+  "reviewer/INCIDENT_ANSWER_KEY.md" \
+  "reviewer/incident-reveals" \
   "reviewer/SCORING_RUBRIC.md" \
   "reviewer/hidden-tests" \
   "reviewer/model-solution.patch" \
@@ -99,7 +109,7 @@ for forbidden_path in \
   assert_absent "${forbidden_path}"
 done
 
-hidden_hits="$(find "${export_dir}" \( -path '*/reviewer/*' -o -name '*hidden*' -o -name 'ANSWER_KEY.md' -o -name 'SCORING_RUBRIC.md' -o -name 'EXPECTED_FINDINGS.md' -o -name 'model-solution.patch' \) -print)"
+hidden_hits="$(find "${export_dir}" \( -path '*/reviewer/*' -o -name '*hidden*' -o -name 'ANSWER_KEY.md' -o -name 'SCORING_RUBRIC.md' -o -name 'EXPECTED_FINDINGS.md' -o -name 'INCIDENT_ANSWER_KEY.md' -o -name 'model-solution.patch' \) -print)"
 if [ -n "${hidden_hits}" ]; then
   printf 'Forbidden reviewer-only files found:\n' >&2
   printf '%s\n' "${hidden_hits}" | sed "s#^${export_dir}/##" >&2

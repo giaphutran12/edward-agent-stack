@@ -68,6 +68,7 @@ candidate_dirs=(
   ".devcontainer"
   "assignment"
   "fixtures"
+  "incident"
   "public"
   "review"
   "src"
@@ -126,7 +127,7 @@ for forbidden_path in \
   fi
 done
 
-hidden_hits="$(find "${export_dir}" \( -name '*hidden*' -o -name 'ANSWER_KEY.md' -o -name 'SCORING_RUBRIC.md' -o -name 'EXPECTED_FINDINGS.md' -o -name 'model-solution.patch' \) -print)"
+hidden_hits="$(find "${export_dir}" \( -name '*hidden*' -o -name 'ANSWER_KEY.md' -o -name 'SCORING_RUBRIC.md' -o -name 'EXPECTED_FINDINGS.md' -o -name 'INCIDENT_ANSWER_KEY.md' -o -name 'model-solution.patch' \) -print)"
 if [ -n "${hidden_hits}" ]; then
   printf '%s\n' "${hidden_hits}" | sed "s#^${export_dir}/##" >&2
   die "copied reviewer-only hidden or answer material"
