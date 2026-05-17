@@ -8,7 +8,7 @@ Reviewers need a private calibration guide for the vague broker complaint and st
 
 ## Standard
 
-Grade the incident response by evidence use, decision quality, communication, and follow-through. A strong answer turns "AML still doesn't work" into a bounded hypothesis, immediate operator-safe action, and a clear verification plan.
+Grade the incident response by evidence use, decision quality, communication, and follow-through. A strong answer turns "AML still doesn't work" into a bounded hypothesis, immediate operator-safe action, and a clear verification plan. It does not treat the automated Codex comment as the answer.
 
 ## Expected Best Answer
 
@@ -61,6 +61,8 @@ The strongest live-interview answers explicitly ask for queue state and worker l
 
 Map this score into the incident ownership portion of the main rubric.
 
+For full incident credit, the candidate must request queue state and worker/deploy logs before finalizing the root cause. If they mostly restate the Codex comment and do not ask for queue/log evidence, cap the incident score at 10/15 in the main rubric even if their Slack message sounds polished.
+
 ## Acceptable Decision Variants
 
 ### Fix-Forward
@@ -90,6 +92,7 @@ Penalize heavily for:
 - "Works on my machine."
 - "Ask the broker for more info" and stopping there.
 - "Codex found it" with no explanation of impact.
+- Codex-shaped answer with no independent queue/log/code evidence request.
 - Treating "AML" as precise root cause without reconciling the CRM failed jobs evidence.
 - Making code changes before bounding scope.
 - Clearing the queue or deleting dead-letter jobs.

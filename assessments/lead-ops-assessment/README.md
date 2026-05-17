@@ -36,6 +36,7 @@ npm run dev
 - `src/server/routes/` contains route-level handlers that compose the domain modules.
 - `src/app/` contains the Vite/React ops UI.
 - `fixtures/repository/` contains the canonical deterministic seed snapshot.
+- `BUG_TRIAGE.md` is where you severity-rank suspected defects and explain what you fixed or deferred.
 - `incident/` contains the broker complaint and staging incident triage exercise.
 - `tests/public/` contains candidate-safe tests that should pass on the baseline.
 

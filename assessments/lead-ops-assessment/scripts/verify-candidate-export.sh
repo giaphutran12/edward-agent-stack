@@ -49,6 +49,7 @@ required_paths=(
   ".env.example"
   "AI_USAGE.md"
   "ASSESSMENT.md"
+  "BUG_TRIAGE.md"
   "README.md"
   "assignment/PROMPT.md"
   "assignment/SUBMISSION_CHECKLIST.md"

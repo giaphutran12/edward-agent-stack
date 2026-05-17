@@ -5,13 +5,11 @@ Status: candidate-facing
 Codex left this automated review comment on the deployed UI PR:
 
 ```text
-P1: Stop dropping retry jobs outside a 45-minute window
+P1: Failed-jobs empty state may not prove the recovery queue is clean
 
-Filtering with isInRecentFailureWindow hides valid retry_scheduled jobs whenever they are more than 45 minutes older than the newest retry, even though they are still unresolved failures. In real queues where retries are created at different times, this can remove actionable jobs from the Failed CRM Jobs panel and even show the empty state while retry jobs still exist.
-
-This view should sort retries but not discard older pending failures.
+The deployed UI change may make the Failed CRM Jobs page less reliable as an operator recovery surface. Before using the screenshot as evidence that no CRM/AML work is blocked, verify the queue state, worker logs, and the exact failed-jobs visibility rules introduced by the PR.
 ```
 
 ## Candidate Task
 
-Do not just paste this comment. Decide whether you agree, what evidence supports or weakens it, what action you would take, and how you would communicate the impact.
+Do not just paste this comment. Decide whether you agree, what evidence supports or weakens it, what action you would take, and how you would communicate the impact. A good answer explains why Codex is right, wrong, or incomplete.

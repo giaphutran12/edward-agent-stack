@@ -43,6 +43,7 @@ The export may include:
 - `vite.config.ts`
 - `AI_USAGE.md`
 - `ASSESSMENT.md`
+- `BUG_TRIAGE.md`
 - `assignment/`
 - `docs/RUNBOOK.md`
 - `fixtures/`

@@ -68,6 +68,7 @@ The source repo may contain both candidate-safe and reviewer-only files. The can
 | `README.md` | yes | Candidate setup and app overview without answers. |
 | `.env.example` | yes | Placeholder names only. No real secrets. |
 | `package.json`, lockfile, `index.html`, TypeScript/test/build config | yes | One-command install and verification. |
+| `BUG_TRIAGE.md` | yes | Candidate defect discovery and prioritization template. |
 | `src/` | yes | Baseline app, fake integrations, seeded implementation flaws. |
 | `tests/setup.ts`, `tests/public/` | yes | Test setup and public tests that pass on baseline. |
 | `fixtures/` or `src/fixtures/` | yes | Fake webhook, CRM, queue, and UI data. |
@@ -108,6 +109,7 @@ assessments/lead-ops-assessment/
   .env.example
   AI_USAGE.md
   ASSESSMENT.md
+  BUG_TRIAGE.md
   assignment/
     PROMPT.md
     SUBMISSION_CHECKLIST.md
@@ -276,6 +278,7 @@ Candidate export tooling must also remove reviewer-only package scripts such as 
 
 The package should test:
 
+- Defect discovery and severity ranking before implementation.
 - Code correctness and regression testing.
 - System understanding across webhook, data, queue, CRM, retry, DLQ, and UI boundaries.
 - Product judgment around lead data quality and operator visibility.

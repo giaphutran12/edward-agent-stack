@@ -52,6 +52,7 @@ candidate_files=(
   ".env.example"
   "AI_USAGE.md"
   "ASSESSMENT.md"
+  "BUG_TRIAGE.md"
   "README.md"
   "index.html"
   "package-lock.json"
