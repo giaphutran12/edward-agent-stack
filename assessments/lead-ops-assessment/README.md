@@ -2,27 +2,30 @@
 
 Candidate-safe scaffold for the lead operations take-home app. The app models a local lead intake workflow with fake webhook and CRM integrations. It does not require real credentials, real customer data, vendor accounts, OAuth, or live network services.
 
+## Safety
+
+This repo is private to you. It does not ask for secrets, global installs, curl/bash installers, binary downloads, or access to real customer systems. Use `.env.example` only as documentation for placeholder config names. Do not create or commit `.env` or other real env files.
+
 ## Requirements
 
 - Node.js 20.19 or newer
 - npm 10 or newer
+
+If you do not want to install Node.js locally, open this repo in GitHub Codespaces. Codespaces uses the included `.devcontainer/devcontainer.json` and runs `npm ci` inside a browser-based development environment.
 
 ## Commands
 
 Run from this directory:
 
 ```bash
-npm install
+npm ci
 npm run reset
 npm run typecheck
 npm run worker:crm-sync -- --scenario=success --now=2026-05-16T01:00:00.000Z --max-jobs=1
-npm test
 npm run test:public
 npm run build
 npm run dev
 ```
-
-Use `.env.example` only as documentation for placeholder config names. Do not create or commit `.env` or other real env files.
 
 ## Structure
 
@@ -37,7 +40,7 @@ Use `.env.example` only as documentation for placeholder config names. Do not cr
 
 ## Local Workflow
 
-1. Install dependencies with `npm install`.
+1. Install dependencies with `npm ci`.
 2. Reset deterministic demo data with `npm run reset` when you want a fresh local snapshot.
 3. Run the local CRM worker with `npm run worker:crm-sync -- --scenario=success --now=2026-05-16T01:00:00.000Z --max-jobs=1`.
 4. Run public verification with `npm run typecheck`, `npm run test:public`, and `npm run build`.
