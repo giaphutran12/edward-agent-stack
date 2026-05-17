@@ -9,11 +9,11 @@ Candidates must receive the same assessment while remaining isolated from each o
 
 ## Standard
 
-Create one fresh private GitHub repo per candidate from a verified candidate export. Push only the exported package contents. Never push `reviewer/`, hidden tests, answer keys, model solutions, export tooling, generated output, real env files, or another candidate's branch into a candidate repo.
+Create one fresh private GitHub repo per candidate from a verified candidate export. Push only the exported package contents, then seed the two fake intern PRs from the candidate-facing patch artifacts. Never push `reviewer/`, hidden tests, answer keys, model solutions, export tooling, generated output, real env files, or another candidate's branch into a candidate repo.
 
 ## Reason
 
-Per-candidate private repos keep the assessment fair and let each candidate open PRs without seeing another candidate's approach. Verified exports keep the reviewer source tree separate from the candidate-facing package.
+Per-candidate private repos keep the assessment fair and let each candidate review fake intern PRs and open their final PR without seeing another candidate's approach. Verified exports keep the reviewer source tree separate from the candidate-facing package.
 
 ## Procedure
 
@@ -72,10 +72,46 @@ gh api \
 
 Tell the candidate to work in their private repo and open their final PR there. Do not invite candidates to the reviewer source repo, a shared assessment repo, or another candidate's repo.
 
+Seed the two fake intern PRs in each candidate repo:
+
+```bash
+SOURCE_ROOT="/path/to/edward-clone/assessments/lead-ops-assessment"
+CHECKOUT_DIR="$(mktemp -d /tmp/lead-ops-seed-prs.XXXXXX)"
+
+gh repo clone "${ORG}/${REPO}" "${CHECKOUT_DIR}/${REPO}"
+cd "${CHECKOUT_DIR}/${REPO}"
+
+git switch -c intern-a-performance-cleanup
+git apply -p3 "${SOURCE_ROOT}/review/intern-a-performance-cleanup.patch"
+git add src/repository/repository.ts
+git commit -m "Performance cleanup during lead ingest"
+git push -u origin intern-a-performance-cleanup
+gh pr create \
+  --repo "${ORG}/${REPO}" \
+  --base main \
+  --head intern-a-performance-cleanup \
+  --title "Intern A PR: Performance cleanup during lead ingest" \
+  --body-file "${SOURCE_ROOT}/review/intern-a-performance-cleanup.md"
+
+git switch main
+git switch -c intern-b-ui-polish
+git apply -p3 "${SOURCE_ROOT}/review/intern-b-ui-polish.patch"
+git add src/app/pages/FailedJobsPage.tsx tests/public/ui.public.test.tsx
+git commit -m "Simplify failed CRM job list"
+git push -u origin intern-b-ui-polish
+gh pr create \
+  --repo "${ORG}/${REPO}" \
+  --base main \
+  --head intern-b-ui-polish \
+  --title "Intern B PR: UI polish for failed CRM jobs" \
+  --body-file "${SOURCE_ROOT}/review/intern-b-ui-polish.md"
+```
+
 Create a numbered batch when the candidate names are not known yet:
 
 ```bash
 ORG="your-github-org"
+SOURCE_ROOT="/path/to/edward-clone/assessments/lead-ops-assessment"
 EXPORT_DIR="$(sed -n '1p' tmp/candidate-exports/latest.txt)"
 PUBLISH_DIR="$(mktemp -d /tmp/lead-ops-candidate-publish.XXXXXX)"
 
@@ -93,6 +129,36 @@ for CANDIDATE_NUMBER in 01 02 03 04 05 06 07; do
     --disable-wiki
   git remote add "candidate-${CANDIDATE_NUMBER}" "git@github.com:${ORG}/${REPO}.git"
   git push "candidate-${CANDIDATE_NUMBER}" main
+
+  gh repo clone "${ORG}/${REPO}" "${PUBLISH_DIR}/../${REPO}-seed"
+  (
+    cd "${PUBLISH_DIR}/../${REPO}-seed"
+
+    git switch -c intern-a-performance-cleanup
+    git apply -p3 "${SOURCE_ROOT}/review/intern-a-performance-cleanup.patch"
+    git add src/repository/repository.ts
+    git commit -m "Performance cleanup during lead ingest"
+    git push -u origin intern-a-performance-cleanup
+    gh pr create \
+      --repo "${ORG}/${REPO}" \
+      --base main \
+      --head intern-a-performance-cleanup \
+      --title "Intern A PR: Performance cleanup during lead ingest" \
+      --body-file "${SOURCE_ROOT}/review/intern-a-performance-cleanup.md"
+
+    git switch main
+    git switch -c intern-b-ui-polish
+    git apply -p3 "${SOURCE_ROOT}/review/intern-b-ui-polish.patch"
+    git add src/app/pages/FailedJobsPage.tsx tests/public/ui.public.test.tsx
+    git commit -m "Simplify failed CRM job list"
+    git push -u origin intern-b-ui-polish
+    gh pr create \
+      --repo "${ORG}/${REPO}" \
+      --base main \
+      --head intern-b-ui-polish \
+      --title "Intern B PR: UI polish for failed CRM jobs" \
+      --body-file "${SOURCE_ROOT}/review/intern-b-ui-polish.md"
+  )
 done
 ```
 
@@ -122,6 +188,7 @@ For each candidate, record:
 
 - candidate slug
 - private repo URL
+- intern PR URLs
 - export path used
 - verification command output summary
 - invite timestamp
@@ -144,10 +211,11 @@ Safety notes:
 Start:
 1. Open the repo.
 2. Read README.md, ASSESSMENT.md, and assignment/PROMPT.md.
-3. Run npm ci.
-4. Run npm run typecheck, npm run test:public, and npm run build.
-5. Create your work on a branch in this repo.
-6. Open your final pull request in this same private repo.
+3. Open the Pull requests tab and review the two open Intern A and Intern B PRs.
+4. Run npm ci.
+5. Run npm run typecheck, npm run test:public, and npm run build.
+6. Create your work on a branch in this repo.
+7. Open your final pull request in this same private repo.
 
 Do not share repo access or copy your work into another candidate's repo.
 ```
