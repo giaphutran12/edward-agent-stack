@@ -1,0 +1,528 @@
+diff --git a/hosts/codex.ts b/hosts/codex.ts
+index 51b4308b..c3ab26ad 100644
+--- a/hosts/codex.ts
++++ b/hosts/codex.ts
+@@ -65,7 +65,6 @@ const codex: HostConfig = {
+     'DESIGN_OUTSIDE_VOICES',  // design.ts:485 — Codex can't invoke itself
+     'ADVERSARIAL_STEP',       // review.ts:408 — Codex can't invoke itself
+     'CODEX_SECOND_OPINION',   // review.ts:257 — Codex can't invoke itself
+-    'CODEX_PLAN_REVIEW',      // review.ts:541 — Codex can't invoke itself
+     'REVIEW_ARMY',            // review-army.ts:180 — Codex shouldn't orchestrate
+     'GBRAIN_CONTEXT_LOAD',
+     'GBRAIN_SAVE_RESULTS',
+diff --git a/plan-eng-review/SKILL.md.tmpl b/plan-eng-review/SKILL.md.tmpl
+index 6efb9436..1343ee77 100644
+--- a/plan-eng-review/SKILL.md.tmpl
++++ b/plan-eng-review/SKILL.md.tmpl
+@@ -155,9 +155,9 @@ Evaluate:
+ * For each new codepath or integration point, describe one realistic production failure scenario and whether the plan accounts for it.
+ * **Distribution architecture:** If this introduces a new artifact (binary, package, container), how does it get built, published, and updated? Is the CI/CD pipeline part of the plan or deferred?
+ 
+-For each issue found in this section, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one AskUserQuestion. Use the preamble's AskUserQuestion Format section. The AskUserQuestion call is a tool_use, not prose — call the tool directly.
++For each P0/P1/P2 issue that changes the plan, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one AskUserQuestion. Use the preamble's AskUserQuestion Format section. The AskUserQuestion call is a tool_use, not prose — call the tool directly. P3/TODO-level findings are recorded for the section summary/TODO pass instead of interrupting the review one by one.
+ 
+-**STOP.** Do NOT proceed to the next review section, edit the plan file with the proposed fix, or call ExitPlanMode until the user responds. An issue with an "obvious fix" is still an issue and still needs explicit user approval before it lands in the plan. Loading the AskUserQuestion schema via ToolSearch and then writing the recommendation as chat prose is the failure mode this gate exists to prevent.
++**STOP for P0/P1/P2 plan-changing issues.** Do NOT proceed to the next review section, edit the plan file with the proposed fix, or call ExitPlanMode until the user responds. An issue with an "obvious fix" still needs explicit user approval before it lands in the plan when it changes scope, architecture, behavior, tests, security posture, performance posture, or release risk. Loading the AskUserQuestion schema via ToolSearch and then writing the recommendation as chat prose is the failure mode this gate exists to prevent.
+ 
+ {{CONFIDENCE_CALIBRATION}}
+ 
+@@ -170,9 +170,9 @@ Evaluate:
+ * Areas that are over-engineered or under-engineered relative to my preferences.
+ * Existing ASCII diagrams in touched files — are they still accurate after this change?
+ 
+-For each issue found in this section, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one AskUserQuestion. Use the preamble's AskUserQuestion Format section. The AskUserQuestion call is a tool_use, not prose — call the tool directly.
++For each P0/P1/P2 issue that changes the plan, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one AskUserQuestion. Use the preamble's AskUserQuestion Format section. The AskUserQuestion call is a tool_use, not prose — call the tool directly. P3/TODO-level findings are recorded for the section summary/TODO pass instead of interrupting the review one by one.
+ 
+-**STOP.** Do NOT proceed to the next review section, edit the plan file with the proposed fix, or call ExitPlanMode until the user responds. An issue with an "obvious fix" is still an issue and still needs explicit user approval before it lands in the plan. Loading the AskUserQuestion schema via ToolSearch and then writing the recommendation as chat prose is the failure mode this gate exists to prevent.
++**STOP for P0/P1/P2 plan-changing issues.** Do NOT proceed to the next review section, edit the plan file with the proposed fix, or call ExitPlanMode until the user responds. An issue with an "obvious fix" still needs explicit user approval before it lands in the plan when it changes scope, architecture, behavior, tests, security posture, performance posture, or release risk. Loading the AskUserQuestion schema via ToolSearch and then writing the recommendation as chat prose is the failure mode this gate exists to prevent.
+ 
+ ### 3. Test review
+ 
+@@ -180,9 +180,9 @@ For each issue found in this section, call AskUserQuestion individually. One iss
+ 
+ For LLM/prompt changes: check the "Prompt/LLM changes" file patterns listed in CLAUDE.md. If this plan touches ANY of those patterns, state which eval suites must be run, which cases should be added, and what baselines to compare against. Then use AskUserQuestion to confirm the eval scope with the user.
+ 
+-For each issue found in this section, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one AskUserQuestion. Use the preamble's AskUserQuestion Format section. The AskUserQuestion call is a tool_use, not prose — call the tool directly.
++For each P0/P1/P2 issue that changes the plan, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one AskUserQuestion. Use the preamble's AskUserQuestion Format section. The AskUserQuestion call is a tool_use, not prose — call the tool directly. P3/TODO-level findings are recorded for the section summary/TODO pass instead of interrupting the review one by one.
+ 
+-**STOP.** Do NOT proceed to the next review section, edit the plan file with the proposed fix, or call ExitPlanMode until the user responds. An issue with an "obvious fix" is still an issue and still needs explicit user approval before it lands in the plan. Loading the AskUserQuestion schema via ToolSearch and then writing the recommendation as chat prose is the failure mode this gate exists to prevent.
++**STOP for P0/P1/P2 plan-changing issues.** Do NOT proceed to the next review section, edit the plan file with the proposed fix, or call ExitPlanMode until the user responds. An issue with an "obvious fix" still needs explicit user approval before it lands in the plan when it changes scope, architecture, behavior, tests, security posture, performance posture, or release risk. Loading the AskUserQuestion schema via ToolSearch and then writing the recommendation as chat prose is the failure mode this gate exists to prevent.
+ 
+ ### 4. Performance review
+ Evaluate:
+@@ -191,9 +191,9 @@ Evaluate:
+ * Caching opportunities.
+ * Slow or high-complexity code paths.
+ 
+-For each issue found in this section, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one AskUserQuestion. Use the preamble's AskUserQuestion Format section. The AskUserQuestion call is a tool_use, not prose — call the tool directly.
++For each P0/P1/P2 issue that changes the plan, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one AskUserQuestion. Use the preamble's AskUserQuestion Format section. The AskUserQuestion call is a tool_use, not prose — call the tool directly. P3/TODO-level findings are recorded for the section summary/TODO pass instead of interrupting the review one by one.
+ 
+-**STOP.** Do NOT proceed to the next review section, edit the plan file with the proposed fix, or call ExitPlanMode until the user responds. An issue with an "obvious fix" is still an issue and still needs explicit user approval before it lands in the plan. Loading the AskUserQuestion schema via ToolSearch and then writing the recommendation as chat prose is the failure mode this gate exists to prevent.
++**STOP for P0/P1/P2 plan-changing issues.** Do NOT proceed to the next review section, edit the plan file with the proposed fix, or call ExitPlanMode until the user responds. An issue with an "obvious fix" still needs explicit user approval before it lands in the plan when it changes scope, architecture, behavior, tests, security posture, performance posture, or release risk. Loading the AskUserQuestion schema via ToolSearch and then writing the recommendation as chat prose is the failure mode this gate exists to prevent.
+ 
+ {{CODEX_PLAN_REVIEW}}
+ 
+@@ -207,14 +207,14 @@ such — but the user makes the decision.
+ 
+ ## CRITICAL RULE — How to ask questions
+ Follow the AskUserQuestion format from the Preamble above. Additional rules for plan reviews:
+-* **One issue = one AskUserQuestion call.** Never combine multiple issues into one question.
++* **One P0/P1/P2 plan-changing issue = one AskUserQuestion call.** Never combine multiple major issues into one question.
+ * Describe the problem concretely, with file and line references.
+ * Present 2-3 options, including "do nothing" where that's reasonable.
+ * For each option, specify in one line: effort (human: ~X / CC: ~Y), risk, and maintenance burden. If the complete option is only marginally more effort than the shortcut with CC, recommend the complete option.
+ * **Map the reasoning to my engineering preferences above.** One sentence connecting your recommendation to a specific preference (DRY, explicit > clever, minimal diff, etc.).
+ * Label with issue NUMBER + option LETTER (e.g., "3A", "3B").
+ * **Coverage vs kind:** for every per-issue AskUserQuestion you raise in this review, decide whether the options differ in coverage or in kind. If coverage (e.g., more tests vs fewer, complete error handling vs happy-path-only, full edge-case coverage vs shortcut), include `Completeness: N/10` on each option. If kind (e.g., architectural choice between two different systems, posture-over-posture, A/B/C where each is a different kind of thing), skip the score and add one line: `Note: options differ in kind, not coverage — no completeness score.` Do NOT fabricate scores on kind-differentiated questions — filler scores are worse than no score.
+-* **Zero findings:** if a section has zero findings, state "No issues, moving on" and proceed. Otherwise, use AskUserQuestion for each finding — a finding with an "obvious fix" is still a finding and still needs user approval before any change lands in the plan.
++* **Zero major findings:** if a section has zero P0/P1/P2 plan-changing findings, state "No major issues, moving on" and proceed while recording P3/TODO-level findings for the summary/TODO pass. Otherwise, use AskUserQuestion for each P0/P1/P2 plan-changing finding — an "obvious fix" still needs user approval before it lands in the plan when it changes scope, architecture, behavior, tests, security posture, performance posture, or release risk.
+ 
+ ## Required outputs
+ 
+@@ -301,7 +301,7 @@ Check the git log for this branch. If there are prior commits suggesting a previ
+ * NUMBER issues (1, 2, 3...) and LETTERS for options (A, B, C...).
+ * Label with NUMBER + LETTER (e.g., "3A", "3B").
+ * One sentence max per option. Pick in under 5 seconds.
+-* After each review section, pause and ask for feedback before moving on.
++* After each review section, pause only when a P0/P1/P2 decision is open. Otherwise summarize section findings tersely and continue.
+ 
+ ## Review Log
+ 
+diff --git a/scripts/resolvers/preamble/generate-ask-user-format.ts b/scripts/resolvers/preamble/generate-ask-user-format.ts
+index 5a7d174d..a4f4141d 100644
+--- a/scripts/resolvers/preamble/generate-ask-user-format.ts
++++ b/scripts/resolvers/preamble/generate-ask-user-format.ts
+@@ -1,6 +1,85 @@
+ import type { TemplateContext } from '../types';
+ 
+ export function generateAskUserFormat(_ctx: TemplateContext): string {
++  if (_ctx.host === 'codex') {
++    return `## AskUserQuestion Format
++
++### Tool resolution (read first)
++
++In Codex, "AskUserQuestion" means a **Codex decision gate**:
++
++1. Prefer the native \`request_user_input\` tool when it appears in your tool list.
++2. If a host MCP question tool appears, prefer that host tool.
++3. If no question tool is callable and this is a mandatory STOP gate, stop and report
++   \`BLOCKED — Codex decision gate unavailable\`.
++
++Do not claim \`AskUserQuestion unavailable\` merely because the Claude Code tool is
++absent. Codex does not expose Claude's native AskUserQuestion tool; use the Codex
++decision gate above.
++
++### Format
++
++Every decision gate is a decision brief and should be sent as tool_use when a
++question tool is callable.
++
++\`\`\`
++D<N> — <one-line question title>
++Project/branch/task: <1 short grounding sentence using _BRANCH>
++ELI10: <plain English a 16-year-old could follow, 2-4 sentences, name the stakes>
++Stakes if we pick wrong: <one sentence on what breaks, what user sees, what's lost>
++Recommendation: <choice> because <one-line reason>
++Completeness: A=X/10, B=Y/10   (or: Note: options differ in kind, not coverage — no completeness score)
++Pros / cons:
++A) <option label> (recommended)
++  ✅ <pro — concrete, observable, ≥40 chars>
++  ❌ <con — honest, ≥40 chars>
++B) <option label>
++  ✅ <pro>
++  ❌ <con>
++Net: <one-line synthesis of what you're actually trading off>
++\`\`\`
++
++D-numbering: first question in a skill invocation is \`D1\`; increment yourself. This is a model-level instruction, not a runtime counter.
++
++ELI10 is always present, in plain English, not function names. Recommendation is ALWAYS present. Keep the \`(recommended)\` label; AUTO_DECIDE depends on it.
++
++Completeness: use \`Completeness: N/10\` only when options differ in coverage. 10 = complete, 7 = happy path, 3 = shortcut. If options differ in kind, write: \`Note: options differ in kind, not coverage — no completeness score.\`
++
++Pros / cons: use ✅ and ❌. Minimum 2 pros and 1 con per option when the choice is real; Minimum 40 characters per bullet. Hard-stop escape for one-way/destructive confirmations: \`✅ No cons — this is a hard-stop choice\`.
++
++Neutral posture: \`Recommendation: <default> — this is a taste call, no strong preference either way\`; \`(recommended)\` STAYS on the default option for AUTO_DECIDE.
++
++Effort both-scales: when an option involves effort, label both human-team and CC+gstack time, e.g. \`(human: ~2 days / CC: ~15 min)\`. Makes AI compression visible at decision time.
++
++Net line closes the tradeoff. Per-skill instructions may add stricter rules.
++
++12. **Non-ASCII characters — write directly, never \\u-escape.** When any
++    string field (question, option label, option description) contains
++    Chinese (繁體/簡體), Japanese, Korean, or other non-ASCII text, emit
++    the literal UTF-8 characters in the JSON string. **Never escape them
++    as \`\\uXXXX\`.**
++
++    Wrong: \`"question": "請選擇\\uXXXX\\uXXXX\\uXXXX\\uXXXX"\`
++    Right: \`"question": "請選擇管理工具"\`
++
++    Only JSON-mandatory escapes remain allowed: \`\\n\`, \`\\t\`, \`\\"\`, \`\\\\\`.
++
++### Self-check before emitting
++
++Before calling a Codex decision gate, verify:
++- [ ] D<N> header present
++- [ ] ELI10 paragraph present (stakes line too)
++- [ ] Recommendation line present with concrete reason
++- [ ] Completeness scored (coverage) OR kind-note present (kind)
++- [ ] Every option has ≥2 ✅ and ≥1 ❌, each ≥40 chars (or hard-stop escape)
++- [ ] (recommended) label on one option (even for neutral-posture)
++- [ ] Dual-scale effort labels on effort-bearing options (human / CC)
++- [ ] Net line closes the decision
++- [ ] You are using \`request_user_input\` or a host question tool when callable
++- [ ] Non-ASCII characters (CJK / accents) written directly, NOT \\u-escaped
++`;
++  }
++
+   return `## AskUserQuestion Format
+ 
+ ### Tool resolution (read first)
+diff --git a/scripts/resolvers/preamble/generate-completion-status.ts b/scripts/resolvers/preamble/generate-completion-status.ts
+index 0c50da1c..94a5465a 100644
+--- a/scripts/resolvers/preamble/generate-completion-status.ts
++++ b/scripts/resolvers/preamble/generate-completion-status.ts
+@@ -19,7 +19,17 @@ import type { TemplateContext } from '../types';
+  * gates. See ceo-plan 2026-04-24 "remove vestigial plan-mode handshake" for
+  * the full rationale.
+  */
+-export function generatePlanModeInfo(_ctx: TemplateContext): string {
++export function generatePlanModeInfo(ctx: TemplateContext): string {
++  if (ctx.host === 'codex') {
++    return `## Plan Mode Safe Operations
++
++In plan mode, allowed because they inform the plan: \`$B\`, \`$D\`, spawned Codex subagents/outside-review tools, writes to \`~/.gstack/\`, writes to the plan file, and \`open\` for generated artifacts.
++
++## Skill Invocation During Plan Mode
++
++If the user invokes a skill in plan mode, the skill takes precedence over generic plan mode behavior. **Treat the skill file as executable instructions, not reference.** Follow it step by step starting from Step 0; the first Codex decision gate is the workflow entering plan mode, not a violation of it. A Codex decision gate (\`request_user_input\` or host question tool; see "AskUserQuestion Format → Tool resolution") satisfies plan mode's end-of-turn requirement. If no decision gate is callable, the skill is BLOCKED — stop and report \`BLOCKED — Codex decision gate unavailable\` per the AskUserQuestion Format rule. At a STOP point, stop immediately. Do not continue the workflow or call ExitPlanMode there. Commands marked "PLAN MODE EXCEPTION — ALWAYS RUN" execute. Call ExitPlanMode only after the skill workflow completes, or if the user tells you to cancel the skill or leave plan mode.`;
++  }
++
+   return `## Plan Mode Safe Operations
+ 
+ In plan mode, allowed because they inform the plan: \`$B\`, \`$D\`, \`codex exec\`/\`codex review\`, writes to \`~/.gstack/\`, writes to the plan file, and \`open\` for generated artifacts.
+diff --git a/scripts/resolvers/review.ts b/scripts/resolvers/review.ts
+index 743eac7b..ca5ebed2 100644
+--- a/scripts/resolvers/review.ts
++++ b/scripts/resolvers/review.ts
+@@ -186,7 +186,7 @@ must be the file's terminal heading.`;
+ }
+ 
+ export function generateAntiShortcutClause(_ctx: TemplateContext): string {
+-  return `**Anti-shortcut clause:** The plan file is the OUTPUT of the interactive review, not a substitute for it. Writing every finding into one plan write and calling ExitPlanMode without firing AskUserQuestion is the precise failure mode of the May 2026 transcript bug — the model explored, found issues, and dumped them into a deliverable rather than walking the user through them. If you have ANY non-trivial finding in any review section, the path from finding to ExitPlanMode goes THROUGH AskUserQuestion. Zero findings in every section is the only path to ExitPlanMode that bypasses AskUserQuestion. If you find yourself wanting to write a plan with findings before asking, stop and call AskUserQuestion now — that's the bug, recognize it.`;
++  return `**Anti-shortcut clause:** The plan file is the OUTPUT of the interactive review, not a substitute for it. Writing P0/P1/P2 plan-changing findings into one plan write and calling ExitPlanMode without firing AskUserQuestion is the precise failure mode of the May 2026 transcript bug — the model explored, found issues, and dumped them into a deliverable rather than walking the user through them. If you have any P0/P1/P2 finding that changes scope, architecture, behavior, tests, security posture, performance posture, or release risk, the path from finding to ExitPlanMode goes THROUGH AskUserQuestion. P3/TODO-level findings can wait for the section summary/TODO pass. If you find yourself wanting to write a plan with major findings before asking, stop and call AskUserQuestion now — that's the bug, recognize it.`;
+ }
+ 
+ export function generateSpecReviewLoop(_ctx: TemplateContext): string {
+@@ -265,7 +265,19 @@ export function generateBenefitsFrom(ctx: TemplateContext): string {
+ 
+   return `## Prerequisite Skill Offer
+ 
+-When the design doc check above prints "No design doc found," offer the prerequisite
++When the design doc check above prints "No design doc found," first classify the task.
++
++Offer the prerequisite skill only when the work needs product direction, feature
++behavior definition, premise challenge, or scope framing. Skip the offer for obvious
++bugs, mechanical refactors, narrow implementation checks, CI failures, dependency
++bumps, or already-scoped tickets where the user is asking for execution/review rather
++than product thinking.
++
++If skipping, say one terse sentence such as: "No design doc found, but this is an
++obvious bug/mechanical review, so skipping /${first}." Then proceed with standard
++review.
++
++If the work needs product direction or behavior definition, offer the prerequisite
+ skill before proceeding.
+ 
+ Say to the user via AskUserQuestion:
+@@ -588,8 +600,97 @@ High-confidence findings (agreed on by multiple sources) should be prioritized f
+ }
+ 
+ export function generateCodexPlanReview(ctx: TemplateContext): string {
+-  // Codex host: strip entirely — Codex should never invoke itself
+-  if (ctx.host === 'codex') return '';
++  if (ctx.host === 'codex') {
++    return `## Outside Voice — Independent Plan Challenge (Codex-native, recommended)
++
++After all review sections are complete, run an outside voice without shelling out to
++the Codex CLI from inside Codex. In Codex, outside voice means an independent Codex
++subagent that reads the full review skill first, then challenges the reviewed plan.
++
++**Primary path: spawn a Codex subagent**
++
++Spawn a Codex subagent with this prompt:
++
++> IMPORTANT: First read the full review skill file at \`$GSTACK_ROOT/plan-eng-review/SKILL.md\`.
++> Do NOT read or execute any other SKILL.md files or skill definition directories.
++> Stay focused on this named skill, the plan, and repository code only.
++>
++> You are an outside voice reviewing a development plan that has already been through
++> the main engineering review. Do not repeat the checklist. Find what the review missed:
++> logical gaps, unstated assumptions, overcomplexity, feasibility risks, missing
++> dependencies, sequencing problems, test blind spots, and product/engineering
++> mismatch. Be direct. No compliments. Output:
++> 1. Findings, each with severity and confidence.
++> 2. Cross-review tensions: where your view disagrees with the main review.
++> 3. Final recommendation: accept plan, revise plan, or investigate first.
++
++Give the subagent the plan file path when known. If no plan file is available, give it
++the current branch/task summary and the review findings produced in this run.
++
++Present findings under:
++
++\`\`\`
++OUTSIDE VOICE (Codex subagent):
++════════════════════════════════════════════════════════════
++<subagent output, verbatim enough to preserve findings>
++════════════════════════════════════════════════════════════
++\`\`\`
++
++**Fallback: inline outside voice**
++
++If Codex subagents are unavailable, do a separate inline pass after a deliberate context
++reset: reread the plan/review summary, argue against your own conclusions, and mark it
++\`OUTSIDE VOICE (inline fallback)\`. This fallback is weaker than a subagent but better
++than silently skipping the independent challenge.
++
++If neither subagent nor inline fallback can run, say: "Outside voice unavailable."
++
++**Cross-model tension:**
++
++After presenting the outside voice findings, note any points where the outside voice
++disagrees with the review findings from earlier sections. Flag these as:
++
++\`\`\`
++CROSS-REVIEW TENSION:
++  [Topic]: Main review said X. Outside voice says Y. [Present both perspectives neutrally.
++  State what context might change the answer.]
++\`\`\`
++
++**User Sovereignty:** Do NOT auto-incorporate outside voice recommendations into the plan.
++Present each substantive tension point to the user. The user decides. Cross-review
++agreement is a strong signal, but it is NOT permission to act. You may state which
++argument you find more compelling, but you MUST NOT apply the change without explicit
++user approval.
++
++For each P0/P1/P2 tension point that would change the plan, use the Codex decision gate:
++
++> "Cross-review disagreement on [topic]. The main review found [X] but the outside
++> voice argues [Y]. [One sentence on what context might be missing.]"
++>
++> RECOMMENDATION: Choose [A or B] because [one-line reason explaining which argument
++> is more compelling and why]. Completeness: A=X/10, B=Y/10.
++
++Options:
++- A) Accept the outside voice's recommendation (I'll apply this change)
++- B) Keep the current approach (reject the outside voice)
++- C) Investigate further before deciding
++- D) Add to TODOS.md for later
++
++Wait for the user's response. Do NOT default to accepting because you agree with the
++outside voice. If the user chooses B, the current approach stands — do not re-argue.
++
++If no tension points exist, note: "No cross-review tension — both reviewers agree."
++
++**Persist the result:**
++\`\`\`bash
++$GSTACK_ROOT/bin/gstack-review-log '{"skill":"codex-plan-review","timestamp":"'"$(date -u +%Y-%m-%dT%H:%M:%SZ)"'","status":"STATUS","source":"SOURCE","commit":"'"$(git rev-parse --short HEAD)"'"}'
++\`\`\`
++
++Substitute: STATUS = "clean" if no findings, "issues_found" if findings exist.
++SOURCE = "codex-subagent" if the subagent ran, "inline" if fallback ran, "skipped" if unavailable.
++
++---`;
++  }
+ 
+   return `## Outside Voice — Independent Plan Challenge (optional, recommended)
+ 
+diff --git a/scripts/resolvers/testing.ts b/scripts/resolvers/testing.ts
+index 592382bd..f50d6cde 100644
+--- a/scripts/resolvers/testing.ts
++++ b/scripts/resolvers/testing.ts
+@@ -186,7 +186,7 @@ function generateTestCoverageAuditInner(mode: CoverageAuditMode): string {
+   if (mode === 'ship') {
+     sections.push(`100% coverage is the goal — every untested path is a path where bugs hide and vibe coding becomes yolo coding. Evaluate what was ACTUALLY coded (from the diff), not what was planned.`);
+   } else if (mode === 'plan') {
+-    sections.push(`100% coverage is the goal. Evaluate every codepath in the plan and ensure the plan includes tests for each one. If the plan is missing tests, add them — the plan should be complete enough that implementation includes full test coverage from the start.`);
++    sections.push(`100% coverage is the goal. At plan stage, produce an expected path/test matrix, not fake file-level branch proof. Identify every planned route, state, data write, external call, user flow, and error path that implementation must cover. Diff-stage reviews will prove exact functions and branches after code exists.`);
+   } else {
+     sections.push(`100% coverage is the goal. Evaluate every codepath changed in the diff and identify test gaps. Gaps become INFORMATIONAL findings that follow the Fix-First flow.`);
+   }
+@@ -230,17 +230,35 @@ Store this number for the PR body.`);
+ 
+   // ── Codepath tracing methodology (shared, with mode-specific source) ──
+   const traceSource = mode === 'plan'
+-    ? `**Step 1. Trace every codepath in the plan:**
++    ? `**Step 1. Build the expected path/test matrix from the plan:**
+ 
+-Read the plan document. For each new feature, service, endpoint, or component described, trace how data will flow through the code — don't just list planned functions, actually follow the planned execution:`
++Read the plan document. For each planned feature, service, endpoint, component, worker, or integration, map expected behavior and test obligations. Do not invent exact filenames, functions, or branch coverage before code exists. Use existing code only when the plan names a real module or when repository search proves the likely integration point:`
+     : `**${mode === 'ship' ? '1' : 'Step 1'}. Trace every codepath changed** using \`git diff origin/<base>...HEAD\`:
+ 
+ Read every changed file. For each one, trace how data flows through the code — don't just list functions, actually follow the execution:`;
+ 
+   const traceStep1 = mode === 'plan'
+-    ? `1. **Read the plan.** For each planned component, understand what it does and how it connects to existing code.`
++    ? `1. **Read the plan.** For each planned component, identify entry points, user-visible states, data writes, external calls, and failure modes.`
+     : `1. **Read the diff.** For each changed file, read the full file (not just the diff hunk) to understand context.`;
+ 
++  const diagramTarget = mode === 'plan'
++    ? `3. **Diagram the expected execution.** For each planned entry point or proven integration point, draw an ASCII matrix showing:
++   - Expected routes, jobs, components, services, or integrations
++   - Expected decision points from the plan (validation, permission checks, state transitions, fallbacks)
++   - Expected error paths and recovery UX
++   - Calls to existing helpers only when the plan/source evidence proves them
++   - Edge cases: null input, empty collection, invalid type, stale data, timeout, duplicate submit`
++    : `3. **Diagram the execution.** For each changed file, draw an ASCII diagram showing:
++   - Every function/method that was added or modified
++   - Every conditional branch (if/else, switch, ternary, guard clause, early return)
++   - Every error path (try/catch, rescue, error boundary, fallback)
++   - Every call to another function (trace into it — does IT have untested branches?)
++   - Every edge: what happens with null input? Empty array? Invalid type?`;
++
++  const traceConclusion = mode === 'plan'
++    ? `This is the critical step — you're building a map of what must be proven during implementation. Label speculative integration points as EXPECTED, and reserve VERIFIED branch claims for diff-stage review.`
++    : `This is the critical step — you're building a map of every line of code that can execute differently based on input. Every branch in this diagram needs a test.`;
++
+   sections.push(`
+ ${traceSource}
+ 
+@@ -250,14 +268,9 @@ ${traceStep1}
+    - What transforms it? (validation, mapping, computation)
+    - Where does it go? (database write, API response, rendered output, side effect)
+    - What can go wrong at each step? (null/undefined, invalid input, network failure, empty collection)
+-3. **Diagram the execution.** For each changed file, draw an ASCII diagram showing:
+-   - Every function/method that was added or modified
+-   - Every conditional branch (if/else, switch, ternary, guard clause, early return)
+-   - Every error path (try/catch, rescue, error boundary, fallback)
+-   - Every call to another function (trace into it — does IT have untested branches?)
+-   - Every edge: what happens with null input? Empty array? Invalid type?
++${diagramTarget}
+ 
+-This is the critical step — you're building a map of every line of code that can execute differently based on input. Every branch in this diagram needs a test.`);
++${traceConclusion}`);
+ 
+   // ── User flow coverage (shared) ──
+   sections.push(`
+@@ -281,16 +294,30 @@ Code coverage isn't enough — you need to cover how real users interact with th
+ Add these to your diagram alongside the code branches. A user flow with no test is just as much a gap as an untested if/else.`);
+ 
+   // ── Check branches against tests + quality rubric (shared) ──
+-  sections.push(`
+-**${mode === 'ship' ? '3' : 'Step 3'}. Check each branch against existing tests:**
+-
+-Go through your diagram branch by branch — both code paths AND user flows. For each one, search for a test that exercises it:
++  const testCheckHeading = mode === 'plan'
++    ? '**Step 3. Check each expected path against test obligations:**'
++    : `**${mode === 'ship' ? '3' : 'Step 3'}. Check each branch against existing tests:**`;
++
++  const testCheckBody = mode === 'plan'
++    ? `Go through your expected matrix path by path — planned code paths AND user flows. For each one, state the test obligation and search existing tests only when existing code already covers part of the flow:
++- Planned route/API path → name the integration or request test that must exist
++- Planned validation/permission decision → require true and false path tests
++- Planned error handler/fallback → require a test that triggers that condition
++- Existing helper explicitly reused by the plan → search for its current tests and note reuse
++- User flow → require integration or E2E coverage for the journey
++- Interaction edge case → require a test for the unexpected action`
++    : `Go through your diagram branch by branch — both code paths AND user flows. For each one, search for a test that exercises it:
+ - Function \`processPayment()\` → look for \`billing.test.ts\`, \`billing.spec.ts\`, \`test/billing_test.rb\`
+ - An if/else → look for tests covering BOTH the true AND false path
+ - An error handler → look for a test that triggers that specific error condition
+ - A call to \`helperFn()\` that has its own branches → those branches need tests too
+ - A user flow → look for an integration or E2E test that walks through the journey
+-- An interaction edge case → look for a test that simulates the unexpected action
++- An interaction edge case → look for a test that simulates the unexpected action`;
++
++  sections.push(`
++${testCheckHeading}
++
++${testCheckBody}
+ 
+ Quality scoring rubric:
+ - ★★★  Tests behavior with edge cases AND error paths
+diff --git a/test/gen-skill-docs.test.ts b/test/gen-skill-docs.test.ts
+index 27281e1a..b6f481f7 100644
+--- a/test/gen-skill-docs.test.ts
++++ b/test/gen-skill-docs.test.ts
+@@ -718,7 +718,6 @@ describe('TEST_COVERAGE_AUDIT placeholders', () => {
+     // Review mode delegates test coverage to the Testing specialist subagent (Review Army)
+     const sharedPhrases = [
+       'Trace data flow',
+-      'Diagram the execution',
+       'Quality scoring rubric',
+       '★★★',
+       '★★',
+@@ -728,11 +727,13 @@ describe('TEST_COVERAGE_AUDIT placeholders', () => {
+       expect(planSkill).toContain(phrase);
+       expect(shipSkill).toContain(phrase);
+     }
+-    // Plan mode traces the plan, not a git diff
+-    expect(planSkill).toContain('Trace every codepath in the plan');
++    // Plan mode builds an expected matrix, not fake branch proof from code that does not exist yet.
++    expect(planSkill).toContain('Build the expected path/test matrix from the plan');
++    expect(planSkill).toContain('Diagram the expected execution');
+     expect(planSkill).not.toContain('git diff origin');
+     // Ship mode traces the diff
+     expect(shipSkill).toContain('Trace every codepath changed');
++    expect(shipSkill).toContain('Diagram the execution');
+   });
+ 
+   test('review mode uses Review Army for specialist dispatch', () => {
+@@ -1820,14 +1821,14 @@ describe('Codex generation (--host codex)', () => {
+     expect(content).not.toContain('~/.codex/skills/gstack/bin/gstack-config get telemetry');
+   });
+ 
+-  test('Codex host defaults every generated skill to the GPT/Codex runtime patches', () => {
++  test('Codex host defaults every generated skill to the GPT-5.5/Codex runtime patches', () => {
+     for (const skill of CODEX_SKILLS) {
+       const content = fs.readFileSync(path.join(AGENTS_DIR, skill.codexName, 'SKILL.md'), 'utf-8');
+-      expect(content).toContain('Model-Specific Behavioral Patch (gpt-5.4)');
++      expect(content).toContain('Model-Specific Behavioral Patch (gpt-5.5)');
+       expect(content).toContain('Host Runtime Patch (OpenAI Codex CLI)');
+       expect(content).toContain('Codex tool mapping');
+       if (content.includes('MODEL_OVERLAY:')) {
+-        expect(content).toContain('MODEL_OVERLAY: gpt-5.4');
++        expect(content).toContain('MODEL_OVERLAY: gpt-5.5');
+       }
+       expect(content).not.toContain('MODEL_OVERLAY: claude');
+       expect(content).not.toContain('Model-Specific Behavioral Patch (claude)');
+@@ -1845,6 +1846,39 @@ describe('Codex generation (--host codex)', () => {
+     }
+   });
+ 
++  test('Codex plan-eng-review uses Codex-native decision gates', () => {
++    const content = fs.readFileSync(path.join(AGENTS_DIR, 'gstack-plan-eng-review', 'SKILL.md'), 'utf-8');
++    expect(content).toContain('Codex decision gate');
++    expect(content).toContain('request_user_input');
++    expect(content).toContain('BLOCKED — Codex decision gate unavailable');
++    expect(content).not.toContain('BLOCKED — AskUserQuestion unavailable');
++  });
++
++  test('Codex plan-eng-review keeps outside voice without self-invoking codex exec', () => {
++    const content = fs.readFileSync(path.join(AGENTS_DIR, 'gstack-plan-eng-review', 'SKILL.md'), 'utf-8');
++    const outsideVoice = extractMarkdownSection(content, '## Outside Voice');
++    expect(outsideVoice).toContain('Codex-native');
++    expect(outsideVoice).toContain('Codex subagent');
++    expect(outsideVoice).toContain('inline fallback');
++    expect(outsideVoice).toContain('SOURCE = "codex-subagent"');
++    expect(outsideVoice).not.toContain('codex exec');
++  });
++
++  test('plan-stage eng review produces expected test matrix, not fake branch proof', () => {
++    const content = fs.readFileSync(path.join(AGENTS_DIR, 'gstack-plan-eng-review', 'SKILL.md'), 'utf-8');
++    expect(content).toContain('expected path/test matrix');
++    expect(content).toContain('Do not invent exact filenames, functions, or branch coverage before code exists');
++    expect(content).toContain('reserve VERIFIED branch claims for diff-stage review');
++    expect(content).not.toContain('Trace every codepath in the plan');
++  });
++
++  test('plan-eng-review only offers office-hours for product direction or behavior ambiguity', () => {
++    const content = fs.readFileSync(path.join(AGENTS_DIR, 'gstack-plan-eng-review', 'SKILL.md'), 'utf-8');
++    expect(content).toContain('Offer the prerequisite skill only when the work needs product direction');
++    expect(content).toContain('Skip the offer for obvious');
++    expect(content).toContain('bugs, mechanical refactors');
++  });
++
+   // ─── Path rewriting regression tests ─────────────────────────
+ 
+   test('sidecar paths point to .agents/skills/gstack/review/ (not gstack-review/)', () => {

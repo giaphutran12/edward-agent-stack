@@ -30,6 +30,15 @@ If the user explicitly asked to update the fork remote:
 - Require a clean `codex-gstack` working tree before sync.
 - Create a backup branch before merge.
 - Run verification before push.
+- Preserve both overlay patches: GPT-5.5 default and Codex-native plan review.
+
+## Verification Must Prove
+
+- Generated Codex skills still use `MODEL_OVERLAY: gpt-5.5`.
+- Codex plan review uses `Codex decision gate`, not Claude-only AUQ blocking.
+- `/plan-eng-review` keeps outside voice via Codex subagent or inline fallback.
+- Plan-stage test review says expected path/test matrix, not branch-level proof.
+- `/office-hours` is skipped for obvious bugs/mechanical review work.
 
 ## On Conflict
 
