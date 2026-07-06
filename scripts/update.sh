@@ -4,7 +4,6 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GSTACK_DIR="${GSTACK_DIR:-$HOME/.gstack/repos/gstack}"
 OVERLAY_INSTALLER="$ROOT/scripts/install-codex-gstack-overlay.sh"
-OVERLAY_SYNC="${CODEX_GSTACK_SYNC:-$HOME/.agents/plugins/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/sync-upstream.sh}"
 
 log() { printf '%s\n' "$*"; }
 
@@ -35,21 +34,17 @@ fi
 
 if [ -d "$GSTACK_DIR/.git" ]; then
   old_gstack="$(git -C "$GSTACK_DIR" rev-parse --short HEAD 2>/dev/null || echo unknown)"
-  if [ -x "$OVERLAY_SYNC" ]; then
-    "$OVERLAY_SYNC" --repo "$GSTACK_DIR" --no-push
+  # codex-gstack is frozen at tag frozen-v1: fast-forward from Edward's fork
+  # origin only. Never sync upstream garrytan/gstack.
+  current_branch="$(git -C "$GSTACK_DIR" branch --show-current 2>/dev/null || true)"
+  if [ -n "$(git -C "$GSTACK_DIR" status --porcelain)" ]; then
+    log "WARN: gstack dir has local changes. Skipping auto-update to avoid overwriting work."
+  elif [ "$current_branch" != "main" ]; then
+    log "WARN: gstack dir is on branch ${current_branch:-unknown}. Skipping auto-update."
   else
-    log "WARN: Codex GStack overlay sync missing: $OVERLAY_SYNC"
-    log "WARN: Falling back to safe fast-forward of codex-gstack only."
-    current_branch="$(git -C "$GSTACK_DIR" branch --show-current 2>/dev/null || true)"
-    if [ -n "$(git -C "$GSTACK_DIR" status --porcelain)" ]; then
-      log "WARN: gstack dir has local changes. Skipping auto-update to avoid overwriting work."
-    elif [ "$current_branch" != "main" ]; then
-      log "WARN: gstack dir is on branch ${current_branch:-unknown}. Skipping auto-update."
-    else
-      git -C "$GSTACK_DIR" fetch origin main
-      git -C "$GSTACK_DIR" merge --ff-only origin/main || log "WARN: codex-gstack could not fast-forward."
-      (cd "$GSTACK_DIR" && ./setup --host codex)
-    fi
+    git -C "$GSTACK_DIR" fetch origin main
+    git -C "$GSTACK_DIR" merge --ff-only origin/main || log "WARN: codex-gstack could not fast-forward."
+    (cd "$GSTACK_DIR" && ./setup --host codex)
   fi
   new_gstack="$(git -C "$GSTACK_DIR" rev-parse --short HEAD 2>/dev/null || echo unknown)"
   log "codex-gstack: $old_gstack -> $new_gstack"

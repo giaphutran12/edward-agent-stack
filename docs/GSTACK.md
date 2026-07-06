@@ -19,28 +19,30 @@ The fork carries Codex compatibility patches on top of upstream gstack:
 - default model overlay for `gpt-5.5`
 - skill freshness checks for generated Codex docs
 
-## Overlay Plugin
+## Freeze Policy
 
-Problem: GitHub's fork sync button can offer to discard fork commits when the
-fork is ahead and behind upstream. That would erase Edward's Codex-specific
-patches.
+Problem: every upstream gstack release forced a Codex re-translation across
+dozens of generated skill files. That upkeep cost more than the freshness was
+worth for the small set of Codex workflows in actual use.
 
-Standard: update `codex-gstack` through the local Codex GStack Overlay plugin.
-The overlay plugin merges upstream `garrytan/gstack`, reapplies Edward's Codex
-patches, regenerates generated skills, verifies host behavior, and only pushes
-when the operator explicitly asks.
+Standard: `codex-gstack` is frozen at tag `frozen-v1` (2026-07-06). The fork
+no longer tracks upstream `garrytan/gstack`. There are no upstream syncs and
+no overlay patch waves.
 
-Reason: the fork needs upstream freshness and Edward's Codex behavior at the
-same time. Resetting to upstream solves freshness by destroying the overlay.
+Reason: the frozen fork already covers the Codex workflows in use (`browse`,
+`review`, `gstack-upgrade` router). A fork that never merges upstream never
+needs re-translation.
 
 Procedure:
 
-```bash
-~/edward-agent-stack/scripts/install-codex-gstack-overlay.sh
-~/.agents/plugins/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/sync-upstream.sh --repo ~/.gstack/repos/gstack --no-push
-```
-
-Use `--push` only when Edward explicitly asks to update `origin/main`.
+1. Never run `/gstack-upgrade` inside Codex. Never add an upstream remote or
+   use GitHub fork sync on `codex-gstack`.
+2. `./scripts/update.sh` only fast-forwards `codex-gstack` from Edward's fork
+   `origin/main`.
+3. Upgrade only when a skill in active use breaks. Treat that as a deliberate
+   one-off project with Edward's sign-off.
+4. Build new Codex-native behaviors as owned skills in
+   `edward-agent-stack/skills/`, never as patches on generated gstack output.
 
 ## Install
 
@@ -57,6 +59,5 @@ cd ~/.gstack/repos/gstack
 ~/edward-agent-stack/scripts/update.sh
 ```
 
-Do not use `git reset --hard upstream/main`, GitHub "discard commits", or force
-pushes for fork sync. Use `scripts/update.sh` or the overlay plugin directly so
-the fork keeps both upstream changes and Codex-specific patches.
+This fast-forwards the stack repo and `codex-gstack` from their own origins.
+It never merges upstream `garrytan/gstack`. See Freeze Policy above.
