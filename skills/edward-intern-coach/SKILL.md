@@ -73,7 +73,7 @@ Before opening a PR or finishing a meaningful task, run decision capture:
 Edward's preferred setup:
 
 1. Codex
-2. MemPalace + hook for durable memory
+2. Supermemory (hosted MCP) plus the Mem0 Codex plugin for durable memory
 3. Repowise for repo orientation/sync, when healthy
 4. `codex-gstack` with the Codex GStack Overlay plugin for investigate/ship/autopilot/ultrawork workflows
 5. OMX not required for interns

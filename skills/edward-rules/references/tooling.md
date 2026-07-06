@@ -5,7 +5,8 @@ Core CLIs:
 - Codex
 - Edward's `codex-gstack`
 - Codex GStack Overlay plugin for safe upstream sync and GPT-5.5 default overlay
-- MemPalace
+- Supermemory
+- Mem0 (Codex plugin)
 - Repowise
 - Nia CLI after `nia auth login`
 - Nia sandbox command: `nia search sandbox "<question>" --repository owner/repo`
@@ -25,7 +26,8 @@ Core MCP / app tools:
 
 - Exa
 - Linear
-- MemPalace
+- Supermemory
+- Mem0 (Codex plugin)
 - Playwright / Browser Use
 - Computer Use
 - Repowise

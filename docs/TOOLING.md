@@ -17,7 +17,8 @@ See [FRESH_MAC.md](FRESH_MAC.md) for Edward's current machine snapshot and sourc
 | Codex | primary coding agent | account login |
 | Edward's `codex-gstack` | Edward's Codex-compatible gstack fork | no |
 | Codex GStack Overlay plugin | safe upstream sync for `codex-gstack`; preserves Edward's Codex patches and GPT-5.5 default | no |
-| MemPalace | durable agent memory | no, local setup |
+| Supermemory | durable agent memory over hosted MCP | no, auth on first use |
+| Mem0 | agent memory via Codex plugin | no |
 | Repowise | repo/code intelligence | provider API key for generation |
 | Nia CLI | optional indexed repo/docs/context search after Edward approves seats | yes, `nia auth login` |
 | Supabase CLI | database migrations and local/remote Supabase workflows | project login/token may be needed |
@@ -38,7 +39,8 @@ Keep these:
 
 - Exa: web/research search.
 - Linear: issues and project tracking.
-- MemPalace: durable agent diary/memory.
+- Supermemory: durable agent memory via the hosted MCP server at `https://mcp.supermemory.ai/mcp`; auth happens on first use.
+- Mem0: agent memory installed as a Codex plugin, not an MCP server. Add the marketplace `https://github.com/mem0ai/mem0.git` in Codex and enable the `mem0` plugin; it ships its own hooks.
 - Playwright / Browser Use: browser QA and local app testing.
 - Computer Use: desktop/app control when needed.
 - Repowise: repo intelligence via MCP.

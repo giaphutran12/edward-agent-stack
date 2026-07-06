@@ -27,7 +27,8 @@ Keep the intern and candidate setup realistic:
 - Agent: Codex
 - Agent style: Caveman ultra
 - Workflow: Edward Rules, project notes, decision notes
-- Repo tools: Codex-compatible gstack fork, Codex GStack Overlay plugin, Repowise, MemPalace, Nia when authenticated
+- Repo tools: Codex-compatible gstack fork, Codex GStack Overlay plugin, Repowise, Nia when authenticated
+- Memory: Supermemory (hosted MCP, auth on first use), Mem0 (Codex plugin)
 - App/MCP tools: Exa, Linear, Browser Use/Playwright, Computer Use, OpenAI Developer Docs
 
 ## Ask Edward Before
