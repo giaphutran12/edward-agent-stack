@@ -73,7 +73,7 @@ fi
 
 if have npx; then
   log "Installing caveman skill for Codex"
-  npx --yes skills add "$CAVEMAN_REPO" --agent codex --skill caveman --global --yes
+  npx --yes skills add "$CAVEMAN_REPO" --agent codex --skill caveman --global --yes || log "WARN: caveman skill install failed; run manually: npx --yes skills add $CAVEMAN_REPO --agent codex --skill caveman --global --yes"
 else
   log "WARN: npx not found. Install caveman manually: npx --yes skills add $CAVEMAN_REPO --agent codex --skill caveman --global --yes"
 fi

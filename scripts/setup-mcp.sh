@@ -47,11 +47,21 @@ url = "https://mcp.exa.ai/mcp?exaApiKey=<EXA_API_KEY>"
 
 [mcp_servers.linear]
 url = "https://mcp.linear.app/mcp"
+EOF
+
+if [ -x "$MEM_PY" ]; then
+  cat >> "$OUT" <<EOF
 
 [mcp_servers.mempalace]
 command = "${MEM_PY}"
 args = ["-m", "mempalace.mcp_server"]
 startup_timeout_sec = 20.0
+EOF
+else
+  log "WARN MemPalace runtime missing; mempalace block omitted from template. Rerun after installing MemPalace."
+fi
+
+cat >> "$OUT" <<EOF
 
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
