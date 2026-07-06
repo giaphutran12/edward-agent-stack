@@ -19,7 +19,8 @@ Core CLIs:
 - Codex
 - Caveman skill (`JuliusBrussee/caveman`)
 - Edward's `codex-gstack`
-- MemPalace
+- Supermemory
+- Mem0 (Codex plugin)
 - Repowise
 - Nia CLI, optional after Edward approves seats
 - Supabase CLI
@@ -38,7 +39,8 @@ Core MCP / app tools:
 
 - Exa
 - Linear
-- MemPalace
+- Supermemory
+- Mem0 (Codex plugin)
 - Playwright / Browser Use
 - Computer Use
 - Repowise
