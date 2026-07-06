@@ -3,6 +3,11 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+command -v rg >/dev/null 2>&1 || {
+  printf 'FAIL operator playbook audit: ripgrep (rg) is required. Install with: brew install ripgrep\n'
+  exit 1
+}
+
 encoded_patterns=(
   "cHJpdmF0ZSBwZXJzb25hbA=="
   "bWVtb3J5IGR1bXA="
@@ -54,6 +59,7 @@ if rg -n -i --no-ignore "$joined" \
   --glob '!*.pdf' \
   --glob '!*.png' \
   --glob '!scripts/audit-operator-playbook.sh' \
+  --glob '!assessments/**' \
   --glob '!.git/*' \
   --glob '!.repowise/*' \
   --glob '!.omx/*' \

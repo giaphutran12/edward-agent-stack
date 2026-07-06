@@ -19,16 +19,17 @@ Procedure:
 
 ## Install Order
 
-1. Local macOS user: no personal iCloud or Apple Account.
-2. Xcode Command Line Tools: needed for `git`, compilers, and Homebrew bootstrap.
-3. Homebrew: required macOS package manager. Apple Silicon prefix is `/opt/homebrew`.
-4. Homebrew shell path: add `eval "$(/opt/homebrew/bin/brew shellenv)"` to `~/.zprofile`.
-5. Node/npm/npx: install with Homebrew for the simple global baseline.
-6. Bun, Python, uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI.
-7. Agent CLIs: Codex, Claude Code, Repowise. Nia is optional after Edward approves seats.
-8. Docker Desktop: install if possible, but first run/license/login may require manual GUI.
-9. Edward stack: Caveman, Edward skills, Codex gstack fork, MCP template.
-10. Auth gates: GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa and Repowise providers need API keys. Nia needs `nia auth login` only if Edward approves a Nia seat.
+1. Update macOS first: System Settings → General → Software Update, install the latest macOS before anything else. Homebrew only supports the last ~3 macOS releases and the Docker Desktop cask refuses to install on older macOS; skipping this surfaces later as confusing tool failures in `verify.sh`.
+2. Local macOS user: no personal iCloud or Apple Account.
+3. Xcode Command Line Tools: needed for `git`, compilers, and Homebrew bootstrap.
+4. Homebrew: required macOS package manager. Apple Silicon prefix is `/opt/homebrew`.
+5. Homebrew shell path: add `eval "$(/opt/homebrew/bin/brew shellenv)"` to `~/.zprofile`.
+6. Node/npm/npx: install with Homebrew for the simple global baseline.
+7. Bun, Python, uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI.
+8. Agent CLIs: Codex, Claude Code, Repowise. Nia is optional after Edward approves seats.
+9. Docker Desktop: install if possible, but first run/license/login may require manual GUI.
+10. Edward stack: Caveman, Edward skills, Codex gstack fork, MCP template.
+11. Auth gates: GitHub/Vercel/Supabase/Claude/Codex need their own login; Exa and Repowise providers need API keys. Nia needs `nia auth login` only if Edward approves a Nia seat.
 
 Use:
 

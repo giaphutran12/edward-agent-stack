@@ -53,7 +53,7 @@ BLI-specific add-on: Cockpit emitter tooling (`bli-event`, `worker-emit.sh`, and
 Paste this into Codex on a fresh machine:
 
 ```text
-Install Edward's agent stack on this fresh company Mac. During macOS setup, use a local macOS user and skip Apple Account/iCloud; do not use a personal iCloud account. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Treat Nia as optional; do not create or require a Nia account unless Edward approves a seat. Do not inspect or print local real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. Use docs/AUTH_GATES.md for exact official links and safe commands. After install, tell me exactly what passed, what failed, and what I need to do next.
+Install Edward's agent stack on this fresh company Mac. Before anything else, make sure macOS itself is fully updated (System Settings > General > Software Update) — Homebrew and Docker Desktop require a current macOS; if an update is pending, tell me to install it first and stop. During macOS setup, use a local macOS user and skip Apple Account/iCloud; do not use a personal iCloud account. Clone https://github.com/giaphutran12/edward-agent-stack to ~/edward-agent-stack, read AGENTS.md, then run ./scripts/bootstrap-macos.sh, ./scripts/install.sh, ./scripts/verify.sh, and ./scripts/auth-doctor.sh. Use /caveman ultra for terse token-saving communication. Install prerequisites automatically when safe: Xcode Command Line Tools prompt, Homebrew, Node/npm/npx, Bun, Python/pip/uv, GitHub CLI, ripgrep, jq, tmux, ffmpeg, Supabase CLI, Vercel CLI, Claude Code, Repowise, Caveman, Edward skills, and giaphutran12/codex-gstack for Codex using ./setup --host codex. Treat Nia as optional; do not create or require a Nia account unless Edward approves a seat. Do not inspect or print local real env/secret files. If a tool needs login, API key, license acceptance, or a GUI first-run step, stop and tell me exactly what is missing instead of forcing it. Use docs/AUTH_GATES.md for exact official links and safe commands. After install, tell me exactly what passed, what failed, and what I need to do next.
 ```
 
 Installer maintainers should run the clean-home test before changing setup behavior:
@@ -63,6 +63,8 @@ Installer maintainers should run the clean-home test before changing setup behav
 ```
 
 ## Manual Install
+
+Prerequisite: update macOS to the latest version first (System Settings → General → Software Update). Homebrew supports only the last ~3 macOS releases and the Docker Desktop cask requires a current macOS.
 
 ```bash
 git clone https://github.com/giaphutran12/edward-agent-stack ~/edward-agent-stack
