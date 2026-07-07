@@ -15,8 +15,7 @@ See [FRESH_MAC.md](FRESH_MAC.md) for Edward's current machine snapshot and sourc
 | Tool | Why it matters | Secret needed? |
 | --- | --- | --- |
 | Codex | primary coding agent | account login |
-| Edward's `codex-gstack` | Edward's Codex-compatible gstack fork | no |
-| Codex GStack Overlay plugin | safe upstream sync for `codex-gstack`; preserves Edward's Codex patches and GPT-5.5 default | no |
+| Edward's `codex-gstack` | Edward's Codex-compatible gstack fork, frozen at tag `frozen-v1` | no |
 | Supermemory | durable agent memory over hosted MCP | no, auth on first use |
 | Mem0 | agent memory via Codex plugin | no |
 | Repowise | repo/code intelligence | provider API key for generation |
@@ -66,25 +65,12 @@ For ephemeral repo exploration, use `nia search sandbox "<question>" --repositor
 
 Nia MCP may exist in other app configs, but it is not part of the default Codex MCP stack unless Edward explicitly adds it.
 
-## Codex GStack Overlay
+## Codex GStack Fork
 
-Problem: `codex-gstack` is a fork, so syncing through GitHub can ask the
-operator to discard fork commits when the fork is both ahead and behind
-upstream.
-
-Standard: use the Codex GStack Overlay plugin for fork maintenance.
-
-Reason: interns need upstream GStack freshness without losing Edward's Codex
-runtime patches, subagent mapping, generated skill behavior, or GPT-5.5 default.
-
-Procedure:
-
-```bash
-./scripts/install-codex-gstack-overlay.sh
-~/.agents/plugins/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/sync-upstream.sh --repo ~/.gstack/repos/gstack --no-push
-```
-
-Use `--push` only when Edward explicitly asks to update the fork remote.
+`codex-gstack` is frozen at tag `frozen-v1` and no longer tracks upstream
+`garrytan/gstack`. `./scripts/update.sh` fast-forwards it from Edward's fork
+origin only. Never sync it by discarding commits, force-pushing, or resetting
+to upstream. See the Freeze Policy in [GSTACK.md](GSTACK.md).
 
 ## API Keys / Logins
 

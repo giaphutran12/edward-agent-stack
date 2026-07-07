@@ -139,9 +139,6 @@ export UV_TOOL_DIR="$SANDBOX_ROOT/uv/tools"
 export UV_TOOL_BIN_DIR="$SANDBOX_ROOT/uv/bin"
 export GSTACK_DIR="$SANDBOX_HOME/.gstack/repos/gstack"
 export CODEX_GSTACK_RUNTIME="$SANDBOX_HOME/.codex/skills/gstack"
-export CODEX_PLUGIN_ROOT="$SANDBOX_HOME/.agents/plugins"
-export CODEX_GSTACK_OVERLAY="$CODEX_PLUGIN_ROOT/plugins/codex-gstack-overlay"
-export CODEX_PLUGIN_MARKETPLACE="$CODEX_PLUGIN_ROOT/marketplace.json"
 
 if [ "$WITH_MACOS_BOOTSTRAP" -eq 0 ]; then
   export EDWARD_STACK_SKIP_MACOS_BOOTSTRAP=1
@@ -183,7 +180,6 @@ syntax_check() {
     "$ROOT/scripts/bootstrap-macos.sh"
     "$ROOT/scripts/fresh-mac-sandbox.sh"
     "$ROOT/scripts/generate-agents-fallback.sh"
-    "$ROOT/scripts/install-codex-gstack-overlay.sh"
     "$ROOT/scripts/install-tools.sh"
     "$ROOT/scripts/install.sh"
     "$ROOT/scripts/repowise-update.sh"

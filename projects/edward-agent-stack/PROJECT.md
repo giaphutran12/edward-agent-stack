@@ -27,7 +27,7 @@ Keep the intern and candidate setup realistic:
 - Agent: Codex
 - Agent style: Caveman ultra
 - Workflow: Edward Rules, project notes, decision notes
-- Repo tools: Codex-compatible gstack fork, Codex GStack Overlay plugin, Repowise, Nia when authenticated
+- Repo tools: Codex-compatible gstack fork (frozen at tag `frozen-v1`), Repowise, Nia when authenticated
 - Memory: Supermemory (hosted MCP, auth on first use), Mem0 (Codex plugin)
 - App/MCP tools: Exa, Linear, Browser Use/Playwright, Computer Use, OpenAI Developer Docs
 
@@ -41,7 +41,7 @@ Keep the intern and candidate setup realistic:
 ## Gotchas
 
 - Shared-secret vaults are project-specific. See `decisions/2026-04-30-secret-access-policy.md`.
-- `codex-gstack` is a fork. Sync it through the overlay plugin, not reset/discard/force-push flows. See `decisions/2026-05-03-codex-gstack-overlay-sync.md`.
+- `codex-gstack` is a fork frozen at tag `frozen-v1`. Never use reset/discard/force-push flows on it; `./scripts/update.sh` fast-forwards from Edward's fork origin only. See the Freeze Policy in `docs/GSTACK.md`.
 - Do not inspect real env files. Execution-only loading is allowed when needed.
 - Do not publish generated benchmark artifacts unless Edward asks for them.
 - If Homebrew/Xcode CLT setup needs a GUI prompt or password, stop and rerun after the human finishes that gate.
@@ -54,7 +54,6 @@ Keep the intern and candidate setup realistic:
 ## Recent Decisions
 
 - `decisions/2026-04-30-secret-access-policy.md`
-- `decisions/2026-05-03-codex-gstack-overlay-sync.md`
 - `decisions/2026-05-04-raw-capture-first.md`
 - `decisions/2026-05-04-local-macos-account-setup.md`
 - `decisions/2026-05-04-homebrew-required-baseline.md`

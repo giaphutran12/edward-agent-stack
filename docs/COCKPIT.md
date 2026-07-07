@@ -139,9 +139,9 @@ https://github.com/giaphutran12/codex-gstack
 
 When Cockpit worker images install gstack, pin this fork by commit SHA. Intern setup and Cockpit worker setup should move together when the fork is bumped.
 
-Use the Codex GStack Overlay plugin when bumping the fork. Do not update worker
-images from upstream `garrytan/gstack` directly unless Edward explicitly changes
-the standard.
+The fork is frozen at tag `frozen-v1` (see the Freeze Policy in
+[GSTACK.md](GSTACK.md)). Do not update worker images from upstream
+`garrytan/gstack` directly unless Edward explicitly changes the standard.
 
 ### Day-1 Intern Loop
 

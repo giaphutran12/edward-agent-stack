@@ -65,12 +65,6 @@ else
   exit 1
 fi
 
-if [ -x "$ROOT/scripts/install-codex-gstack-overlay.sh" ]; then
-  "$ROOT/scripts/install-codex-gstack-overlay.sh" || log "WARN: Codex GStack overlay plugin install had warnings."
-else
-  log "WARN: Codex GStack overlay installer missing."
-fi
-
 if have npx; then
   log "Installing caveman skill for Codex"
   npx --yes skills add "$CAVEMAN_REPO" --agent codex --skill caveman --global --yes || log "WARN: caveman skill install failed; run manually: npx --yes skills add $CAVEMAN_REPO --agent codex --skill caveman --global --yes"

@@ -75,7 +75,7 @@ Edward's preferred setup:
 1. Codex
 2. Supermemory (hosted MCP) plus the Mem0 Codex plugin for durable memory
 3. Repowise for repo orientation/sync, when healthy
-4. `codex-gstack` with the Codex GStack Overlay plugin for investigate/ship/autopilot/ultrawork workflows
+4. `codex-gstack` (frozen at tag `frozen-v1`) for investigate/ship/autopilot/ultrawork workflows
 5. OMX not required for interns
 6. same user-scope `AGENTS.md` guidance
 
@@ -124,7 +124,7 @@ Ask Edward only if:
 - Database changes: Supabase CLI migrations/scripts only. Never use Supabase SQL editor for team work.
 - Debugging: use `gstack investigate` before saying "I'm stuck."
 - PR/shipping: use `gstack ship` so tests, review, changelog, commit, push, and PR shape are handled by the workflow.
-- GStack sync: use the Codex GStack Overlay plugin; do not reset, force-push, or discard fork commits.
+- GStack sync: `codex-gstack` is frozen at tag `frozen-v1`; do not reset, force-push, or discard fork commits.
 - Cockpit: for BLI-managed work, emit lifecycle events as the feedback layer for Edward's coaching.
 
 ## Hard Boundaries

@@ -4,8 +4,6 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GSTACK_DIR="${GSTACK_DIR:-$HOME/.gstack/repos/gstack}"
 CODEX_GSTACK_RUNTIME="${CODEX_GSTACK_RUNTIME:-$HOME/.codex/skills/gstack}"
-CODEX_GSTACK_OVERLAY="${CODEX_GSTACK_OVERLAY:-$HOME/.agents/plugins/plugins/codex-gstack-overlay}"
-CODEX_PLUGIN_MARKETPLACE="${CODEX_PLUGIN_MARKETPLACE:-$HOME/.agents/plugins/marketplace.json}"
 
 fail=0
 check() {
@@ -37,13 +35,6 @@ check test -x "$ROOT/scripts/update.sh"
 check test -x "$ROOT/scripts/generate-agents-fallback.sh"
 check test -x "$ROOT/scripts/repowise-update.sh"
 check test -x "$ROOT/scripts/audit-operator-playbook.sh"
-check test -x "$ROOT/scripts/install-codex-gstack-overlay.sh"
-check test -f "$ROOT/plugins/codex-gstack-overlay/.codex-plugin/plugin.json"
-check test -f "$ROOT/plugins/codex-gstack-overlay/skills/gstack-sync/SKILL.md"
-check test -x "$ROOT/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/sync-upstream.sh"
-check test -x "$ROOT/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/apply-overlay.sh"
-check test -x "$ROOT/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/verify.sh"
-check test -f "$ROOT/plugins/codex-gstack-overlay/patches/0001-codex-default-gpt-5-5.patch"
 
 if [ "$(uname -s)" = "Darwin" ]; then
   check command -v brew
@@ -91,20 +82,6 @@ if [ -d "$GSTACK_DIR/.git" ]; then
   else
     printf 'WARN codex-gstack default model is not verified as gpt-5.5. Run ./scripts/update.sh\n'
   fi
-fi
-
-if [ -f "$CODEX_GSTACK_OVERLAY/.codex-plugin/plugin.json" ]; then
-  printf 'OK   Codex GStack overlay plugin installed: %s\n' "$CODEX_GSTACK_OVERLAY"
-else
-  printf 'FAIL Codex GStack overlay plugin missing. Run ./scripts/install-codex-gstack-overlay.sh\n'
-  fail=1
-fi
-
-if [ -f "$CODEX_PLUGIN_MARKETPLACE" ] && grep -q '"codex-gstack-overlay"' "$CODEX_PLUGIN_MARKETPLACE"; then
-  printf 'OK   personal plugin marketplace includes codex-gstack-overlay\n'
-else
-  printf 'FAIL personal plugin marketplace missing codex-gstack-overlay. Run ./scripts/install-codex-gstack-overlay.sh\n'
-  fail=1
 fi
 
 if [ -f "$CODEX_GSTACK_RUNTIME/SKILL.md" ]; then

@@ -3,8 +3,7 @@
 Core CLIs:
 
 - Codex
-- Edward's `codex-gstack`
-- Codex GStack Overlay plugin for safe upstream sync and GPT-5.5 default overlay
+- Edward's `codex-gstack` (frozen at tag `frozen-v1`)
 - Supermemory
 - Mem0 (Codex plugin)
 - Repowise
