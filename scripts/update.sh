@@ -3,7 +3,6 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GSTACK_DIR="${GSTACK_DIR:-$HOME/.gstack/repos/gstack}"
-OVERLAY_INSTALLER="$ROOT/scripts/install-codex-gstack-overlay.sh"
 
 log() { printf '%s\n' "$*"; }
 
@@ -24,12 +23,6 @@ if git -C "$ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   fi
   new_stack="$(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null || echo unknown)"
   log "Edward stack: $old_stack -> $new_stack"
-fi
-
-if [ -x "$OVERLAY_INSTALLER" ]; then
-  "$OVERLAY_INSTALLER"
-else
-  log "WARN: Codex GStack overlay installer missing: $OVERLAY_INSTALLER"
 fi
 
 if [ -d "$GSTACK_DIR/.git" ]; then

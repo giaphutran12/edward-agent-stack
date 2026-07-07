@@ -50,7 +50,6 @@ Procedure:
 git clone --single-branch --depth 1 https://github.com/giaphutran12/codex-gstack.git ~/.gstack/repos/gstack
 cd ~/.gstack/repos/gstack
 ./setup --host codex
-~/edward-agent-stack/scripts/install-codex-gstack-overlay.sh
 ```
 
 ## Update

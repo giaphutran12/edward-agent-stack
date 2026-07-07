@@ -97,15 +97,11 @@ Use `gstack investigate` before saying stuck.
 
 Use `gstack ship` for PR/review/shipping flow.
 
-For `codex-gstack` fork maintenance, use the Codex GStack Overlay plugin:
-
-```bash
-~/edward-agent-stack/scripts/install-codex-gstack-overlay.sh
-~/.agents/plugins/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/sync-upstream.sh --repo ~/.gstack/repos/gstack --no-push
-```
-
-Do not sync the fork by discarding commits, force-pushing, or resetting to
-upstream. The overlay keeps upstream GStack changes and Edward's Codex patches.
+`codex-gstack` is frozen at tag `frozen-v1` and no longer tracks upstream
+`garrytan/gstack`. Do not sync the fork by discarding commits, force-pushing,
+or resetting to upstream. `~/edward-agent-stack/scripts/update.sh`
+fast-forwards it from Edward's fork origin only. See the Freeze Policy in
+`docs/GSTACK.md`.
 
 ## BLI Cockpit
 

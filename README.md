@@ -84,7 +84,6 @@ Installer behavior:
 - installs easy CLI tools best-effort
 - installs Caveman and Edward skills
 - installs Edward's `codex-gstack`
-- installs the Codex GStack Overlay plugin for safe upstream sync
 - prepares a Codex MCP config template at `dist/codex-mcp.example.toml`
 - stops at auth/key gates instead of forcing broken logins
 
@@ -191,17 +190,12 @@ The fork carries Codex-specific patches on top of upstream gstack:
 - full-skill loading for review subagents
 - skip nested `/codex` and `/claude` self-invocation paths
 - default Codex model overlay for `gpt-5.5`
-- safe upstream sync through the Codex GStack Overlay plugin
 
-Do not use GitHub "discard commits", `git reset --hard upstream/main`, or force
-pushes to sync the fork. Use the overlay plugin instead:
-
-```bash
-~/edward-agent-stack/scripts/install-codex-gstack-overlay.sh
-~/.agents/plugins/plugins/codex-gstack-overlay/skills/gstack-sync/scripts/sync-upstream.sh --repo ~/.gstack/repos/gstack --no-push
-```
-
-Use `--push` only when Edward explicitly asks to update `giaphutran12/codex-gstack`.
+The fork is frozen at tag `frozen-v1` and no longer tracks upstream
+`garrytan/gstack`. Do not use GitHub "discard commits", `git reset --hard
+upstream/main`, or force pushes on the fork. `./scripts/update.sh`
+fast-forwards it from `giaphutran12/codex-gstack` `origin/main` only. See the
+Freeze Policy in [docs/GSTACK.md](docs/GSTACK.md).
 
 ## Repowise
 
