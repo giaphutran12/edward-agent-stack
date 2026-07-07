@@ -58,7 +58,9 @@ else
 fi
 
 if [ "$(uname -m)" = "arm64" ]; then
-  if /usr/bin/pgrep oahd >/dev/null 2>&1 || /usr/bin/pkgutil --pkg-info com.apple.pkg.RosettaUpdateAuto >/dev/null 2>&1; then
+  # Functional check: run an x86_64 binary under Rosetta. Survives Apple
+  # renaming the daemon or the pkg receipt across macOS versions.
+  if arch -x86_64 /usr/bin/true 2>/dev/null || /usr/bin/pgrep -x oahd >/dev/null 2>&1; then
     log "OK   Rosetta present"
   else
     run_best_effort "Rosetta 2" softwareupdate --install-rosetta --agree-to-license

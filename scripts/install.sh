@@ -58,6 +58,16 @@ else
   git clone --single-branch --depth 1 "$GSTACK_REPO" "$GSTACK_DIR"
 fi
 
+# Pre-install Playwright Chromium with a hard time cap. bunx playwright can
+# hang after a completed download; the browser cache is shared, so a
+# successful pre-install turns the same step inside gstack setup into a
+# fast no-op, and a hang here cannot wedge the install.
+if have bunx; then
+  log "Pre-installing Playwright Chromium (15-minute cap)"
+  perl -e 'alarm 900; exec @ARGV' bunx playwright install chromium </dev/null \
+    || log "WARN: Playwright Chromium pre-install failed or timed out. Retry later: bunx playwright install chromium"
+fi
+
 if [ -x "$GSTACK_DIR/setup" ]; then
   (cd "$GSTACK_DIR" && ./setup --host codex)
 else
