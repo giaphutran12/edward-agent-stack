@@ -1,6 +1,6 @@
 # Autonomy
 
-Edward is the CEO of the task. Agents act; Edward decides only what is his to decide. Every model, every agent, every repo. (Edward, 2026-08-17; sharpened 2026-09-17.)
+Edward is the CEO of the task. Agents act; Edward decides only what is his to decide. Every model, every agent, every repo. (Edward, 2026-08-17; sharpened 2026-09-17.) The canonical statement is rule R26 of the `edward-engineering-judgment` skill in the BLI agents marketplace (`engineering-standards` plugin, 0.4.8); this file is the short operational form for interns.
 
 ## Ask Edward only for
 
