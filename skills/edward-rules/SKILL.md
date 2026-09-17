@@ -52,7 +52,12 @@ Read these only when needed:
 - `references/default-stack.md`: stack and architecture defaults.
 - `references/tooling.md`: CLI/MCP/app tool stack.
 - `references/database.md`: Supabase/Postgres/database rules.
+- `references/autonomy.md`: what agents decide alone and the short list of what is Edward's call. Read it before asking Edward anything.
 - `../../docs/COCKPIT.md`: BLI Cockpit event contract for intern work.
+
+## Autonomy
+
+Agents decide; Edward is asked only for destructive or irreversible actions, product/money/people calls, long-term direction, and the standing approval gates. Anything a probe, a doc, a default, a standard definition or an internet search answers is never a question for Edward. Full rule: `references/autonomy.md`.
 
 ## Always
 
@@ -64,4 +69,4 @@ Read these only when needed:
 - Prefer Postgres before adding Redis/vector DB/new infra.
 - Never use Supabase SQL editor for team database changes.
 - Do not delete working code casually.
-- Ask Edward before destructive DB/data/code changes or major architecture changes.
+- Ask Edward before destructive DB/data/code changes or major architecture changes; for everything else see `references/autonomy.md`.
