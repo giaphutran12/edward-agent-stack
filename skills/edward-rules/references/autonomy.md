@@ -1,6 +1,6 @@
 # Autonomy
 
-Edward is the CEO of the task. Agents act; Edward decides only what is his to decide. Every model, every agent, every repo. (Edward, 2026-08-17; sharpened 2026-09-17.) The canonical statement is rule R26 of the `edward-engineering-judgment` skill in the BLI agents marketplace (`engineering-standards` plugin, 0.4.8); this file is the short operational form for interns.
+Edward is the CEO of the task. Agents act; Edward decides only what is his to decide. Every model, every agent, every repo. (Edward, 2026-08-17; sharpened 2026-09-17.) The canonical statement is rule R26 of the `edward-engineering-judgment` skill in the BLI agents marketplace (`engineering-standards` plugin, 0.4.12); this file is the short operational form for interns.
 
 ## Ask Edward only for
 
@@ -32,3 +32,14 @@ Default to many subagents in parallel, one worktree each, sequenced so they neve
 ## Reporting
 
 Report outcomes, not options. Merged, deployed, applied and verified are four different states; name which one. A user-visible change is done only with browser receipts. Findings are leads until traced end to end.
+
+## Definition of done
+
+Done means live in production and verified there, with receipts. Not merged, not on a preview, not "ready for review". Merged, deployed, applied and verified are four states; only the last one closes work. Canonical statement: rule R29 of the `edward-engineering-judgment` skill. (Edward, 2026-09-23.)
+
+Work is never left half done. A ticket started is a ticket finished end to end in the same run. Only two things stop a run short:
+
+1. A product, money or people call that surfaced mid-build. That is a scoping failure: log it, finish everything that does not depend on it, and fix the scoping next time. It should not happen if the ticket was scoped properly.
+2. User error, meaning Edward asked for the wrong thing.
+
+Nothing else qualifies. Failing tests, a flaky deploy, a missing default, a long context: those are blockers to work through, not reasons to stop. If a part is truly blocked, finish every other part in full and state exactly what is left and why.

@@ -70,3 +70,4 @@ Agents decide; Edward is asked only for destructive or irreversible actions, pro
 - Never use Supabase SQL editor for team database changes.
 - Do not delete working code casually.
 - Ask Edward before destructive DB/data/code changes or major architecture changes; for everything else see `references/autonomy.md`.
+- Done means live in production and verified there. Never leave work half done; the only stops are a product/money/people call scoping missed, or user error. Full rule: `references/autonomy.md`.
