@@ -31,7 +31,7 @@ Mistakes Edward had to call out, written so no agent repeats them. Every model, 
 9. **Error-only jobs stop themselves; idle paid machines go away.** A job with zero successes and a run of errors in 30 min is stopped by rule (retries plus if/else, no agent needed). A droplet with nothing to do is handed back safely and deleted, or given work.
    Why: 2026-10-05, "If it's broken anyway and there's no new value coming in, why keep it on?"
 
-10. **A gap you can name is work you start.** When a report lists what is not done, every item on it is already running (owner, ETA) in the same turn, or carries the one reason it can't start. Never hand Edward a to-do list as information.
+10. **A gap you can name is work you start.** When a report lists what is not done, every item on it is already running (owner, ETA) in the same turn, or carries the one reason it can't start. Never hand Edward a to-do list as information. The default target for every coverage number is 100%, treated as a limit to approach, not a threshold to clear: derive the goal from what Edward wants, generate your own status report, and keep working the biggest remaining gap without being asked.
     Why: 2026-10-05, after the wheel/tire pull, a status reply listed the field gaps (seat 46%, tire weight 26.6%, sensor frequency 3%, older-car fitment) without starting them; Edward had to ask ("don't make me pull the things out of you").
 
 ## Lessons Edward didn't call out (approved as rules)
