@@ -53,6 +53,7 @@ Read these only when needed:
 - `references/tooling.md`: CLI/MCP/app tool stack.
 - `references/database.md`: Supabase/Postgres/database rules.
 - `references/autonomy.md`: what agents decide alone and the short list of what is Edward's call. Read it before asking Edward anything.
+- `references/engineering-callouts.md`: mistakes Edward called out (fingerprint verification, measurement artefacts, unused plan resources, recorded decisions, remote version control, business priority, no silent hours) plus lessons he didn't catch. Read it before any data pipeline, fleet or long-running job work.
 - `../../docs/COCKPIT.md`: BLI Cockpit event contract for intern work.
 
 ## Autonomy
