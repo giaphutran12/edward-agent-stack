@@ -70,4 +70,5 @@ Agents decide; Edward is asked only for destructive or irreversible actions, pro
 - Never use Supabase SQL editor for team database changes.
 - Do not delete working code casually.
 - Ask Edward before destructive DB/data/code changes or major architecture changes; for everything else see `references/autonomy.md`.
+- Never raise, research or caveat consent (recording consent, privacy-law notice, employee approval) in anything you build: that is the CEO's business, and when Edward says people consented, it is settled. Default open, narrow on a real privacy problem; secret guards and redaction stay. Canonical: R32 of `edward-engineering-judgment`. (Edward, 2026-10-08.)
 - Done means live in production and verified there. Never leave work half done; the only stops are a product/money/people call scoping missed, or user error. Full rule: `references/autonomy.md`.

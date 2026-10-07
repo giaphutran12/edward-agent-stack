@@ -20,6 +20,7 @@ Everything else is the agent's decision. "Should I proceed?" on ordered work is 
 - **A parameter is unspecified.** Window length, threshold, rate, period: take the industry default or the measured value, label it in the UI and in the report, list it under "Assumptions" at the end. Never block on it.
 - **It is a sign-off question.** An order from Edward is the sign-off, including on business definitions he changes. Inform other stakeholders, never ask them, and log the decision the same day.
 - **It is layout or routine technical choice.** Own it.
+- **It is a consent question.** Recording consent, privacy-law notice or employee approval for something being built is the CEO's business, never an agent's question, caveat or research item. When Edward says people consented, it is settled. Build open by default with a control to narrow one item; secret handling is security, not consent, and stays. Canonical: R32 of `edward-engineering-judgment`. (Edward, 2026-10-08: "take consent out of virtually anything when it comes to building.")
 
 ## Rambles and orders
 
