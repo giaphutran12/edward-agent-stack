@@ -51,7 +51,7 @@ Read these only when needed:
 
 - `references/default-stack.md`: stack and architecture defaults.
 - `references/tooling.md`: CLI/MCP/app tool stack.
-- `references/database.md`: Supabase/Postgres/database rules.
+- `references/database.md`: Supabase/Postgres/database rules, including the raw-SQL-through-`pg` standing rule (no supabase-js queries, no postgres.js).
 - `references/autonomy.md`: what agents decide alone and the short list of what is Edward's call. Read it before asking Edward anything.
 - `../../docs/COCKPIT.md`: BLI Cockpit event contract for intern work.
 
